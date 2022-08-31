@@ -49,6 +49,8 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
+        Session::put('user',['token'=>$token,'user'=>$user]);
+
         return response()->json([
                 'status' => 'success',
                 'user' => $user,
@@ -170,7 +172,7 @@ class AuthController extends Controller
                'password'=>
                $password]);
 
-               Session::put('user',['token'=>$token]);
+               Session::put('user',['token'=>$token,'user'=>$user]);
             return response()->json([
                 'status' => 'success',
                 'message' => 'User created successfully',
