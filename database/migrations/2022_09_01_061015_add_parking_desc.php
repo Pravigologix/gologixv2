@@ -25,7 +25,7 @@ return new class extends Migration
             $table->float('is_four_hrs_amt');
             $table->float('is_eight_hrs_amt');
             $table->float('more_amt');
-            $table->bigInteger('is_rent');
+            $table->bigInteger('is_rent_amt');
             $table->bigInteger('add_praking_slot_id');
 
 
