@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('failed_jobs', function (Blueprint $table) {
+        Schema::create('add_praking_slot', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+            $table->integer('parking_type');
+            $table->integer('parking_no');
+            $table->time('starts_at', $precision = 0);
+            $table->time('ends_at', $precision = 0);
+            $table->integer('parking_slots');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::drop('add_praking_slot');
     }
 };
