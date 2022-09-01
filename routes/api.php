@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Auth\AuthController;
+use App\Http\Controllers\API\User\cloudparking;
+// use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +27,9 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register/verify_otp', 'register');
     Route::get('auth/google', 'AuthController@redirectToGoogle');
 Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
+//Route::get('/index',[ParkingController::class,'index']);
 
-
-
-    
 
 });
+
+Route::get('/index', 'App\Http\Controllers\API\User\cloudparking\ParkingController@index');
