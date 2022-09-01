@@ -44,16 +44,23 @@ Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
 //<<<<<<< development
     
 
-});
+// });
 
 Route::group(['middleware'=>['auth']],function(){
     Route::get('getparkingaddress',[AddParkingController::class,'getparkingdeatils']);
     Route::post('addpakingaddress',[AddParkingController::class,'addparkingdetails']);
     Route::post('editpakingaddress',[AddParkingController::class,'editparkingdetails']);
+    Route::post('addparkingslotdetails',[AddParkingController::class,'addparkingslotdetails']);
+
+    Route::get('getparkingslotdetails',[AddParkingController::class,'getparkingslotdetails']);
+    Route::post('updateparkingslotdetails',[AddParkingController::class,'updateparkingslotdetails']);
+
+
+
 
 
 
 });
 //=======
-Route::get('/index', 'App\Http\Controllers\API\User\cloudparking\ParkingController@index');
+// Route::get('/index', 'App\Http\Controllers\API\User\cloudparking\ParkingController@index');
 //>>>>>>> addparkingspace
