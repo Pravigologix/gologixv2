@@ -129,7 +129,7 @@ return response()->json(['status'=>'failed','message'=>'invalid credential'],301
 }
 
 
-public function addparkingslotdetails(VendoraddressSlotRequest $request)
+public function addparkingslotdetails(VendoraddressSlotRequest  $request)
 { 
 
     try{
@@ -142,23 +142,30 @@ public function addparkingslotdetails(VendoraddressSlotRequest $request)
     $parking_slot->starts_at=$request->input('starts_at');
     $parking_slot->ends_at=$request->input('ends_at');
     $parking_slot->parking_slots=$request->input('parking_slots');
+    $parking_slot->address_id=$request->input('address_id');
+
     $parking_slot->user_id=$user->id;
     $parking_slot->save();
 
-    $parking_desc=new ParkingDescriptionModel;
-    $parking_desc->is_two_hrs=$request->input('is_two_hrs');
-    $parking_desc->is_four_hrs=$request->input('is_four_hrs');
-    $parking_desc->is_eight_hrs=$request->input('is_eight_hrs');
-    $parking_desc->more=$request->input('more');
-    $parking_desc->is_rent=$request->input('is_rent');
-    $parking_desc->is_two_hrs_amt=$request->input('is_two_hrs_amt');
-    $parking_desc->is_four_hrs_amt=$request->input('is_four_hrs_amt');
-    $parking_desc->is_eight_hrs_amt=$request->input('is_eight_hrs_amt');
-    $parking_desc->more_amt=$request->input('more_amt');
-    $parking_desc->is_rent_amt=$request->input('is_rent_amt');
-    $parking_desc->add_praking_slot_id=$parking_slot->id;
-    $parking_desc->save();
-    return $parking_desc;
+    $desc_id=$request->input('addparking_desc_ids');
+    $amt=$request->input('parking_amt');
+  
+
+    foreach(array_combine($desc_id,$amt) as $desc_id=>$amt){
+      DB::table('parking_charges')->insert([
+        'vendor_id'=>$user->id,
+        'parking_amt'=>$amt,
+        'add_praking_desc_id'=>$desc_id,
+        'add_praking_slot_id'=>$parking_slot->id,
+        
+      ]);
+
+
+
+    }
+
+    // $parking_desc->save();
+    return response()->json(['message'=>'sucessfully updated','status'=>1],200);
 }catch (Exception $e){
         return $e;
     }
@@ -177,42 +184,53 @@ public function addparkingslotdetails(VendoraddressSlotRequest $request)
 
 }
 
-public function getparkingslotdetails(Request $request)
+public function getparkingslotdetails(VendoraddressSlotRequest $request)
 { 
 
   $user= Auth::user();  
   $parking_slot=ParkingSlotModel::where('user_id','=',$user->id)
-  ->join('add_praking_desc','add_praking_desc.add_praking_slot_id','=','add_praking_slot.id')
+  ->join('parking_charges','parking_charges.add_praking_slot_id','=','add_praking_slots.id')
+  ->leftjoin('add_praking_desc','add_praking_desc.id','=','parking_charges.add_praking_desc_id')
+  ->select('add_praking_desc.timings','add_praking_desc.is_active as desc_isactive','add_praking_desc.is_delette as desc_isdelete','parking_charges.id as parking_charge_id','parking_charges.vendor_id','parking_charges.parking_amt','parking_charges.add_praking_desc_id as parking_description_id','parking_charges.add_praking_slot_id','parking_charges.is_active as parking_charge_isactive','parking_charges.is_delete as parking_charge_isdelete','add_praking_slots.*')
   ->get();
   return $parking_slot;
 
 }
+public function getparkingdescdetails(Request $request)
+{ 
 
-public function updateparkingslotdetails(VendoraddressSlotRequest $request)
+  $parking_desc=DB::table('add_praking_desc')->get();
+
+  return $parking_desc;
+
+}
+
+
+public function updateparkingslotdetails(Request $request)
 { 
 
   $user= Auth::user();  
 
   try{
 
-  $parking_desc=ParkingDescriptionModel::where('add_praking_slot_id','=',$request->input('add_praking_slot_id'))->where('id','=',$request->id)
+  $parking_desc=DB::table('parking_charges')
+  ->where('add_praking_slot_id','=',$request->input('add_praking_slot_id'))
+  ->where('add_praking_desc_id','=',$request->input('add_praking_desc_id'))
+  ->where('id','=',$request->input('parking_charge_id'))
+  ->where('vendor_id','=',$user->id)
+
   ->update(
     [
-        "is_two_hrs"=>$request->input('is_two_hrs'),
-        "is_four_hrs"=>$request->input('is_four_hrs'),
-        "is_eight_hrs"=>$request->input('is_eight_hrs'),
-        "more"=>$request->input('more'),
-        "is_rent"=>$request->input('is_rent'),
-        "is_two_hrs_amt"=>$request->input('is_two_hrs_amt'),
-        "is_four_hrs_amt"=>$request->input('is_four_hrs_amt'),
-        "is_eight_hrs_amt"=>$request->input('is_eight_hrs_amt'),
-        "more_amt"=>$request->input('more_amt'),
-        "is_rent_amt"=>$request->input('is_rent_amt')
+      'parking_amt'=>$request->input('parking_amt'),
+      'is_active'=>$request->input('parking_charge_isactive'),
+      'is_delete'=>$request->input('parking_charge_isdelete')
 
     ]
   );
 
-  $parking_slot=ParkingSlotModel::where('id','=',$request->input('add_praking_slot_id'))->where('user_id','=',$user->id)
+  $parking_slot=DB::table('add_praking_slots')
+  ->where('id','=',$request->input('add_praking_slot_id'))
+  ->where('user_id','=',$user->id)
   ->update(
     [
         "parking_type"=>$request->input('parking_type'),

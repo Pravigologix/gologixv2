@@ -5,22 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Auth\AuthController;
 //<<<<<<< development
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
+use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
+use App\Http\Controllers\API\User\cloudparking\BookParking;
 
-//=======
-//use App\Http\Controllers\API\User\cloudparking;
-// use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
-//>>>>>>> addparkingspace
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+
+
+
+
 
 
 Route::controller(AuthController::class)->group(function () {
@@ -54,6 +46,11 @@ Route::group(['middleware'=>['auth']],function(){
 
     Route::get('getparkingslotdetails',[AddParkingController::class,'getparkingslotdetails']);
     Route::post('updateparkingslotdetails',[AddParkingController::class,'updateparkingslotdetails']);
+    Route::get('getparkingdescdetails',[AddParkingController::class,'getparkingdescdetails']);
+
+
+    Route::post('getdetails',[UserParkingdeatils::class,'generateparkinglslotforuser']);
+    Route::post('bookparking',[BookParking::class,'bookpakingbyuser']);
 
 
 
@@ -61,6 +58,8 @@ Route::group(['middleware'=>['auth']],function(){
 
 
 });
+
+
 //=======
 // Route::get('/index', 'App\Http\Controllers\API\User\cloudparking\ParkingController@index');
 //>>>>>>> addparkingspace

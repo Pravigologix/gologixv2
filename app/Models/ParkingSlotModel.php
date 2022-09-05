@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ParkingSlotModel extends Model
 {
     // use HasFactory;
-	protected $table = "add_praking_slot";
+	protected $table = "add_praking_slots";
 
 }

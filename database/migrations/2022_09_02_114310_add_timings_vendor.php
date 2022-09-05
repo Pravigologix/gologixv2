@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('add_praking_slot', function (Blueprint $table) {
-            $table->id();
-            $table->integer('parking_type');
-            $table->integer('parking_no');
-            $table->time('starts_at', $precision = 0);
-            $table->time('ends_at', $precision = 0);
-            $table->integer('parking_slots');
+        Schema::create('parking_charges', function (Blueprint $table) {
+            $table->id(); 
+            $table->bigInteger('vendor_id');
+            $table->float('parking_amt');
+            $table->bigInteger('add_praking_desc_id');
+            $table->bigInteger('add_praking_slot_id');
+            $table->integer('is_active');
+            $table->integer('is_delete');
             $table->timestamps();
+
         });
     }
 
@@ -31,6 +33,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::drop('add_praking_slot');
+        Schema::drop('book_parking');
+        
     }
 };
