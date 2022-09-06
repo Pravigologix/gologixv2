@@ -7,6 +7,7 @@ use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
 use App\Http\Controllers\API\User\cloudparking\BookParking;
+use App\Http\Controllers\API\User\cloudparking\qrcodeController;
 
 
 
@@ -51,10 +52,7 @@ Route::group(['middleware'=>['auth']],function(){
 
     Route::post('getdetails',[UserParkingdeatils::class,'generateparkinglslotforuser']);
     Route::post('bookparking',[BookParking::class,'bookpakingbyuser']);
-
-
-
-
+ 
 
 
 });
@@ -63,3 +61,4 @@ Route::group(['middleware'=>['auth']],function(){
 //=======
 // Route::get('/index', 'App\Http\Controllers\API\User\cloudparking\ParkingController@index');
 //>>>>>>> addparkingspace
+Route::get('qrCode',[qrcodeController::class,'qrCode']);
