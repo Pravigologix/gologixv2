@@ -7,7 +7,14 @@ use App\Http\Controllers\API\User\cloudparking\ParkingController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\API\User\cloudparking\filterController;
 use App\Http\Controllers\API\User\cloudparking\qrcodeController;
-use App\Http\Controllers\API\User\cloudparking\userStatus;
+use App\Http\Controllers\API\User\cloudparking\notificationController;
+use App\Http\Controllers\API\User\cloudparking\VendorCustomerController;
+use App\Http\Controllers\API\User\cloudparking\UserDetailsControoller;
+use App\Http\Controllers\API\User\cloudparking\ImageController;
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,9 +36,22 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register/verify_otp', 'register');
     Route::get('auth/google', 'AuthController@redirectToGoogle');
 Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
-Route::get('index',[ParkingController::class,'index']);  
+// Route::get('index',[ParkingController::class,'index']);  
 Route::get('filter',[filterController::class,'filter']);     
 Route::get('qrCode',[qrcodeController::class,'qrCode']); 
 Route::get('status',[userStatus::class,'status']);   
 
 });
+Route::get('/push-notificaiton', [notificationController::class,'index']);
+Route::post('/store-token', [notificationController::class,'storeToken']);
+Route::post('/send-web-notification', [notificationController::class,'sendWebNotification']);
+
+
+Route::group(['middleware'=>['auth']],function(){
+    Route::get('/customer', [VendorCustomerController::class,'customer']);
+    Route::get('/vendor', [VendorCustomerController::class,'vendor']);
+    Route::get('/users', [UserDetailsControoller::class,'users']);
+    Route::get('/image', [ImageController::class,'image']);
+}
+);
+Route::post('/image', [ImageController::class,'image']);
