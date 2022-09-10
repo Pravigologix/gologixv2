@@ -11,7 +11,7 @@ use App\Http\Controllers\API\User\cloudparking\notificationController;
 use App\Http\Controllers\API\User\cloudparking\VendorCustomerController;
 use App\Http\Controllers\API\User\cloudparking\UserDetailsControoller;
 use App\Http\Controllers\API\User\cloudparking\ImageController;
-
+use App\Http\Controllers\API\User\cloudparking\BannerController;
 
 
 
@@ -54,4 +54,8 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/image', [ImageController::class,'image']);
 }
 );
-Route::post('/image', [ImageController::class,'image']);
+
+Route::get('/bannerDetails', [BannerController::class,'bannerDetails']);
+Route::get('/show', [BannerController::class,'show']);
+Route::get('/edit', [BannerController::class,'edit']);
+Route::get('/destroy', [BannerController::class,'destroy']);
