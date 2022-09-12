@@ -19,10 +19,15 @@ class qrcodeController extends Controller
     public function qrCode(Request $request){
         $data=DB::table('users')->where('id','=',$request->input('user_id'))->get();
 
+       $d=QrCode::generate($data,public_path('/images'));
+       return response()->json( ["qr_image_url"=>'/images'],200);
 
-        $d=QrCode::generate($data,public_path('/images'));
+
+
+     //   $d=QrCode::generate($data,public_path('/images'));
        
 
-        return response()->json( ["qr_image_url"=>'/images'],200);
+       // return response()->json( ["qr_image_url"=>'/images'],200);
+
 }
 }

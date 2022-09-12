@@ -81,7 +81,7 @@ class AuthController extends Controller
             'phonenumber' => $request->input('phonenumber'),
             'email_verified_at'=>$request->input('email_verified_at'),
             'device_token'=>$request->input('device_token'),
-            'two_factor_secrect'=>$request->input('two_factor_secrect'),
+            'two_factor_secret'=>$request->input('two_factor_secret'),
             'two_factor_recovery_codes'=>$request->input('two_factor_recovery_codes'),
             'remember_token'=>$request->input('remember_token'),
             'user_google_id'=>$request->input('user_google_id'),
@@ -100,8 +100,31 @@ class AuthController extends Controller
 	    $smsLog->tsl_msg = $msg;
 	    $smsLog->tsl_issent = "1";
 	// $smsLog->tsl_issent = $result;
+//<<<<<<< tejashwinirm
+//	$smsLog->save();
+
+
+       
+           
+
+   
+     //       return ['message' => $result, 'success' => 1,'otp'=>$otp];
+
+     //   }
+        catch (\Exception $e) 
+      //  {
+            // dd($e);
+       //     return response()->json( [
+         //           'entity' => 'users', 
+          //          'action' => 'create', 
+         //           'status' => 'failed'
+          //  ], 409);
+       // }
+ //       return ['message' => 'Something went wrong', 'success' => 0,];
+//=======
 	    $smsLog->save();
             return ['message' => $result, 'success' => 1,]; 
+//>>>>>>> backup
     }
     return ['message' => 'Something went wrong', 'success' => 0,];
 
@@ -127,14 +150,14 @@ class AuthController extends Controller
           $user->password=app('hash')->make($password);
           $user->email_verified_at=Session::get('user.email_verified_at');
           $user->device_token=Session::get('user.device_token');
-          $user->two_factor_secrect=Session::get('user.two_factor_secrect');
+          $user->two_factor_secret=Session::get('user.two_factor_secret');
           $user->two_factor_recovery_codes=Session::get('user.two_factor_recovery_codes');
           $user->remember_token=Session::get('user.remember_token');
           $user->user_google_id=Session::get('user.user_google_id');
           $user->user_google_type_id=Session::get('user.user_google_type_id');
           $user->is_admin=Session::get('user.is_admin');
-          $user->user_isverified=Session::get('user.user_isverified');
-          $user->user_isactive=Session::get('user.user_isactive');
+          $user->users_isverified=Session::get('user.user_isverified');
+          $user->users_isactive=Session::get('user.user_isactive');
           $user->users_isdeleted=Session::get('user.users_isdeleted');
           $user->save();
           if($user){
