@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Auth\AuthController;
-//<<<<<<< tejashwinirm
+
 use App\Http\Controllers\API\User\cloudparking\ParkingController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\API\User\cloudparking\filterController;
@@ -14,8 +14,7 @@ use App\Http\Controllers\API\User\cloudparking\UserDetailsControoller;
 use App\Http\Controllers\API\User\cloudparking\ImageController;
 use App\Http\Controllers\API\User\cloudparking\BannerController;
 use App\Http\Controllers\API\User\cloudparking\WalletController;
-//=======
-//<<<<<<< development
+
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
 use App\Http\Controllers\API\User\cloudparking\BookParking;
@@ -23,9 +22,26 @@ use App\Http\Controllers\API\User\cloudparking\qrcodeController;
 
 
 
-//>>>>>>> backup
 
 
+
+
+
+use App\Http\Controllers\API\User\cloudparking\ParkingController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\API\User\cloudparking\filterController;
+use App\Http\Controllers\API\User\cloudparking\qrcodeController;
+use App\Http\Controllers\API\User\cloudparking\userStatus;
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
 
 
 
@@ -41,15 +57,18 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
 //=======
 Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
-//<<<<<<< tejashwinirm
+
 // Route::get('index',[ParkingController::class,'index']);  
 //Route::get('filter',[filterController::class,'filter']);     
 //Route::get('qrCode',[qrcodeController::class,'qrCode']); 
 //Route::get('status',[userStatus::class,'status']);   
 //=======
 //Route::get('/index',[ParkingController::class,'index']);
-//>>>>>>> addparkingspace
-//>>>>>>> backup
+
+
+//Route::get('/index',[ParkingController::class,'index']);
+
+
 
 });
 Route::get('/push-notificaiton', [notificationController::class,'index']);
@@ -58,12 +77,20 @@ Route::post('/send-web-notification', [notificationController::class,'sendWebNot
 
 });
 
-//<<<<<<< tejashwinirm
+
 Route::group(['middleware'=>['auth']],function(){
     Route::get('/customer', [VendorCustomerController::class,'customer']);
     Route::get('/vendor', [VendorCustomerController::class,'vendor']);
     Route::get('/users', [UserDetailsControoller::class,'users']);
     Route::get('/image', [ImageController::class,'image']);
+
+
+Route::get('index',[ParkingController::class,'index']);  
+Route::get('filter',[filterController::class,'filter']);     
+Route::get('qrCode',[qrcodeController::class,'qrCode']); 
+Route::get('status',[userStatus::class,'status']);   
+
+
 
 
 Route::get('/bannerDetails', [BannerController::class,'bannerDetails']);
@@ -94,8 +121,11 @@ Route::get('/updatingeWallet', [WalletController::class,'updatingeWallet']);
 });
 
 
-//=======
+
 // Route::get('/index', 'App\Http\Controllers\API\User\cloudparking\ParkingController@index');
-//>>>>>>> addparkingspace
+
 //Route::get('qrCode',[qrcodeController::class,'qrCode']);
-//>>>>>>> backup
+
+
+Route::get('qrCode',[qrcodeController::class,'qrCode']);
+
