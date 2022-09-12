@@ -12,6 +12,7 @@ use App\Http\Controllers\API\User\cloudparking\VendorCustomerController;
 use App\Http\Controllers\API\User\cloudparking\UserDetailsControoller;
 use App\Http\Controllers\API\User\cloudparking\ImageController;
 use App\Http\Controllers\API\User\cloudparking\BannerController;
+use App\Http\Controllers\API\User\cloudparking\WalletController;
 
 
 
@@ -59,3 +60,6 @@ Route::get('/bannerDetails', [BannerController::class,'bannerDetails']);
 Route::get('/show', [BannerController::class,'show']);
 Route::get('/edit', [BannerController::class,'edit']);
 Route::get('/destroy', [BannerController::class,'destroy']);
+Route::get('/walletDetails', [WalletController::class,'walletDetails']);
+Route::post('/updateWallet', [WalletController::class,'updateWallet']);
+Route::get('/updatingeWallet', [WalletController::class,'updatingeWallet']);
