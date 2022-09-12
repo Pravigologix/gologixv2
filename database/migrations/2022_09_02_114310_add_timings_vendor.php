@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+        Schema::create('parking_charges', function (Blueprint $table) {
+            $table->id(); 
+            $table->bigInteger('vendor_id');
+            $table->float('parking_amt');
+            $table->bigInteger('add_praking_desc_id');
+            $table->bigInteger('add_praking_slot_id');
+            $table->integer('is_active');
+            $table->integer('is_delete');
             $table->timestamps();
+
         });
     }
 
@@ -31,6 +33,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::drop('book_parking');
+        
     }
 };

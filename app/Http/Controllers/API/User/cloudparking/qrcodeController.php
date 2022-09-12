@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
+
 use App\Http\Controllers\API\User\cloudparking\userStatus;
+
 use QrCode;
 
 

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class LoginRequest extends FormRequest
+class VendoraddressRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,16 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|exists:users,email|max:50',
-            'password'=> 'required',
+            'add_description' => 'required',
+            'add_address'=> 'required',
+            // 'add_city_id '=> 'required',
+            'add_latitude'=> 'required',
+            'add_longitude'=> 'required',
+            'add_isactive'=> 'required',
+            'add_isdeleted'=> 'required',
+'add_pincode'=>'required'
+
+
         ];
     }
     public function failedValidation(Validator $validator)
@@ -36,14 +44,21 @@ class LoginRequest extends FormRequest
             'success'   => false,
             'message'   => 'Validation errors',
             'data'      => $validator->errors()
-        ],401));
+        ]));
     }
     public function messages() //OPTIONAL
     {
         return [
-            'email.required' => 'Email is required',
-            'email.email' => 'Email is not correct'
+            'add_description.required' => 'address description is required',
+            'add_address.required' => 'address  is required',
+            
+            'add_latitude.required' => 'address latitude is required',
+            'add_longitude.required' => 'address longitude is required',
+            'add_isactive.required' => 'add_isactive  is required',
+            'add_isdeleted.required' => 'add_isdeleted  is required',
+            'add_pincode.required'=>'pincode is required'
+
+           
         ];
     }
-
 }

@@ -8078,6 +8078,7 @@
         },
         {
             "name": "spatie/laravel-ignition",
+
             "version": "1.4.1",
             "source": {
                 "type": "git",
@@ -8088,6 +8089,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/29deea5d9cf921590184be6956e657c4f4566440",
                 "reference": "29deea5d9cf921590184be6956e657c4f4566440",
+
                 "shasum": ""
             },
             "require": {
@@ -8164,7 +8166,9 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-01T11:31:14+00:00"
+
+            "time": "2022-08-26T13:28:24+00:00"
+
         },
         {
             "name": "theseer/tokenizer",
