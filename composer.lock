@@ -1000,16 +1000,18 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.28.0",
+
+            "version": "v9.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "396a89e1f3654123d1c7f56306051212e5c75bc0"
+                "reference": "27572f45120fd3977d92651a71d8c711a9aaa790"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/396a89e1f3654123d1c7f56306051212e5c75bc0",
-                "reference": "396a89e1f3654123d1c7f56306051212e5c75bc0",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/27572f45120fd3977d92651a71d8c711a9aaa790",
+                "reference": "27572f45120fd3977d92651a71d8c711a9aaa790",
+
                 "shasum": ""
             },
             "require": {
@@ -1176,7 +1178,9 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-09-06T14:57:01+00:00"
+
+            "time": "2022-08-30T13:34:43+00:00"
+
         },
         {
             "name": "laravel/sanctum",
@@ -2011,16 +2015,18 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.62.1",
+
+            "version": "2.62.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a"
+                "reference": "7507aec3d626797ce2123cf6c6556683be22b5f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a",
-                "reference": "01bc4cdefe98ef58d1f9cb31bdbbddddf2a88f7a",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/7507aec3d626797ce2123cf6c6556683be22b5f8",
+                "reference": "7507aec3d626797ce2123cf6c6556683be22b5f8",
+
                 "shasum": ""
             },
             "require": {
@@ -2109,7 +2115,9 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-02T07:48:13+00:00"
+
+            "time": "2022-08-28T19:48:05+00:00"
+
         },
         {
             "name": "nette/schema",
@@ -6036,16 +6044,18 @@
         },
         {
             "name": "laravel/pint",
-            "version": "v1.1.3",
+
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "9fb8e93074de3c04a0975beb90dcb38562afbdaa"
+                "reference": "ebfe95b446e4395eba1eefb8615214fb55163165"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/9fb8e93074de3c04a0975beb90dcb38562afbdaa",
-                "reference": "9fb8e93074de3c04a0975beb90dcb38562afbdaa",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/ebfe95b446e4395eba1eefb8615214fb55163165",
+                "reference": "ebfe95b446e4395eba1eefb8615214fb55163165",
+
                 "shasum": ""
             },
             "require": {
@@ -6056,13 +6066,15 @@
                 "php": "^8.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.11.0",
-                "illuminate/view": "^9.27",
+
+                "friendsofphp/php-cs-fixer": "^3.10.0",
+                "illuminate/view": "^9.26.0",
                 "laravel-zero/framework": "^9.1.3",
                 "mockery/mockery": "^1.5.0",
-                "nunomaduro/larastan": "^2.2",
+                "nunomaduro/larastan": "^2.1.12",
                 "nunomaduro/termwind": "^1.14.0",
-                "pestphp/pest": "^1.22.1"
+                "pestphp/pest": "^1.22.0"
+
             },
             "bin": [
                 "builds/pint"
@@ -6098,7 +6110,9 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2022-09-06T16:01:44+00:00"
+
+            "time": "2022-08-30T15:28:20+00:00"
+
         },
         {
             "name": "laravel/sail",
@@ -8078,16 +8092,18 @@
         },
         {
             "name": "spatie/laravel-ignition",
-            "version": "1.4.1",
+
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "29deea5d9cf921590184be6956e657c4f4566440"
+                "reference": "71c627a0838f107562e89bc2b0201a81f26e9011"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/29deea5d9cf921590184be6956e657c4f4566440",
-                "reference": "29deea5d9cf921590184be6956e657c4f4566440",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/71c627a0838f107562e89bc2b0201a81f26e9011",
+                "reference": "71c627a0838f107562e89bc2b0201a81f26e9011",
+
                 "shasum": ""
             },
             "require": {
@@ -8164,7 +8180,9 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-01T11:31:14+00:00"
+
+            "time": "2022-08-26T13:28:24+00:00"
+
         },
         {
             "name": "theseer/tokenizer",

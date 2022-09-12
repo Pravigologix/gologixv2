@@ -29,7 +29,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|string|unique:users',
+            'email' => 'required|string|unique:users,email',
             'phonenumber'=> 'required|numeric|min:10|unique:users',
             'password' => 'required|string|min:8|regex:/[A-Z]/|regex:/[0-9]/',
             'password_confirmation' => 'required_with:password|same:password|min:6'

@@ -45,10 +45,12 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Unauthorized',
-            ], 401);
+            ], 410);
         }
 
         $user = Auth::user();
+        Session::put('user',['token'=>$token,'user'=>$user]);
+
         return response()->json([
                 'status' => 'success',
                 'user' => $user,
@@ -65,22 +67,13 @@ class AuthController extends Controller
       
 
             $smsConnectorInstance = new SmsConnector();
-    
-      
-    
-            
+            $msgType="Register";
             $otp = rand(100000, 999999);
-        // $otp = mt_rand(1000,9999);
-        $mobile ='+91' . $request->input('phonenumber');
-        $message = 'Your Gologix One-Time-Password is ' . $otp;
-
-        $result = $smsConnectorInstance->sendSms($mobile, $message);
-
-
-        // $request->session()->put('email','name');
+             $mobile ='+91' . $request->input('phonenumber');
+             $templates = Config::get('constants.MSG_TEMPLATES');
+	         $msg = $templates[$msgType][0].$otp.$templates[$msgType][1];
+             $result = $smsConnectorInstance->sendSms($mobile, $msg);
         if($result){
-
-
         Session::put('user', [
             'email'    => $request->input('email'),
             'name'=>$request->input('name'),
@@ -100,38 +93,41 @@ class AuthController extends Controller
             'otp' => $otp,
             'session_id' => Session::getId()
         ]);
-
-        try{
         $smsLog = new Sms();
-
-	// $smsLog->tsl_userid  = $userId;
-	$smsLog->tsl_phonenumber=$mobile;
-	$smsLog->tsl_otp = $otp;
-	$smsLog->tsl_type = '1';
-	$smsLog->tsl_msg = $message;
-	$smsLog->tsl_issent = "1";
+	    $smsLog->tsl_phonenumber=$mobile;
+	    $smsLog->tsl_otp = $otp;
+	    $smsLog->tsl_type = '1';
+	    $smsLog->tsl_msg = $msg;
+	    $smsLog->tsl_issent = "1";
 	// $smsLog->tsl_issent = $result;
-	$smsLog->save();
+//<<<<<<< tejashwinirm
+//	$smsLog->save();
 
 
        
            
 
    
-            return ['message' => $result, 'success' => 1,'otp'=>$otp];
+     //       return ['message' => $result, 'success' => 1,'otp'=>$otp];
 
-        }
+     //   }
         catch (\Exception $e) 
-        {
+      //  {
             // dd($e);
-            return response()->json( [
-                    'entity' => 'users', 
-                    'action' => 'create', 
-                    'status' => 'failed'
-            ], 409);
-        }
-        return ['message' => 'Something went wrong', 'success' => 0,];
+       //     return response()->json( [
+         //           'entity' => 'users', 
+          //          'action' => 'create', 
+         //           'status' => 'failed'
+          //  ], 409);
+       // }
+ //       return ['message' => 'Something went wrong', 'success' => 0,];
+//=======
+	    $smsLog->save();
+            return ['message' => $result, 'success' => 1,]; 
+//>>>>>>> backup
     }
+    return ['message' => 'Something went wrong', 'success' => 0,];
+
        
 
     
@@ -170,7 +166,7 @@ class AuthController extends Controller
                'password'=>
                $password]);
 
-               Session::put('user',['token'=>$token]);
+               Session::put('user',['token'=>$token,'user'=>$user]);
             return response()->json([
                 'status' => 'success',
                 'message' => 'User created successfully',

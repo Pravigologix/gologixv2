@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
+        Schema::create('add_praking_slots', function (Blueprint $table) {
             $table->id();
-            $table->morphs('tokenable');
-            $table->string('name');
-            $table->string('token', 64)->unique();
-            $table->text('abilities')->nullable();
-            $table->timestamp('last_used_at')->nullable();
-            $table->timestamp('expires_at')->nullable();
+            $table->integer('parking_type');
+            $table->integer('parking_no');
+            $table->time('starts_at', $precision = 0);
+            $table->time('ends_at', $precision = 0);
+            $table->integer('parking_slots');
+            $table->integer('user_id');
+            $table->integer('address_id');
+
+
             $table->timestamps();
         });
     }
@@ -32,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personal_access_tokens');
+        Schema::drop('add_praking_slots');
     }
 };
