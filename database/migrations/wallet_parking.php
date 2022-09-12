@@ -17,7 +17,7 @@ return new class extends Migration
         $table->id();
         $table->integer('wal_user_id');
         $table->bigInteger('wal_balance')->default(0);
-        $table->bigInteger('wal_transaction_id');
+        $table->string('wal_transaction_id');
         $table->bigInteger('credited_amt')->default(0);
         $table->bigInteger('debited_amt')->default(0);
         $table->integer('wal_isactive')->set(1);
