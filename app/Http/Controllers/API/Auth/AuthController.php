@@ -111,7 +111,7 @@ class AuthController extends Controller
      //       return ['message' => $result, 'success' => 1,'otp'=>$otp];
 
      //   }
-        catch (\Exception $e) 
+        // catch (\Exception $e) 
       //  {
             // dd($e);
        //     return response()->json( [

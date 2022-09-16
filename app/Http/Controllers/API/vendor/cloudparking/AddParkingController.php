@@ -12,6 +12,7 @@ use App\Http\Requests\Validation\VendoraddressSlotRequest;
 use App\Models\AddressModel;
 use App\Models\ParkingSlotModel;
 use App\Models\ParkingDescriptionModel;
+use App\Models\ParkingChargeModel;
 use DB;
 
 class AddParkingController extends Controller
@@ -38,7 +39,7 @@ $userdetails=Auth::user();
       $res= DB::table('addresses')->where('add_user_id','=',$userdetails->id)->where('add_isdeleted',0)
       ->get();
 
-      return $res;
+      return response()->json(['myslot'=>$res],200);
     }
     return response()->json(['status'=>'failed','message'=>'invalid credential'],301);
 
@@ -184,16 +185,21 @@ public function addparkingslotdetails(VendoraddressSlotRequest  $request)
 
 }
 
-public function getparkingslotdetails(VendoraddressSlotRequest $request)
+public function getparkingslotdetails(Request $request)
 { 
 
   $user= Auth::user();  
-  $parking_slot=ParkingSlotModel::where('user_id','=',$user->id)
-  ->join('parking_charges','parking_charges.add_praking_slot_id','=','add_praking_slots.id')
-  ->leftjoin('add_praking_desc','add_praking_desc.id','=','parking_charges.add_praking_desc_id')
-  ->select('add_praking_desc.timings','add_praking_desc.is_active as desc_isactive','add_praking_desc.is_delette as desc_isdelete','parking_charges.id as parking_charge_id','parking_charges.vendor_id','parking_charges.parking_amt','parking_charges.add_praking_desc_id as parking_description_id','parking_charges.add_praking_slot_id','parking_charges.is_active as parking_charge_isactive','parking_charges.is_delete as parking_charge_isdelete','add_praking_slots.*')
+  $parking_slot=ParkingSlotModel::where('user_id','=',$user->id)->where('add_praking_slots.is_active',0)
+  ->join('addresses','add_praking_slots.address_id','=','addresses.id')
+  ->select("addresses.add_description","addresses.add_address",'add_praking_slots.*')
   ->get();
-  return $parking_slot;
+
+
+
+
+
+  
+  return response()->json(['myslot'=>$parking_slot],200);
 
 }
 public function getparkingdescdetails(Request $request)
@@ -202,6 +208,26 @@ public function getparkingdescdetails(Request $request)
   $parking_desc=DB::table('add_praking_desc')->get();
 
   return $parking_desc;
+
+}
+
+public function getparkingcharges(Request $request)
+{ 
+
+  $parking_desc=ParkingChargeModel::
+  with('add_praking_desc')->with('add_praking_slot')
+  ->where('add_praking_slot_id','=',$request->input('slot_id'))
+  
+  ->get();
+  $address=AddressModel::
+  
+  where('id','=',$request->input('add_id'))
+  
+  ->get();
+
+
+
+  return response()->json(["parking_desc"=>$parking_desc,"address"=>$address],200);
 
 }
 

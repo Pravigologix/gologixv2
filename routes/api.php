@@ -18,19 +18,7 @@ use App\Http\Controllers\API\User\cloudparking\WalletController;
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
 use App\Http\Controllers\API\User\cloudparking\BookParking;
-use App\Http\Controllers\API\User\cloudparking\qrcodeController;
 
-
-
-
-
-
-
-
-use App\Http\Controllers\API\User\cloudparking\ParkingController;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\API\User\cloudparking\filterController;
-use App\Http\Controllers\API\User\cloudparking\qrcodeController;
 use App\Http\Controllers\API\User\cloudparking\userStatus;
 /*
 |--------------------------------------------------------------------------
@@ -53,9 +41,9 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::post('register/verify_otp', 'register');
     Route::get('auth/google', 'AuthController@redirectToGoogle');
-//<<<<<<< development
+
     Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
-//=======
+
 Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
 
 // Route::get('index',[ParkingController::class,'index']);  
@@ -70,17 +58,17 @@ Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
 
 
 
-});
-Route::get('/push-notificaiton', [notificationController::class,'index']);
-Route::post('/store-token', [notificationController::class,'storeToken']);
-Route::post('/send-web-notification', [notificationController::class,'sendWebNotification']);
+// });
+// Route::get('/push-notificaiton', [notificationController::class,'index']);
+// Route::post('/store-token', [notificationController::class,'storeToken']);
+// Route::post('/send-web-notification', [notificationController::class,'sendWebNotification']);
 
 });
 
 
 Route::group(['middleware'=>['auth']],function(){
     Route::get('/customer', [VendorCustomerController::class,'customer']);
-    Route::get('/vendor', [VendorCustomerController::class,'vendor']);
+    Route::get('/vendorcustomer', [VendorCustomerController::class,'vendor']);
     Route::get('/users', [UserDetailsControoller::class,'users']);
     Route::get('/image', [ImageController::class,'image']);
 
@@ -104,6 +92,8 @@ Route::get('/updatingeWallet', [WalletController::class,'updatingeWallet']);
 
 //Route::group(['middleware'=>['auth']],function(){
     Route::get('getparkingaddress',[AddParkingController::class,'getparkingdeatils']);
+    Route::post('getparkingcharges',[AddParkingController::class,'getparkingcharges']);
+
     Route::post('addpakingaddress',[AddParkingController::class,'addparkingdetails']);
     Route::post('editpakingaddress',[AddParkingController::class,'editparkingdetails']);
     Route::post('addparkingslotdetails',[AddParkingController::class,'addparkingslotdetails']);
