@@ -18,6 +18,8 @@ use App\Http\Controllers\API\User\cloudparking\WalletController;
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
 use App\Http\Controllers\API\User\cloudparking\BookParking;
+use App\Http\Controllers\API\Profile\ProfileController;
+
 
 use App\Http\Controllers\API\User\cloudparking\userStatus;
 /*
@@ -101,6 +103,10 @@ Route::get('/updatingeWallet', [WalletController::class,'updatingeWallet']);
     Route::get('getparkingslotdetails',[AddParkingController::class,'getparkingslotdetails']);
     Route::post('updateparkingslotdetails',[AddParkingController::class,'updateparkingslotdetails']);
     Route::get('getparkingdescdetails',[AddParkingController::class,'getparkingdescdetails']);
+    Route::get('getuserdetails',[ProfileController::class,'getprofile']);
+    Route::post('addprofilepicture',[ProfileController::class,'addprofilepicture']);
+
+
 
 
     Route::post('getdetails',[UserParkingdeatils::class,'generateparkinglslotforuser']);
