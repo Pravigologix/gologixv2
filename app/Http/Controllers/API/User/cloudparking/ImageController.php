@@ -12,15 +12,27 @@ class ImageController extends Controller
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+    
+        $filejustname =pathinfo('image', PATHINFO_FILENAME);
+        // Get just extension of user upload file
+        $extention ='image'->getClientOriginalExtension();
+      $fileName = $filejustname .time() ."." .$extention ;
+    
+      $destinationPath =public_path().'/images'.'/ProductsImages';
+      $img = Image::make($file->getRealPath());
       
-        $imageName = time().'.'.$request->image->extension();  
-       
-        $request->image->store(public_path('images'), $imageName);
-        $post->post_image = Storage::url($filePath);
+      $img->resize(10, 10, function ($constraint) {
+          $constraint->aspectRatio();
+          
+        })->save($destinationPath.'/'.$fileName);
     
-    return $imageName;
-    
-    
+          $destinationPath = public_path().'/images'.'/ProductsImages' ;
+          
+          $fileupload=$file->move($destinationPath,$fileName);
+          $imagedata=$destinationPath.'/'.$fileName;  
+          
+       dd($imagedata);
     }
 
 }
