@@ -27,12 +27,7 @@ class AddParkingController extends Controller
     public function getparkingdeatils(Request $request)
     {  
 
-$userdetails=Auth::user();
-
-
-
-
-        
+$userdetails=Auth::user();  
 
         if($userdetails->is_admin==1){
 
@@ -170,18 +165,6 @@ public function addparkingslotdetails(VendoraddressSlotRequest  $request)
 }catch (Exception $e){
         return $e;
     }
-
-
-
-
-
-
-
-
-
-   
-    
-
 
 }
 

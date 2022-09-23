@@ -22,7 +22,7 @@ return new class extends Migration
         $table->bigInteger('debited_amt')->default(0);
         $table->integer('wal_isactive')->set(1);
         $table->integer('wal_isdeleted')->set(0);
-        $table->current_timestamps();
+        $table->timestamps();
     });
     }
     /**
