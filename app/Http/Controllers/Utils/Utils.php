@@ -1,5 +1,7 @@
 <?php
-namespace App\Modules\Utils;
+// namespace App\Modules\Utils;
+namespace App\Http\Controllers\Utils\Utils;
+
 
 use Validator;
 
