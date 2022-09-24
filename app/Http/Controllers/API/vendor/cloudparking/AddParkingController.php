@@ -29,7 +29,7 @@ class AddParkingController extends Controller
 
 $userdetails=Auth::user();  
 
-        if($userdetails->is_admin==1){
+        if($userdetails->is_admin==2){
 
       $res= DB::table('addresses')->where('add_user_id','=',$userdetails->id)->where('add_isdeleted',0)
       ->get();
@@ -91,7 +91,7 @@ $userdetails=Auth::user();
 // if($userdetails==null){
 
 // dd($userdetails);
-if($userdetails->is_admin==1){
+if($userdetails->is_admin==2){
 
 $addaddress=AddressModel::find($request->input('id'));
 
