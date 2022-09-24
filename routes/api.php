@@ -112,6 +112,8 @@ Route::get('/updatingeWallet', [WalletController::class,'updatingeWallet']);
     Route::post('getdetails',[UserParkingdeatils::class,'generateparkinglslotforuser']);
     Route::post('bookparking',[BookParking::class,'bookpakingbyuser']);
  
+    Route::post('addqrCode',[qrcodeController::class,'addqrCode']);
+    Route::get('getqrCode',[qrcodeController::class,'getqrCode']);
 
 
 });
@@ -123,5 +125,4 @@ Route::get('/updatingeWallet', [WalletController::class,'updatingeWallet']);
 //Route::get('qrCode',[qrcodeController::class,'qrCode']);
 
 
-Route::get('qrCode',[qrcodeController::class,'qrCode']);
 
