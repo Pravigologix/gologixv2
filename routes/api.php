@@ -14,6 +14,7 @@ use App\Http\Controllers\API\User\cloudparking\UserDetailsControoller;
 use App\Http\Controllers\API\User\cloudparking\ImageController;
 use App\Http\Controllers\API\User\cloudparking\BannerController;
 use App\Http\Controllers\API\User\cloudparking\WalletController;
+use App\Http\Controllers\API\User\cloudparking\SearchCustomerController;
 
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
@@ -21,7 +22,12 @@ use App\Http\Controllers\API\User\cloudparking\BookParking;
 use App\Http\Controllers\API\Profile\ProfileController;
 
 
+
 use App\Http\Controllers\API\User\cloudparking\userStatus;
+use App\Http\Controllers\API\vendor\cloudparking\VendorDetailsController;
+use App\Http\Controllers\API\vendor\cloudparking\VendorAccountsController;
+use App\Http\Controllers\API\vendor\cloudparking\VendorkycController;
+use App\Http\Controllers\API\User\cloudparking\User_documentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -113,6 +119,15 @@ Route::get('/updatingeWallet', [WalletController::class,'updatingeWallet']);
     Route::post('bookparking',[BookParking::class,'bookpakingbyuser']);
  
 
+    Route::post('addVendorDetails',[VendorDetailsController::class,'addVendorDetails']);
+Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
+Route::post('addVendorAccountDetails',[VendorAccountsController::class,'addVendorAccountDetails']);
+Route::get('getVendorAccountDetails',[VendorAccountsController::class,'getVendorAccountDetails']);
+Route::post('addVendorkyc',[VendorkycController::class,'addVendorkyc']);
+Route::get('getVendorkyc',[VendorkycController::class,'getVendorkyc']);
+Route::post('addUserVehicleDocuments',[User_documentController::class,'addUserVehicleDocuments']);
+Route::get('getUserVehicleDocuments',[User_documentController::class,'getUserVehicleDocuments']);
+
 
 });
 
@@ -124,4 +139,4 @@ Route::get('/updatingeWallet', [WalletController::class,'updatingeWallet']);
 
 
 Route::get('qrCode',[qrcodeController::class,'qrCode']);
-
+Route::get('searchCustomer',[SearchCustomerController::class,'searchCustomer']);
