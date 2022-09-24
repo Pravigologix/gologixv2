@@ -50,7 +50,7 @@ $userdetails=Auth::user();
 // if($userdetails==null){
 
     // dd($userdetails);
-if($userdetails->is_admin==1){
+if($userdetails->is_admin==2){
 
     $addaddress=new AddressModel;
 
