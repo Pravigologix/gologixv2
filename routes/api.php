@@ -130,13 +130,3 @@ Route::get('getUserVehicleDocuments',[User_documentController::class,'getUserVeh
 
 
 });
-
-
-
-// Route::get('/index', 'App\Http\Controllers\API\User\cloudparking\ParkingController@index');
-
-//Route::get('qrCode',[qrcodeController::class,'qrCode']);
-
-
-
-
