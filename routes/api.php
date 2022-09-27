@@ -66,12 +66,12 @@ Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
 
 
 
-// });
+ });
 // Route::get('/push-notificaiton', [notificationController::class,'index']);
 // Route::post('/store-token', [notificationController::class,'storeToken']);
 // Route::post('/send-web-notification', [notificationController::class,'sendWebNotification']);
 
-});
+
 
 
 Route::group(['middleware'=>['auth']],function(){
@@ -138,5 +138,5 @@ Route::get('getUserVehicleDocuments',[User_documentController::class,'getUserVeh
 //Route::get('qrCode',[qrcodeController::class,'qrCode']);
 
 
-Route::get('qrCode',[qrcodeController::class,'qrCode']);
-Route::get('searchCustomer',[SearchCustomerController::class,'searchCustomer']);
+
+
