@@ -75,27 +75,29 @@ Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
 
 
 Route::group(['middleware'=>['auth']],function(){
-    Route::get('/customer', [VendorCustomerController::class,'customer']);
-    Route::get('/vendorcustomer', [VendorCustomerController::class,'vendor']);
-    Route::get('/users', [UserDetailsControoller::class,'users']);
-    Route::get('/image', [ImageController::class,'image']);
+    Route::get('customer', [VendorCustomerController::class,'customer']);
+    Route::get('vendorcustomer', [VendorCustomerController::class,'vendor']);
+    Route::get('users', [UserDetailsControoller::class,'users']);
+   
 
 
 Route::get('index',[ParkingController::class,'index']);  
 Route::get('filter',[filterController::class,'filter']);     
-Route::get('qrCode',[qrcodeController::class,'qrCode']); 
+Route::get('getqrCode',[qrcodeController::class,'getqrCode']); 
+Route::post('addqrCode',[qrcodeController::class,'addqrCode']); 
+
 Route::get('status',[userStatus::class,'status']);   
 
 
 
 
-Route::get('/bannerDetails', [BannerController::class,'bannerDetails']);
-Route::get('/show', [BannerController::class,'show']);
-Route::get('/edit', [BannerController::class,'edit']);
-Route::get('/destroy', [BannerController::class,'destroy']);
-Route::get('/walletDetails', [WalletController::class,'walletDetails']);
-Route::post('/updateWallet', [WalletController::class,'updateWallet']);
-Route::get('/updatingeWallet', [WalletController::class,'updatingeWallet']);
+Route::get('bannerDetails', [BannerController::class,'bannerDetails']);
+Route::get('show', [BannerController::class,'show']);
+Route::get('edit', [BannerController::class,'edit']);
+Route::get('destroy', [BannerController::class,'destroy']);
+Route::get('walletDetails', [WalletController::class,'walletDetails']);
+Route::post('updateWallet', [WalletController::class,'updateWallet']);
+Route::get('updatingeWallet', [WalletController::class,'updatingeWallet']);
 
 
 //Route::group(['middleware'=>['auth']],function(){

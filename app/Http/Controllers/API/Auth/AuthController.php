@@ -123,7 +123,13 @@ class AuthController extends Controller
  //       return ['message' => 'Something went wrong', 'success' => 0,];
 //=======
 	    $smsLog->save();
-            return ['message' => $result, 'success' => 1,]; 
+        return [
+
+              
+            'message'   => "Sucess",
+         
+          
+            'status' => $result,'success' => 1,]; 
 //>>>>>>> backup
     }
     return ['message' => 'Something went wrong', 'success' => 0,];
