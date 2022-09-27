@@ -11,10 +11,10 @@ use App\Http\Controllers\API\User\cloudparking\qrcodeController;
 use App\Http\Controllers\API\User\cloudparking\notificationController;
 use App\Http\Controllers\API\User\cloudparking\VendorCustomerController;
 use App\Http\Controllers\API\User\cloudparking\UserDetailsControoller;
-use App\Http\Controllers\API\User\cloudparking\ImageController;
+//use App\Http\Controllers\API\User\cloudparking\ImageController;
 use App\Http\Controllers\API\User\cloudparking\BannerController;
 use App\Http\Controllers\API\User\cloudparking\WalletController;
-use App\Http\Controllers\API\User\cloudparking\SearchCustomerController;
+//use App\Http\Controllers\API\User\cloudparking\SearchCustomerController;
 
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
@@ -78,12 +78,12 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/customer', [VendorCustomerController::class,'customer']);
     Route::get('/vendorcustomer', [VendorCustomerController::class,'vendor']);
     Route::get('/users', [UserDetailsControoller::class,'users']);
-    Route::get('/image', [ImageController::class,'image']);
+   // Route::get('/image', [ImageController::class,'image']);
 
 
 Route::get('index',[ParkingController::class,'index']);  
 Route::get('filter',[filterController::class,'filter']);     
-Route::get('qrCode',[qrcodeController::class,'qrCode']); 
+//Route::get('qrCode',[qrcodeController::class,'qrCode']); 
 Route::get('status',[userStatus::class,'status']);   
 
 
@@ -123,6 +123,8 @@ Route::post('/debitwalletamount', [WalletController::class,'debitwalletamount'])
     Route::post('getdetails',[UserParkingdeatils::class,'generateparkinglslotforuser']);
     Route::post('bookparking',[BookParking::class,'bookpakingbyuser']);
  
+    Route::post('addqrCode',[qrcodeController::class,'addqrCode']);
+    Route::get('getqrCode',[qrcodeController::class,'getqrCode']);
 
     Route::post('addVendorDetails',[VendorDetailsController::class,'addVendorDetails']);
 Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
@@ -143,9 +145,12 @@ Route::get('getUserVehicleDocuments',[User_documentController::class,'getUserVeh
 //Route::get('qrCode',[qrcodeController::class,'qrCode']);
 
 
-Route::get('qrCode',[qrcodeController::class,'qrCode']);
-Route::get('searchCustomer',[SearchCustomerController::class,'searchCustomer']);
+//<<<<<<< qrcode
+//=======
+//Route::get('qrCode',[qrcodeController::class,'qrCode']);
+//Route::get('searchCustomer',[SearchCustomerController::class,'searchCustomer']);
 
 
 
+//>>>>>>> main
 
