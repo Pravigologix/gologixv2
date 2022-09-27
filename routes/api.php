@@ -11,17 +11,23 @@ use App\Http\Controllers\API\User\cloudparking\qrcodeController;
 use App\Http\Controllers\API\User\cloudparking\notificationController;
 use App\Http\Controllers\API\User\cloudparking\VendorCustomerController;
 use App\Http\Controllers\API\User\cloudparking\UserDetailsControoller;
-use App\Http\Controllers\API\User\cloudparking\ImageController;
+//use App\Http\Controllers\API\User\cloudparking\ImageController;
 use App\Http\Controllers\API\User\cloudparking\BannerController;
 use App\Http\Controllers\API\User\cloudparking\WalletController;
+//use App\Http\Controllers\API\User\cloudparking\SearchCustomerController;
 
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
 use App\Http\Controllers\API\User\cloudparking\BookParking;
-use App\Http\Controllers\API\Profile\ProfileController;
+use App\Http\Controllers\API\profile\ProfileController;
+
 
 
 use App\Http\Controllers\API\User\cloudparking\userStatus;
+use App\Http\Controllers\API\vendor\cloudparking\VendorDetailsController;
+use App\Http\Controllers\API\vendor\cloudparking\VendorAccountsController;
+use App\Http\Controllers\API\vendor\cloudparking\VendorkycController;
+use App\Http\Controllers\API\User\cloudparking\User_documentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -72,12 +78,12 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/customer', [VendorCustomerController::class,'customer']);
     Route::get('/vendorcustomer', [VendorCustomerController::class,'vendor']);
     Route::get('/users', [UserDetailsControoller::class,'users']);
-    Route::get('/image', [ImageController::class,'image']);
+   // Route::get('/image', [ImageController::class,'image']);
 
 
 Route::get('index',[ParkingController::class,'index']);  
 Route::get('filter',[filterController::class,'filter']);     
-Route::get('qrCode',[qrcodeController::class,'qrCode']); 
+//Route::get('qrCode',[qrcodeController::class,'qrCode']); 
 Route::get('status',[userStatus::class,'status']);   
 
 
@@ -87,9 +93,14 @@ Route::get('/bannerDetails', [BannerController::class,'bannerDetails']);
 Route::get('/show', [BannerController::class,'show']);
 Route::get('/edit', [BannerController::class,'edit']);
 Route::get('/destroy', [BannerController::class,'destroy']);
-Route::get('/walletDetails', [WalletController::class,'walletDetails']);
-Route::post('/updateWallet', [WalletController::class,'updateWallet']);
-Route::get('/updatingeWallet', [WalletController::class,'updatingeWallet']);
+
+
+
+
+Route::post('/walletamount', [WalletController::class,'addwalletamount']);
+Route::get('/getwalletamount', [WalletController::class,'getwalletamount']);
+Route::post('/debitwalletamount', [WalletController::class,'debitwalletamount']);
+
 
 
 //Route::group(['middleware'=>['auth']],function(){
@@ -115,6 +126,15 @@ Route::get('/updatingeWallet', [WalletController::class,'updatingeWallet']);
     Route::post('addqrCode',[qrcodeController::class,'addqrCode']);
     Route::get('getqrCode',[qrcodeController::class,'getqrCode']);
 
+    Route::post('addVendorDetails',[VendorDetailsController::class,'addVendorDetails']);
+Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
+Route::post('addVendorAccountDetails',[VendorAccountsController::class,'addVendorAccountDetails']);
+Route::get('getVendorAccountDetails',[VendorAccountsController::class,'getVendorAccountDetails']);
+Route::post('addVendorkyc',[VendorkycController::class,'addVendorkyc']);
+Route::get('getVendorkyc',[VendorkycController::class,'getVendorkyc']);
+Route::post('addUserVehicleDocuments',[User_documentController::class,'addUserVehicleDocuments']);
+Route::get('getUserVehicleDocuments',[User_documentController::class,'getUserVehicleDocuments']);
+
 
 });
 
@@ -125,4 +145,12 @@ Route::get('/updatingeWallet', [WalletController::class,'updatingeWallet']);
 //Route::get('qrCode',[qrcodeController::class,'qrCode']);
 
 
+//<<<<<<< qrcode
+//=======
+//Route::get('qrCode',[qrcodeController::class,'qrCode']);
+//Route::get('searchCustomer',[SearchCustomerController::class,'searchCustomer']);
+
+
+
+//>>>>>>> main
 

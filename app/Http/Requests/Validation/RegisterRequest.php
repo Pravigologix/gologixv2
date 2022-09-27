@@ -38,10 +38,11 @@ class RegisterRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'success'   => false,
-            'message'   => 'Validation errors',
+            'success'   => 0,
+            'message'   => "Validation error",
+            "status"=>false,
             'data'      => $validator->errors()
-        ]));
+        ],412));
     }
     public function messages() //OPTIONAL
     {
