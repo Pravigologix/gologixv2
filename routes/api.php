@@ -19,7 +19,7 @@ use App\Http\Controllers\API\User\cloudparking\SearchCustomerController;
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
 use App\Http\Controllers\API\User\cloudparking\BookParking;
-use App\Http\Controllers\API\Profile\ProfileController;
+use App\Http\Controllers\API\profile\ProfileController;
 
 
 
@@ -93,9 +93,7 @@ Route::get('/bannerDetails', [BannerController::class,'bannerDetails']);
 Route::get('/show', [BannerController::class,'show']);
 Route::get('/edit', [BannerController::class,'edit']);
 Route::get('/destroy', [BannerController::class,'destroy']);
-Route::get('/walletDetails', [WalletController::class,'walletDetails']);
-Route::post('/updateWallet', [WalletController::class,'updateWallet']);
-Route::get('/updatingeWallet', [WalletController::class,'updatingeWallet']);
+
 
 
 //Route::group(['middleware'=>['auth']],function(){
@@ -140,3 +138,6 @@ Route::get('getUserVehicleDocuments',[User_documentController::class,'getUserVeh
 
 Route::get('qrCode',[qrcodeController::class,'qrCode']);
 Route::get('searchCustomer',[SearchCustomerController::class,'searchCustomer']);
+
+Route::post('/addwalletamount', [WalletController::class,'addwalletamount']);
+

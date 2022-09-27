@@ -137,7 +137,7 @@ class AuthController extends Controller
 
     public function register(Request $request){
 
-        if(Session::has('user')){
+        // if(Session::has('user')){
         if(Session::get('user.otp') == $request->input('otp')){          
            $password= Session::get('user.password');
            $email= Session::get('user.email');
@@ -183,12 +183,12 @@ class AuthController extends Controller
                 'message' => "Otp didn't match", 
             ]);
         }
-    }
-        return response()->json([
-            'status' => 'failed',
-            'message' => 'User Not created ',
+    // }
+        // return response()->json([
+        //     'status' => 'failed',
+        //     'message' => 'User Not created ',
            
-        ],405);  
+        // ],405);  
     }
 
 

@@ -45,9 +45,7 @@ class VendorCustomerController extends Controller
             ->leftjoin('user_vehicle','user_vehicle.useveh_user_id','=','users.id')
             ->where('addresses.add_user_id','=',$user->id)
             ->select('users.name','users.id','users.phonenumber','email','add_city_id','add_pincode','add_description','is_admin','user_vehicle.useveh_vehicle_name','user_vehicle.useveh_vehicle_number','book_parking.parking_status')
-            // 
-          
-            ->paginate(6);
+            ->paginate(30);
             return response()->json(["user_details_for_vendor"=>$data],200);
         }
         else{
