@@ -96,6 +96,13 @@ Route::get('/destroy', [BannerController::class,'destroy']);
 
 
 
+
+Route::post('/walletamount', [WalletController::class,'addwalletamount']);
+Route::get('/getwalletamount', [WalletController::class,'getwalletamount']);
+Route::post('/debitwalletamount', [WalletController::class,'debitwalletamount']);
+
+
+
 //Route::group(['middleware'=>['auth']],function(){
     Route::get('getparkingaddress',[AddParkingController::class,'getparkingdeatils']);
     Route::post('getparkingcharges',[AddParkingController::class,'getparkingcharges']);
@@ -139,5 +146,6 @@ Route::get('getUserVehicleDocuments',[User_documentController::class,'getUserVeh
 Route::get('qrCode',[qrcodeController::class,'qrCode']);
 Route::get('searchCustomer',[SearchCustomerController::class,'searchCustomer']);
 
-Route::post('/addwalletamount', [WalletController::class,'addwalletamount']);
+
+
 
