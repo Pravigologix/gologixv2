@@ -14,7 +14,7 @@ class VendorDetailsController extends Controller
 
     public function addVendorDetails(Request $request){
         $userdetails= Auth::user();  
-        if($userdetails->is_admin==2){
+        if($userdetails-> is_admin==2){
             $userdetails=new VendorDetails;
             $userdetails->ven_name=$request->input('ven_name');
             $userdetails->ven_description=$request->input('ven_description');

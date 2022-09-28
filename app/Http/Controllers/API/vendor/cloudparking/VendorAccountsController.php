@@ -14,7 +14,7 @@ class VendorAccountsController extends Controller
 
     public function addVendorAccountDetails(Request $request){
         $userdetails= Auth::user();  
-        if($userdetails->is_admin==2){
+        if($userdetails-> is_admin==2){
             $userdetails=new VendorAccounts;
             $userdetails->vendor_id=$request->input('vendor_id');
             $userdetails->venacc_name=$request->input('venacc_name');
