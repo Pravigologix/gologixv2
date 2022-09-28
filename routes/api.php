@@ -41,7 +41,8 @@ use App\Http\Controllers\API\User\cloudparking\User_documentController;
 
 
 
-Route::controller(AuthController::class)->group(function () {
+Route::controller(AuthController::class)
+->group(function () {
     Route::post('login', 'login');
     Route::post('register', 'request_otp');
     Route::post('logout', 'logout');
@@ -49,6 +50,8 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::post('register/verify_otp', 'register');
     Route::get('auth/google', 'AuthController@redirectToGoogle');
+    Route::get('get_session', 'get_session');
+
 
     Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
 
