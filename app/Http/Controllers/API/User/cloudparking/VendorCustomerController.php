@@ -44,18 +44,28 @@ class VendorCustomerController extends Controller {
             ->leftjoin( 'users', 'book_parking.user_id', '=', 'users.id' )
             ->leftjoin( 'user_vehicle', 'user_vehicle.useveh_user_id', '=', 'users.id' )
             ->where( 'addresses.add_user_id', '=', $user->id )
-            ->select( 'users.name', 'users.id', 'users.phonenumber', 'email', 'add_city_id', 'add_pincode', 'add_description', 'is_admin', 'user_vehicle.useveh_vehicle_name', 'user_vehicle.useveh_vehicle_number', 'book_parking.parking_status' )
-            //
+            ->select(
+                'users.name as customer_name',
+                'book_parking.address_id',
+                'addresses.add_user_id as address_id',
+                'users.id as user_id', 'users.phonenumber as user_mobile_number',
+                'email', 'add_city_id',
+                'add_pincode', 'add_description',
+                'is_admin',
+                   'user_vehicle.useveh_vehicle_name',
+                'user_vehicle.useveh_vehicle_number',
+                'book_parking.parking_status' )
+               
 
-            ->paginate( 6 );
-            return response()->json( [ 'user_details_for_vendor'=>$data ], 200 );
-        } else {
-            return response()->json( [
-                'status' => '0',
-                'message' => 'user cridential not match',
-            ] );
+                ->paginate( 30 );
+                return response()->json( [ 'user_details_for_vendor'=>$data ], 200 );
+            } else {
+                return response()->json( [
+                    'status' => '0',
+                    'message' => 'user cridential not match',
+                ] );
+            }
+
         }
 
     }
-
-}
