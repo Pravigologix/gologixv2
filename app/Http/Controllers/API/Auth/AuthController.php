@@ -73,13 +73,14 @@ class AuthController extends Controller {
             $smsLog->tsl_msg = $msg;
             $smsLog->tsl_issent = '1';
             $smsLog->save();
+            if($smsLog){
             return [
 
                 'message'   => 'Sucess',
 
-                'status' => $result, 'success' => 1,  ];
+                'status' => $result, 'success' => 1, ];
 
-            }
+            }}else
             return [ 'message' => 'Something went wrong', 'success' => 0, ];
 
         }
@@ -87,65 +88,66 @@ class AuthController extends Controller {
         public function register( RegisterRequest $request ) {
             $mobile = '+91' . $request->input( 'phonenumber' );
 
-            $otp=Sms::where('tsl_phonenumber','=',$mobile)->first('tsl_otp');
+            $otp = Sms::where( 'tsl_phonenumber', '=', $mobile )
+            ->orderBy('id', 'desc')
+            ->first('tsl_otp');
 
-           
-                if ( $otp  == $request->input( 'otp' ) ) {
+            // dd();
 
-                    $password = $request->input('password');
-                    $email = $request->input('email');
-                    $name = $request->input('name');
+            if ($otp->tsl_otp == $request->input( 'otp' ) ) {
 
-                    $phonenumber = $request->input('phonenumber');
-                    $user =  new User;
-                    $user->name = $name;
-                    $user->phonenumber = $phonenumber;
-                    $user->email = $email;
-                    $user->password = app( 'hash' )->make( $password );
+                $password = $request->input( 'password' );
+                $email = $request->input( 'email' );
+                $name = $request->input( 'name' );
 
-                    $user->device_token =$request->input('device_token');
+                $phonenumber = $request->input( 'phonenumber' );
+                $user =  new User;
+                $user->name = $name;
+                $user->phonenumber = $phonenumber;
+                $user->email = $email;
+                $user->password = app( 'hash' )->make( $password );
 
-                    $user->is_admin = $request->input('is_admin');
-                    $user->users_isverified = $request->input('users_isverified');
-                    $user->users_isactive =  $request->input('users_isactive');
-                    $user->users_isdeleted =  $request->input('users_isdeleted');
-                    $user->save();
-                    if ( $user ) {
-                        $token = Auth::attempt( [
-                            'email'=> $email,
-                            'password'=>
-                            $password ] );
+                $user->device_token = $request->input( 'device_token' );
 
-                            Session::put( 'user', [ 'token'=>$token, 'user'=>$user ] );
-                            return response()->json( [
-                                'status' => 'success',
-                                'message' => 'User created successfully',
-                                'user' => $user,
-                                'authorisation' => [
-                                    'token' => $token,
-                                    'type' => 'bearer',
-                                ]
-                            ] );
-                        }
-                    } else {
+                $user->is_admin = $request->input( 'is_admin' );
+                $user->users_isverified = $request->input( 'users_isverified' );
+                $user->users_isactive =  $request->input( 'users_isactive' );
+                $user->users_isdeleted =  $request->input( 'users_isdeleted' );
+                $user->save();
+                if ( $user ) {
+                    $token = Auth::attempt( [
+                        'email'=> $email,
+                        'password'=>
+                        $password ] );
+
+                        Session::put( 'user', [ 'token'=>$token, 'user'=>$user ] );
                         return response()->json( [
-                            'status' => 'falied',
-                           
-
-                            'message' => "Otp didn't match",
+                            'status' => 'success',
+                            'message' => 'User created successfully',
+                            'user' => $user,
+                            'authorisation' => [
+                                'token' => $token,
+                                'type' => 'bearer',
+                            ]
                         ] );
                     }
-                
+                } else {
+                    return response()->json( [
+                        'status' => 'falied',
+
+                        'message' => "Otp didn't match",
+                    ] );
+                }
+
                 return response()->json( [
-                    'status' => 'failed',
-                   
+                    'status' => '',
+
+
                     'message' => 'User Not created ',
 
                 ], 405 );
 
             }
-
-         
 
             public function logout( Request $request ) {
                 if ( Auth::user() ) {
