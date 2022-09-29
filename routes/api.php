@@ -28,6 +28,7 @@ use App\Http\Controllers\API\vendor\cloudparking\VendorDetailsController;
 use App\Http\Controllers\API\vendor\cloudparking\VendorAccountsController;
 use App\Http\Controllers\API\vendor\cloudparking\VendorkycController;
 use App\Http\Controllers\API\User\cloudparking\User_documentController;
+use App\Http\Controllers\API\User\cloudparking\VehicleController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -81,7 +82,7 @@ Route::group(['middleware'=>['auth']],function(){
    
 
 
-Route::get('index',[ParkingController::class,'index']);  
+Route::get('parkingAddress',[ParkingController::class,'parkingAddress']);  
 Route::get('filter',[filterController::class,'filter']);     
 Route::get('getqrCode',[qrcodeController::class,'getqrCode']); 
 Route::post('addqrCode',[qrcodeController::class,'addqrCode']); 
@@ -92,9 +93,8 @@ Route::get('status',[userStatus::class,'status']);
 
 
 Route::get('bannerDetails', [BannerController::class,'bannerDetails']);
-Route::get('show', [BannerController::class,'show']);
-Route::get('edit', [BannerController::class,'edit']);
-Route::get('destroy', [BannerController::class,'destroy']);
+Route::get('bannerdeatail', [BannerController::class,'bannerdeatail']);
+Route::get('editBanner', [BannerController::class,'editBanner']);
 Route::get('walletDetails', [WalletController::class,'walletDetails']);
 Route::post('updateWallet', [WalletController::class,'updateWallet']);
 Route::get('updatingeWallet', [WalletController::class,'updatingeWallet']);
@@ -112,7 +112,7 @@ Route::get('updatingeWallet', [WalletController::class,'updatingeWallet']);
     Route::post('updateparkingslotdetails',[AddParkingController::class,'updateparkingslotdetails']);
     Route::get('getparkingdescdetails',[AddParkingController::class,'getparkingdescdetails']);
     Route::get('getuserdetails',[ProfileController::class,'getprofile']);
-    Route::post('addprofilepicture',[ProfileController::class,'addprofilepicture']);
+    Route::post('addprofile',[ProfileController::class,'addprofile']);
 
 
 
@@ -124,11 +124,15 @@ Route::get('updatingeWallet', [WalletController::class,'updatingeWallet']);
     Route::post('addVendorDetails',[VendorDetailsController::class,'addVendorDetails']);
 Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
 Route::post('addVendorAccountDetails',[VendorAccountsController::class,'addVendorAccountDetails']);
+Route::post('editVendorAccountDetails',[VendorAccountsController::class,'editVendorAccountDetails']);
 Route::get('getVendorAccountDetails',[VendorAccountsController::class,'getVendorAccountDetails']);
 Route::post('addVendorkyc',[VendorkycController::class,'addVendorkyc']);
 Route::get('getVendorkyc',[VendorkycController::class,'getVendorkyc']);
 Route::post('addUserVehicleDocuments',[User_documentController::class,'addUserVehicleDocuments']);
+Route::post('editUserVehicleDocuments',[User_documentController::class,'editUserVehicleDocuments']);
+
 Route::get('getUserVehicleDocuments',[User_documentController::class,'getUserVehicleDocuments']);
-
-
+Route::post('addVehicle',[VehicleController::class,'addVehicle']);
+Route::post('editVehicle',[VehicleController::class,'editVehicle']);
+Route::get('getVehicle',[VehicleController::class,'getVehicle']);
 });

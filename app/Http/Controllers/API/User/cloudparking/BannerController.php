@@ -22,7 +22,7 @@ class BannerController extends Controller
    
      // Display the specified resource.
    
-    public function show(Request $request)
+    public function bannerdeatail(Request $request)
     {
         $data=Banner::find($request->input('id'));
         return response()->json(["Banner_details_particular_id"=>$data],200);
@@ -30,7 +30,7 @@ class BannerController extends Controller
 
     //Show the form for editing the specified resource.
    
-    public function edit(Request $request)
+    public function editBanner(Request $request)
     {
        $data=DB::table('banners')->where('banners.id','=',$request->input('id'))->update(['banner_image_url'=>$request->input('banner_image_url'),'banner_descprition'=>$request->input('banner_descprition')]);
       
@@ -39,16 +39,5 @@ class BannerController extends Controller
         return response()->json(['data successfully updated.']);
     }
 
-    //Remove the specified resource from storage.
-   
-    public function destroy(Request $request)
-    {
-        $data=Banner::find($request->input('id'));
-        $data->delete();
-         
-      //$d=DB::table('banners')->get();
-      // return $d;
-
-        return response()->json(['data successfully deleted.']);
-    }
+    
 }
