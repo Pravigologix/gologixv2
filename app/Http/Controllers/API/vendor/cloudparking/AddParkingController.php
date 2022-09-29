@@ -97,7 +97,7 @@ if($userdetails-> is_admin==2){
 $addaddress=AddressModel::find($request->input('id'));
 
 
-$addaddress-> add_description= $request->input('add_description');
+$addaddress-> add_description=$request->input('add_description');
 $addaddress-> add_address= $request->input('add_address');
 $addaddress-> add_latitude= $request->input('add_latitude');
 $addaddress-> add_longitude= $request->input('add_longitude');
@@ -265,8 +265,6 @@ public function updateparkingslotdetails(Request $request)
     return response()->json(['status'=>'0','message'=>$e],401);
 
     }
-  
-
 
 
 }

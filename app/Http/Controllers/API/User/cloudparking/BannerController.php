@@ -17,6 +17,29 @@ class BannerController extends Controller {
         return response()->json( [ 'Banner_details'=>$data ], 200 );
     }
 
+//<<<<<<< ashwini
+   
+     // Display the specified resource.
+   
+    public function bannerdeatail(Request $request)
+    {
+        $data=Banner::find($request->input('id'));
+        return response()->json(["Banner_details_particular_id"=>$data],200);
+    }
+
+    //Show the form for editing the specified resource.
+   
+    public function editBanner(Request $request)
+    {
+       $data=DB::table('banners')->where('banners.id','=',$request->input('id'))->update(['banner_image_url'=>$request->input('banner_image_url'),'banner_descprition'=>$request->input('banner_descprition')]);
+      
+      //$d=DB::table('banners')->get();
+      // return $d;
+        return response()->json(['data successfully updated.']);
+    }
+
+    
+/*=======
     // Display the specified resource.
 
     public function show( Request $request ) {
@@ -45,4 +68,6 @@ class BannerController extends Controller {
 
         return response()->json( [ 'data successfully deleted.' ] );
     }
+//>>>>>>> main
+*/
 }

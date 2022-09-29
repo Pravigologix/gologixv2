@@ -13,8 +13,12 @@ class VendorDetailsController extends Controller
 
 
     public function addVendorDetails(Request $request){
-        $userdetails= Auth::user();  
-        if($userdetails-> is_admin==2){
+//<<<<<<< ashwini
+        $user= Auth::user();  
+//=======
+     //   $userdetails= Auth::user();  
+     //   if($userdetails-> is_admin==2){
+//>>>>>>> main
             $userdetails=new VendorDetails;
             $userdetails->ven_name=$request->input('ven_name');
             $userdetails->ven_description=$request->input('ven_description');
@@ -30,8 +34,7 @@ class VendorDetailsController extends Controller
             $userdetails->ven_isdeleted=$request->input('ven_isdeleted');
             $userdetails-> save();
             return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
-        }
-        return response()->json(['status'=>'failed','message'=>'invalid credential'],301);
+      
 }
 
 public function getVendorDetails(Request $request)
@@ -40,7 +43,7 @@ public function getVendorDetails(Request $request)
 $userdetails=Auth::user();  
 
   $res= DB::table('vendor')->select('vendor.ven_name','vendor.id','ven_description','ven_address_id','ven_phone','ven_email','ven_isactive','gst_no')
-  ->where('vendor.id','=',$request->id)
+  ->where('vendor.id','=',$userdetails->id)
   ->get();
 
   return $res;

@@ -20,7 +20,12 @@ class ProfileController extends Controller {
 
     }
 
+//<<<<<<< ashwini
+    public function addprofile(Request $request)
+    {
+//=======
     public function addprofilepicture( Request $request ) {
+//>>>>>>> main
         $user = Auth::user();
 
         //   $imagedata =  Storage::put( $request->file( 'profile_image' ), 'image' );
@@ -31,7 +36,15 @@ class ProfileController extends Controller {
 
         $url = Storage::url( $path );
 
-        $details_update =  DB::table( 'users' )->where( 'id', '=', $user->id )
+//<<<<<<< ashwini
+      $details_update=DB::table('users')->where('id','=',$user->id)
+      
+      ->update([
+        'profile_photo_path'=>env('APP_URL').'/'.$url
+      ]);
+//=======
+     //   $details_update =  DB::table( 'users' )->where( 'id', '=', $user->id )
+//>>>>>>> main
 
         ->update( [
             'profile_photo_path'=>env( 'APP_URL' ).'/'.$url
