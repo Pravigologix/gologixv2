@@ -29,6 +29,9 @@ use App\Http\Controllers\API\vendor\cloudparking\VendorAccountsController;
 use App\Http\Controllers\API\vendor\cloudparking\VendorkycController;
 use App\Http\Controllers\API\User\cloudparking\User_documentController;
 use App\Http\Controllers\API\User\cloudparking\VehicleController;
+use App\Http\Controllers\API\vendor\cloudparking\SecurityController;
+use App\Http\Controllers\API\vendor\cloudparking\EmployeeController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -76,7 +79,7 @@ Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
 
 
 Route::group(['middleware'=>['auth']],function(){
-    Route::get('customer', [VendorCustomerController::class,'customer']);
+    Route::get('customervendor', [VendorCustomerController::class,'customer']);
     Route::get('vendorcustomer', [VendorCustomerController::class,'vendor']);
     Route::get('users', [UserDetailsControoller::class,'users']);
    
@@ -122,6 +125,8 @@ Route::get('updatingeWallet', [WalletController::class,'updatingeWallet']);
  
 
     Route::post('addVendorDetails',[VendorDetailsController::class,'addVendorDetails']);
+    Route::post('editVendorDetails',[VendorDetailsController::class,'editVendorDetails']);
+
 Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
 Route::post('addVendorAccountDetails',[VendorAccountsController::class,'addVendorAccountDetails']);
 Route::post('editVendorAccountDetails',[VendorAccountsController::class,'editVendorAccountDetails']);
@@ -135,4 +140,7 @@ Route::get('getUserVehicleDocuments',[User_documentController::class,'getUserVeh
 Route::post('addVehicle',[VehicleController::class,'addVehicle']);
 Route::post('editVehicle',[VehicleController::class,'editVehicle']);
 Route::get('getVehicle',[VehicleController::class,'getVehicle']);
+Route::post('securityRegister',[SecurityController::class,'securityRegister']);
+Route::post('addEmployee',[EmployeeController::class,'addEmployee']);
+
 });

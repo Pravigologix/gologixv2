@@ -31,6 +31,21 @@ class VendorDetailsController extends Controller
             return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
       
 }
+public function editVendorDetails(Request $request){
+
+  $userdetails= Auth::user();  
+  //dd($userdetails->id);
+
+$data=DB::table('vendor')->where('vendor.id','=',$userdetails->id)->update(['ven_description'=>$request->input('ven_description')]);
+
+//$d=DB::table('banners')->get();
+// return $d;
+return response()->json(['data successfully updated.']);
+}
+
+
+
+
 
 public function getVendorDetails(Request $request)
 {  
