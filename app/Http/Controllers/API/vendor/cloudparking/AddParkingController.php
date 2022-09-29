@@ -68,10 +68,41 @@ class AddParkingController extends Controller {
 
         return response()->json( [ 'status'=>'failed', 'message'=>'invalid credential' ], 301 );
 
+//<<<<<<< backupnew
         // }
         // return response()->json( [ 'status'=>'failed', 'message'=>'Unauthacticated' ], 301 );
+//=======
+    // }
+// return response()->json(['status'=>'failed','message'=>'Unauthacticated'],301);
 
-    }
+}
+
+//public function editparkingdetails(VendoraddressRequest $request)
+//{ 
+
+//$userdetails=Auth::user();
+// if($userdetails==null){
+
+// dd($userdetails);
+//if($userdetails-> is_admin==2){
+
+//$addaddress=AddressModel::find($request->input('id'));
+
+
+//$addaddress-> add_description=$request->input('add_description');
+//$addaddress-> add_address= $request->input('add_address');
+//$addaddress-> add_latitude= $request->input('add_latitude');
+//$addaddress-> add_longitude= $request->input('add_longitude');
+//$addaddress-> add_isactive =$request->input('add_isactive');
+//$addaddress-> add_isdeleted=$request->input('add_isdeleted');
+//$addaddress-> add_city_id= $request->input('add_city_id');
+
+//$addaddress-> add_pincode=$request->input('add_pincode');
+//$addaddress-> name=$request->input('name');
+//$addaddress-> phonenumber=$request->input('phonenumber');
+//>>>>>>> main
+
+  //  }
 
     public function editparkingdetails( VendoraddressRequest $request ) {
 
@@ -224,5 +255,15 @@ class AddParkingController extends Controller {
         }
 
     }
+//<<<<<<< backupnew
+//=======
+
+
+}
+
+
+
+
+//>>>>>>> main
 
 }

@@ -16,12 +16,11 @@ class VendorAccountsController extends Controller
         $userdetails= Auth::user();  
         if($userdetails-> is_admin==2){
             $userdetails=new VendorAccounts;
-            $userdetails->vendor_id=$request->input('vendor_id');
+            $userdetails->vendor_id=(int)$userdetails->id;
             $userdetails->venacc_name=$request->input('venacc_name');
-            $userdetails->venacc_alias =$request->input('venacc_alias ');
             $userdetails->venacc_bank_name=$request->input('venacc_bank_name');
             $userdetails->venacc_account_no=$request->input('venacc_account_no');
-            $userdetails->venacc_paymet_id=$request->input('venacc_paymet_id');
+            //$userdetails->venacc_paymet_id=$request->input('venacc_paymet_id');
             $userdetails->venacc_ifsc=$request->input('venacc_ifsc');
             $userdetails->venacc_isactive=$request->input('venacc_isactive');
             $userdetails->venacc_isdeleted=$request->input('venacc_isdeleted');
@@ -33,6 +32,19 @@ else{
     return response()->json(['your not vendor']);
 }
     }
+    public function editVendorAccountDetails(Request $request){
+
+        $userdetails= Auth::user();  
+        //dd($userdetails->id);
+
+    $data=DB::table('vendor_account')->where('vendor_account.vendor_id','=',$userdetails->id)->update(['venacc_name'=>$request->input('venacc_name'),'venacc_bank_name'=>$request->input('venacc_bank_name'),'venacc_account_no'=>$request->input('venacc_account_no'),'venacc_ifsc'=>$request->input('venacc_ifsc')]);
+      
+    //$d=DB::table('banners')->get();
+    // return $d;
+      return response()->json(['data successfully updated.']);
+  }
+
+
 public function getVendorAccountDetails(Request $request)
 {  
 
@@ -40,9 +52,9 @@ $userdetails=Auth::user();
 
   $res= DB::table('vendor')->leftjoin('vendor_account','vendor.id','=','vendor_account.vendor_id')
   ->leftjoin('users','vendor.ven_email','=','users.email')
-  ->where('users.is_admin','=',2)
+  //->where('users.is_admin','=',3)
  // ->where('users.phonenumber','=','vendor.ven_phone')
-  //->where('vendor.id','=',$request->id)
+  ->where('vendor.id','=',$userdetails->id)
   ->select('vendor.ven_name','vendor.id','ven_phone','ven_email','venacc_name','venacc_bank_name','venacc_account_no','venacc_paymet_id','venacc_ifsc','is_admin')
   ->get();
 
