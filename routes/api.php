@@ -45,7 +45,8 @@ use App\Http\Controllers\API\vendor\cloudparking\EmployeeController;
 
 
 
-Route::controller(AuthController::class)->group(function () {
+Route::controller(AuthController::class)
+->group(function () {
     Route::post('login', 'login');
     Route::post('register', 'request_otp');
     Route::post('logout', 'logout');
@@ -53,6 +54,8 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::post('register/verify_otp', 'register');
     Route::get('auth/google', 'AuthController@redirectToGoogle');
+    Route::get('get_session', 'get_session');
+
 
     Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
 
@@ -93,14 +96,28 @@ Route::post('addqrCode',[qrcodeController::class,'addqrCode']);
 Route::get('status',[userStatus::class,'status']);   
 
 
+Route::post('/walletamount', [WalletController::class,'addwalletamount']);
+Route::get('/getwalletamount', [WalletController::class,'getwalletamount']);
+Route::post('/debitwalletamount', [WalletController::class,'debitwalletamount']);
+
+
 
 
 Route::get('bannerDetails', [BannerController::class,'bannerDetails']);
+//<<<<<<< ashwini
 Route::get('bannerdeatail', [BannerController::class,'bannerdeatail']);
 Route::get('editBanner', [BannerController::class,'editBanner']);
 Route::get('walletDetails', [WalletController::class,'walletDetails']);
 Route::post('updateWallet', [WalletController::class,'updateWallet']);
 Route::get('updatingeWallet', [WalletController::class,'updatingeWallet']);
+//=======
+//Route::get('show', [BannerController::class,'show']);
+//Route::get('edit', [BannerController::class,'edit']);
+//Route::get('destroy', [BannerController::class,'destroy']);
+// Route::get('walletDetails', [WalletController::class,'walletDetails']);
+// Route::post('updateWallet', [WalletController::class,'updateWallet']);
+// Route::get('updatingeWallet', [WalletController::class,'updatingeWallet']);
+//>>>>>>> main
 
 
 //Route::group(['middleware'=>['auth']],function(){
