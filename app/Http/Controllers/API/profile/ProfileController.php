@@ -21,8 +21,8 @@ class ProfileController extends Controller {
     }
 
 //<<<<<<< ashwini
-    public function addprofile(Request $request)
-    {
+    // public function addprofile(Request $request)
+    // {
 //=======
     public function addprofilepicture( Request $request ) {
 //>>>>>>> main
@@ -46,9 +46,9 @@ class ProfileController extends Controller {
      //   $details_update =  DB::table( 'users' )->where( 'id', '=', $user->id )
 //>>>>>>> main
 
-        ->update( [
-            'profile_photo_path'=>env( 'APP_URL' ).'/'.$url
-        ] );
+        // ->update( [
+        //     'profile_photo_path'=>env( 'APP_URL' ).'/'.$url
+        // ] );
 
         return response()->json( [ 'message'=>'Profile image uploaded sucessfully', 'image'=>$url ], 200 );
 
