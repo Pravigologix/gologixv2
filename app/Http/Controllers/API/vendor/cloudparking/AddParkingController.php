@@ -194,6 +194,17 @@ class AddParkingController extends Controller {
         return $parking_desc;
 
     }
+    public function addparkingdescdetails( Request $request ) {
+
+        $parking_desc = DB::table( 'add_praking_desc' )->insert([
+            'timings'=>$request->input('timings'),
+            'is_active'=>$request->input('is_active'),
+
+        ]);
+
+        return $parking_desc;
+
+    }
 
     public function getparkingcharges( Request $request ) {
 
