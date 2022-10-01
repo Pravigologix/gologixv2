@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WalletModel;
 use DB;
+use Auth;
 
 class WalletController extends Controller {
 
