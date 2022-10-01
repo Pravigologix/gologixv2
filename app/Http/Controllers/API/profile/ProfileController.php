@@ -21,10 +21,10 @@ class ProfileController extends Controller {
     }
 
 //<<<<<<< ashwini
-    // public function addprofile(Request $request)
+     public function addprofile(Request $request)
     // {
 //=======
-    public function addprofilepicture( Request $request ) {
+    //public function addprofilepicture( Request $request ) {
 //>>>>>>> main
         $user = Auth::user();
 
