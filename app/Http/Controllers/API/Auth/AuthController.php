@@ -171,6 +171,7 @@ class AuthController extends Controller
                'email'=> $email,
                'password'=>
                $password]);
+             
 
                Session::put('user',['token'=>$token,'user'=>$user]);
             return response()->json([

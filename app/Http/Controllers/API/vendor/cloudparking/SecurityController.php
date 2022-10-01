@@ -22,10 +22,10 @@ class SecurityController extends Controller
        $user->phonenumber=$request->phonenumber;
        $user->is_admin=6;
        $user->password=Hash::make($request->password);
-       $confirm_password= Session::get('confirm_password');
+       $password_confirmation= Session::get('password_confirmation');
        //$user->confirm_password=Hash::make($request->confirm_password);
       
-       if($request->password==$request->confirm_password){
+       if($request->password==$request->password_confirmation){
         $res=$user->save();
         //return ["name"=>$request->name,"email"=>$request->email,"phone_no"=>$request->phone_no,"password"=>$request->password];
         return response()->json(['status'=>'Success','message'=>'Registered sucessfully'],200); 
