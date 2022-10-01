@@ -16,7 +16,7 @@ class UserParkingdeatils extends Controller
   
 
   $user= Auth::user();  
-  $userid=$request->input('userid');
+
 
 
     $get_no_slot=DB::table('add_praking_slot')->select('parking_slots','id')->where('user_id','=',$user->id)->get();
@@ -25,6 +25,9 @@ class UserParkingdeatils extends Controller
     
 
     return $d;
+    
+
+  
 
 }
 }
