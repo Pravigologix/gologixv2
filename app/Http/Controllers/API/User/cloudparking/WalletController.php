@@ -19,7 +19,7 @@ class WalletController extends Controller {
             'pay_user_id '=>$userdetails->id,
             'pay_description'=>$request->input( 'pay_description' ),
             'pay_transaction_id'=>$request->input( 'pay_transaction_id' ),
-            'pay_paysta_status_id '=>$request->input( 'pay_paysta_status_id ' ),
+            'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
             'pay_method'=>$request->input( 'pay_method' ),
 
         ] );
