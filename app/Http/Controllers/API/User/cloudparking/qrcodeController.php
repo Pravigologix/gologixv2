@@ -46,7 +46,24 @@ class qrcodeController extends Controller {
         $userdetails-> save();
         return response()->json( [ 'status'=>'Sucess', 'message'=>'Deatils uploaded sucessfully' ], 200 );
 
-        return $qrcode;
+// <<<<<<< HEAD
+//          $userdetails=new BookParkingModel;
+//          $userdetails->paking_type=$request->input('paking_type');
+//          $userdetails->parking_amt=$request->input('parking_amt');
+//          $userdetails->user_id =(int)$userdetails->id;
+//          $userdetails->address_id =$request->input('address_id');
+//          $userdetails->payment_status =$request->input('payment_status');
+//          $userdetails->parking_status =$request->input('parking_status');
+//          $userdetails->payment_id =$request->input('payment_id');
+//          $userdetails->start_date =$request->input('start_date');
+//          $userdetails->end_date =$request->input('end_date');
+//          $userdetails->parking_slot_number =$request->input('parking_slot_number');
+//          $userdetails->qrcode=$files;
+//          $userdetails-> save();
+//          return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
+// =======
+//         return $qrcode;
+// >>>>>>> 85d0595130a6743e3bf128113d9e23b24e73364b
 
     }
 

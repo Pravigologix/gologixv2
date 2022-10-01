@@ -52,7 +52,7 @@ class VendorCustomerController extends Controller
             ->select('users.name','users.id','users.phonenumber','email','add_city_id','add_pincode','add_description','is_admin','user_vehicle.useveh_vehicle_name','user_vehicle.useveh_vehicle_number','book_parking.parking_status')
             // 
           
-            ->paginate(6);
+            ->paginate(30);
             return response()->json(["user_details_for_vendor"=>$data],200);
         }
         else{

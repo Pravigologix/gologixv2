@@ -61,6 +61,7 @@ Route::controller(AuthController::class)
 
 Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
 
+
 // Route::get('index',[ParkingController::class,'index']);  
 //Route::get('filter',[filterController::class,'filter']);     
 //Route::get('qrCode',[qrcodeController::class,'qrCode']); 
@@ -157,7 +158,13 @@ Route::get('getUserVehicleDocuments',[User_documentController::class,'getUserVeh
 Route::post('addVehicle',[VehicleController::class,'addVehicle']);
 Route::post('editVehicle',[VehicleController::class,'editVehicle']);
 Route::get('getVehicle',[VehicleController::class,'getVehicle']);
-Route::post('securityRegister',[SecurityController::class,'securityRegister']);
+
 Route::post('addEmployee',[EmployeeController::class,'addEmployee']);
+Route::post('editEmployee',[EmployeeController::class,'editEmployee']);
+Route::get('getEmployee',[EmployeeController::class,'getEmployee']);
 
 });
+Route::post('securityRegister',[SecurityController::class,'securityRegister']);
+Route::get('customerDetails',[EmployeeController::class,'customerDetails']);
+Route::get('vendorDetails',[EmployeeController::class,'vendorDetails']);
+
