@@ -43,7 +43,7 @@ return $user;
      public function getallparkingAddress(){
          $address=DB::table('addresses')->where('is_cloud_parking','=','1')->get();
          
-         return response()->json(["parkingaddress"=>$$address],200);
+         return response()->json(["parkingaddress"=>$address],200);
      }
     
     
