@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
-class ParkingController extends Controller {
-    public function index() {
+//class ParkingController extends Controller {
+ //   public function index() {
 
-        $userdetails = Auth::user();
+  //      $userdetails = Auth::user();
 
 //<<<<<<< ashwini
 class ParkingController extends Controller
@@ -40,6 +40,14 @@ $user=DB::table('users')
 
 return $user;
 }
+     public function getallparkingAddress(){
+         $address=DB::table('addresses')->where('is_cloud_parking','=','1')->get();
+         
+         return response()->json(["parkingaddress"=>$$address],200);
+     }
+    
+    
+    
 //=======
  //       return $user;
  //   }
