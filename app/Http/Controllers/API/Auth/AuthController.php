@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Sms;
+use Carbon;
 use Illuminate\Support\Facades\Session;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use Laravel\Socialite\Facades\Socialite;
@@ -33,7 +34,7 @@ class AuthController extends Controller {
 
         $credentials = $request->only( 'email', 'password' );
 
-        $token = Auth::attempt( $credentials );
+        $token = Auth::attempt( $credentials,['exp' => Carbon\Carbon::now()->addDays(60)->timestamp] );
         if ( !$token ) {
             return response()->json( [
                 'status' => 'error',
