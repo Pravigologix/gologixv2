@@ -125,6 +125,7 @@ class AddParkingController extends Controller {
             $addaddress-> add_pincode = $request->input( 'add_pincode' );
             $addaddress-> name = $request->input( 'name' );
             $addaddress-> phonenumber = $request->input( 'phonenumber' );
+            $addaddress-> is_cloud_parking = $request->input( 'is_cloud_parking' );
 
             $addaddress-> save();
 
