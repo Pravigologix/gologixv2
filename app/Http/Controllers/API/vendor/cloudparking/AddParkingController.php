@@ -60,6 +60,7 @@ class AddParkingController extends Controller {
             $addaddress-> name = $request->input( 'name' );
             $addaddress-> phonenumber = $request->input( 'phonenumber' );
             $addaddress-> add_user_id = $userdetails->id;
+            $addaddress-> is_cloud_parking = $request->input( 'is_cloud_parking' );
 
             $addaddress-> save();
 
