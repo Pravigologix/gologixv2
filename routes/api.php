@@ -168,3 +168,5 @@ Route::post('securityRegister',[SecurityController::class,'securityRegister']);
 Route::get('customerDetails',[EmployeeController::class,'customerDetails']);
 Route::get('vendorDetails',[EmployeeController::class,'vendorDetails']);
 
+Route::get('parkingAddress',[ParkingController::class,'parkingAddress']);  
+
