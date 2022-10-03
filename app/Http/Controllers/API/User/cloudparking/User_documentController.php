@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 
-class User_documentController extends Controller {
-    public function addUserVehicleDocuments( Request $request ) {
-        $files = $request[ 'driving_licence_path' ];
-        $hostname = $_SERVER[ 'HTTP_HOST' ];
 
 //<<<<<<< ashwini
 class User_documentController extends Controller
@@ -130,7 +126,7 @@ class User_documentController extends Controller
 
     
 
-
+/*
     public function getUserVehicleDocuments(Request $request)
   {  
 //=======
@@ -144,8 +140,8 @@ class User_documentController extends Controller
   //      return response()->json( [ 'status'=>'Sucess', 'message'=>'Deatils uploaded sucessfully' ], 200 );
   //  }
 //>>>>>>> main
-
-    public function getUserVehicleDocuments( Request $request ) {
+*/
+    public function getUserVehicleDocuments(Request $request ) {
 
         $userdetails = Auth::user();
 
