@@ -44,10 +44,10 @@ class WalletController extends Controller {
         // public function getwalletamount( Request $request ) {
         $userdetails = Auth::user();
 
-        $walletdetails = WalletModel::where( 'wal_user_id', $userdetails->id )->get();
+        //$walletdetails = WalletModel::where( 'wal_user_id', $userdetails->id )->get();
 
-        $walletModel = WalletModel()::where( 'wal_user_id', $request->input( 'user_id' ) )->get;
-        $walletModel->wal_user_id = $request->input( 'user_id' );
+        //$walletModel = WalletModel()::where( 'wal_user_id', $request->input( 'user_id' ) )->get;
+        //$walletModel->wal_user_id = $request->input( 'user_id' );
         $credited_amt = WalletModel::where( 'wal_user_id', $userdetails->id )
         ->sum( 'credited_amt' );
         $debited_amt = WalletModel::where( 'wal_user_id', $userdetails->id )
