@@ -84,10 +84,11 @@ class WalletController extends Controller {
 
         // dd();
 
-        $walletModel->wal_transaction_id = $request->input( 'wal_transaction_id' );
+      
         if ( $balance >= $request->input( 'debited_amt' ) ) {
             $walletModel = new WalletModel();
             $walletModel->wal_user_id = $userdetails->id;
+            $walletModel->wal_transaction_id = $request->input( 'wal_transaction_id' );
 
             // $walletModel->wal_transaction_id = $payment->id;
             $walletModel->credited_amt = $request->input( 'credited_amt' );
