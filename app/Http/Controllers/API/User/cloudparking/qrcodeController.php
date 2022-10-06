@@ -40,7 +40,11 @@ class qrcodeController extends Controller {
         $userdetails->parking_status = $request->input( 'parking_status' );
         $userdetails->payment_id = $request->input( 'payment_id' );
         $userdetails->start_date = $request->input( 'start_date' );
-        $userdetails->  end_date = $request->input( '   end_date' );
+//<<//<<<<< bannerimage
+       // $userdetails->  end_date = $request->input( '   end_date' );
+//=======
+        $userdetails->end_date = $request->input('end_date');
+//>>>>>>> main
         $userdetails->parking_slot_number = $request->input( 'parking_slot_number' );
         $userdetails->qrcode = $files;
         $userdetails-> save();

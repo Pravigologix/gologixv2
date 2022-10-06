@@ -60,6 +60,7 @@ class AddParkingController extends Controller {
             $addaddress-> name = $request->input( 'name' );
             $addaddress-> phonenumber = $request->input( 'phonenumber' );
             $addaddress-> add_user_id = $userdetails->id;
+            $addaddress-> is_cloud_parking = $request->input( 'is_cloud_parking' );
 
             $addaddress-> save();
 
@@ -125,6 +126,7 @@ class AddParkingController extends Controller {
             $addaddress-> add_pincode = $request->input( 'add_pincode' );
             $addaddress-> name = $request->input( 'name' );
             $addaddress-> phonenumber = $request->input( 'phonenumber' );
+            $addaddress-> is_cloud_parking = $request->input( 'is_cloud_parking' );
 
             $addaddress-> save();
 
@@ -190,6 +192,17 @@ class AddParkingController extends Controller {
     public function getparkingdescdetails( Request $request ) {
 
         $parking_desc = DB::table( 'add_praking_desc' )->get();
+
+        return $parking_desc;
+
+    }
+    public function addparkingdescdetails( Request $request ) {
+
+        $parking_desc = DB::table( 'add_praking_desc' )->insert([
+            'timings'=>$request->input('timings'),
+            'is_active'=>$request->input('is_active'),
+
+        ]);
 
         return $parking_desc;
 
@@ -266,4 +279,4 @@ class AddParkingController extends Controller {
 
 //>>>>>>> main
 
-}
+// }

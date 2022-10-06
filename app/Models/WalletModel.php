@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class WalletModel extends Model
 {
     //use HasFactory;
-    protected $table = "wallet";
+    protected $table = "wallet_parking";
 }

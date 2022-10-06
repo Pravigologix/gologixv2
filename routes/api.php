@@ -19,7 +19,7 @@ use App\Http\Controllers\API\User\cloudparking\SearchCustomerController;
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
 use App\Http\Controllers\API\User\cloudparking\BookParking;
-use App\Http\Controllers\API\Profile\ProfileController;
+use App\Http\Controllers\API\profile\ProfileController;
 
 
 
@@ -167,4 +167,6 @@ Route::get('getEmployee',[EmployeeController::class,'getEmployee']);
 Route::post('securityRegister',[SecurityController::class,'securityRegister']);
 Route::get('customerDetails',[EmployeeController::class,'customerDetails']);
 Route::get('vendorDetails',[EmployeeController::class,'vendorDetails']);
+
+Route::get('getallparkingAddress',[ParkingController::class,'getallparkingAddress']);  
 
