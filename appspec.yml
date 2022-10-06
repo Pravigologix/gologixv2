@@ -13,4 +13,4 @@ trigger:
     include:
     exclude:
     - /public/.htaccess
-    - /public/images/*
+    
