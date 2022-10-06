@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\WalletModel;
 use DB;
 use Auth;
+use Illuminate\Support\Str;
 
 class WalletController extends Controller {
 
@@ -15,7 +16,7 @@ class WalletController extends Controller {
         $userdetails = Auth::user();
         
          $order=DB::table('orders')->insert([
-            'ord_refid'=>$request->input('ord_refid'),
+            'ord_refid'=>Str::random(30),
             'ord_user_id'=>$request->input('ord_user_id'),
 
             'ord_status_id'=>$request->input('ord_status_id'),
@@ -27,7 +28,9 @@ class WalletController extends Controller {
 
         ]);
         if($order){
-            $orderid=DB::table('orders')->where('ord_refid','=',$request->input('ord_refid'))->where('ord_user_id','=',$request->input('ord_user_id'))->get('id');
+            $orderid=DB::table('orders')
+           ->where('ord_refid','=',$request->input('ord_refid'))
+            ->where('ord_user_id','=',$request->input('ord_user_id'))->get('id');
 
         $payment = DB::table( 'payments' )->insert( [
             'pay_price'=>$request->input( 'pay_price' ),
