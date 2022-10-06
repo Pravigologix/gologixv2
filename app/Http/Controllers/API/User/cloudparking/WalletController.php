@@ -29,16 +29,37 @@ class WalletController extends Controller {
         if($order){
             $orderid=DB::table('orders')->where('ord_refid','=',$request->input('ord_refid'))->where('ord_user_id','=',$request->input('ord_user_id'))->get('id');
 
+        $order=DB::table('orders')->insert([
+            'ord_refid'=>$request->input('ord_refid'),
+            'ord_user_id'=>$request->input('ord_user_id'),
+
+            'ord_status_id'=>$request->input('ord_status_id'),
+            'ord_payment_status_id'=>$request->input('ord_payment_status_id'),
+            'ord_paymethod_id'=>$request->input('ord_paymethod_id'),
+            'ord_delivery_address_id'=>$request->input('ord_delivery_address_id')
+           
+
+
+        ]);
+
         $payment = DB::table( 'payments' )->insert( [
             'pay_price'=>$request->input( 'pay_price' ),
             'pay_user_id'=>$request->input('ord_user_id'),
             // 'pay_description'=>$request->input( 'pay_description' ),
             'pay_description'=>$request->input( 'pay_description' ),
+//<<<<<<< bannerimage
+            //'pay_description'=>$request->input( 'pay_description' ),
+//=======
+//>>>>>>> main
 
             'pay_transaction_id'=>$request->input( 'pay_transaction_id' ),
             'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
             'pay_method'=>$request->input( 'pay_method' ),
+//<<<<<<< bannerimage
+            //'pay_order_id'=>$order->id,
+//=======
             'pay_order_id'=>(string)$orderid,
+//>>>>>>> main
 
         ] );
 

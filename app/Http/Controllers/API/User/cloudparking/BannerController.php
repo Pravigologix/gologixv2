@@ -31,6 +31,8 @@ class BannerController extends Controller {
    
     public function editBanner(Request $request)
     {
+
+        
        $data=DB::table('banners')->where('banners.id','=',$request->input('id'))->update(['banner_image_url'=>$request->input('banner_image_url'),'banner_descprition'=>$request->input('banner_descprition')]);
       
       //$d=DB::table('banners')->get();
