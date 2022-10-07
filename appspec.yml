@@ -7,10 +7,9 @@ file_exists_behavior: OVERWRITE
 trigger:
   branches:
     include:
-    - main
+    - cloudparking
     - releases/*
   paths:
     include:
-    - /*
     exclude:
     - /public/.htaccess
