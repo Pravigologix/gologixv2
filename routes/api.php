@@ -58,6 +58,7 @@ Route::controller(AuthController::class)
     Route::get('get_session', 'get_session');
     Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
     Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
+});
     Route::group(['middleware'=>['auth']],function(){
     Route::get('customervendor', [VendorCustomerController::class,'customer']);
     Route::get('vendorcustomer', [VendorCustomerController::class,'vendor']);
@@ -110,4 +111,3 @@ Route::get('getallparkingAddress',[ParkingController::class,'getallparkingAddres
 Route::get('getAllAddress',[GetAllAddressController::class,'getAllAddress']);  
 Route::post('addAddress',[GetAllAddressController::class,'addAddress']);  
 Route::get('bookingDetails',[UserBookingDetails::class,'bookingDetails']);  
-
