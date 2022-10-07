@@ -17,7 +17,7 @@ class WalletController extends Controller {
         
          $order=DB::table('orders')->insert([
             'ord_refid'=>Str::random(30000),
-            'ord_user_id'=>$request->input('ord_user_id'),
+            'ord_user_id'=>$request->input('user_id'),
 
             'ord_status_id'=>$request->input('ord_status_id'),
             'ord_payment_status_id'=>$request->input('ord_payment_status_id'),
@@ -30,7 +30,7 @@ class WalletController extends Controller {
         if($order){
             $orderid=DB::table('orders')
            
-            ->where('ord_user_id','=',$request->input('ord_user_id'))->first('id');
+            ->where('ord_user_id','=',$request->input('user_id'))->first('id');
 
        
 
