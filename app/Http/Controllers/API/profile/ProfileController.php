@@ -20,35 +20,25 @@ class ProfileController extends Controller {
 
     }
 
-//<<<<<<< ashwini
-     public function addprofile(Request $request)
-    // {
-//=======
-    //public function addprofilepicture( Request $request ) {
-//>>>>>>> main
-        $user = Auth::user();
 
-        //   $imagedata =  Storage::put( $request->file( 'profile_image' ), 'image' );
-        // $name = $request->file( 'profile_image' )->getClientOriginalName();
-        // dd( $request->file( 'profile_image' ) );
+     public function addprofile(Request $request)
+     {
+
+
+        $user = Auth::user();
 
         $path = $request->file( 'profile_image' )->store( 'public/image' );
 
         $url = Storage::url( $path );
 
-//<<<<<<< ashwini
+
       $details_update=DB::table('users')->where('id','=',$user->id)
       
       ->update([
         'profile_photo_path'=>env('APP_URL').'/'.$url
       ]);
-//=======
-     //   $details_update =  DB::table( 'users' )->where( 'id', '=', $user->id )
-//>>>>>>> main
 
-        // ->update( [
-        //     'profile_photo_path'=>env( 'APP_URL' ).'/'.$url
-        // ] );
+
 
         return response()->json( [ 'message'=>'Profile image uploaded sucessfully', 'image'=>$url ], 200 );
 
