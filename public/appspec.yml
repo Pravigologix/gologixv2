@@ -11,6 +11,5 @@ trigger:
     - releases/*
   paths:
     include:
-    - /*
     exclude:
     - /public/.htaccess
