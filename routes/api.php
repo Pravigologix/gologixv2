@@ -53,97 +53,33 @@ Route::controller(AuthController::class)
     Route::post('register', 'request_otp');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
-
     Route::post('register/verify_otp', 'register');
     Route::get('auth/google', 'AuthController@redirectToGoogle');
     Route::get('get_session', 'get_session');
-
-
     Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
-
-Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
-
-
-// Route::get('index',[ParkingController::class,'index']);  
-//Route::get('filter',[filterController::class,'filter']);     
-//Route::get('qrCode',[qrcodeController::class,'qrCode']); 
-//Route::get('status',[userStatus::class,'status']);   
-//=======
-//Route::get('/index',[ParkingController::class,'index']);
-
-
-//Route::get('/index',[ParkingController::class,'index']);
-
-
-
- });
-// Route::get('/push-notificaiton', [notificationController::class,'index']);
-// Route::post('/store-token', [notificationController::class,'storeToken']);
-// Route::post('/send-web-notification', [notificationController::class,'sendWebNotification']);
-
-
-
-
-Route::group(['middleware'=>['auth']],function(){
+    Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
+    Route::group(['middleware'=>['auth']],function(){
     Route::get('customervendor', [VendorCustomerController::class,'customer']);
     Route::get('vendorcustomer', [VendorCustomerController::class,'vendor']);
     Route::get('users', [UserDetailsControoller::class,'users']);
-   
-
-
-Route::get('parkingAddress',[ParkingController::class,'parkingAddress']);  
-Route::get('filter',[filterController::class,'filter']);     
-Route::get('getqrCode',[qrcodeController::class,'getqrCode']); 
-Route::post('addqrCode',[qrcodeController::class,'addqrCode']); 
-
-Route::get('status',[userStatus::class,'status']);   
-
-
-Route::post('/walletamount', [WalletController::class,'addwalletamount']);
-Route::get('/getwalletamount', [WalletController::class,'getwalletamount']);
-Route::post('/debitwalletamount', [WalletController::class,'debitwalletamount']);
-
-
-
-
-Route::get('bannerDetails', [BannerController::class,'bannerDetails']);
-//<<<<<<< ashwini
-Route::get('bannerdeatail', [BannerController::class,'bannerdeatail']);
-Route::get('editBanner', [BannerController::class,'editBanner']);
-Route::get('walletDetails', [WalletController::class,'walletDetails']);
-Route::post('updateWallet', [WalletController::class,'updateWallet']);
-Route::get('updatingeWallet', [WalletController::class,'updatingeWallet']);
-//=======
-//Route::get('show', [BannerController::class,'show']);
-//Route::get('edit', [BannerController::class,'edit']);
-//Route::get('destroy', [BannerController::class,'destroy']);
-// Route::get('walletDetails', [WalletController::class,'walletDetails']);
-// Route::post('updateWallet', [WalletController::class,'updateWallet']);
-// Route::get('updatingeWallet', [WalletController::class,'updatingeWallet']);
-//>>>>>>> main
-
-
-//Route::group(['middleware'=>['auth']],function(){
+    Route::get('parkingAddress',[ParkingController::class,'parkingAddress']);      
+    Route::get('getqrCode',[qrcodeController::class,'getqrCode']); 
+    Route::post('addqrCode',[qrcodeController::class,'addqrCode']); 
+    Route::post('/walletamount', [WalletController::class,'addwalletamount']);
+    Route::get('/getwalletamount', [WalletController::class,'getwalletamount']);
+    Route::post('/debitwalletamount', [WalletController::class,'debitwalletamount']);
     Route::get('getparkingaddress',[AddParkingController::class,'getparkingdeatils']);
     Route::post('getparkingcharges',[AddParkingController::class,'getparkingcharges']);
-
     Route::post('addpakingaddress',[AddParkingController::class,'addparkingdetails']);
     Route::post('editpakingaddress',[AddParkingController::class,'editparkingdetails']);
     Route::post('addparkingslotdetails',[AddParkingController::class,'addparkingslotdetails']);
-
     Route::get('getparkingslotdetails',[AddParkingController::class,'getparkingslotdetails']);
     Route::post('updateparkingslotdetails',[AddParkingController::class,'updateparkingslotdetails']);
     Route::get('getparkingdescdetails',[AddParkingController::class,'getparkingdescdetails']);
     Route::get('getuserdetails',[ProfileController::class,'getprofile']);
     Route::post('addprofile',[ProfileController::class,'addprofile']);
-
-
-
-
     Route::post('getdetails',[UserParkingdeatils::class,'generateparkinglslotforuser']);
     Route::post('bookparking',[BookParking::class,'bookpakingbyuser']);
- 
-
     Route::post('addVendorDetails',[VendorDetailsController::class,'addVendorDetails']);
     Route::post('editVendorDetails',[VendorDetailsController::class,'editVendorDetails']);
 
