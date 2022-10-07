@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 
+//<<<<<<< random
+//=======
 
 //<<<<<<< ashwini
+//>>>>>>> main
 class User_documentController extends Controller
 {
 //adding user vehicle documents details
@@ -126,6 +129,11 @@ class User_documentController extends Controller
 
     
 
+//<<<<<<< random
+
+
+ //   public function getUserVehicleDocuments( Request $request ) {
+//=======
 /*
     public function getUserVehicleDocuments(Request $request)
   {  
@@ -142,6 +150,7 @@ class User_documentController extends Controller
 //>>>>>>> main
 */
     public function getUserVehicleDocuments(Request $request ) {
+//>>>>>>> main
 
         $userdetails = Auth::user();
 

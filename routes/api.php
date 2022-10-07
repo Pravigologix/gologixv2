@@ -21,7 +21,9 @@ use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
 use App\Http\Controllers\API\User\cloudparking\BookParking;
 use App\Http\Controllers\API\profile\ProfileController;
 
-
+use App\Http\Controllers\API\User\cloudparking\GetAllAddressController;
+use App\Http\Controllers\API\User\cloudparking\UserBookingDetails;
+ 
 
 use App\Http\Controllers\API\User\cloudparking\userStatus;
 use App\Http\Controllers\API\vendor\cloudparking\VendorDetailsController;
@@ -169,4 +171,7 @@ Route::get('customerDetails',[EmployeeController::class,'customerDetails']);
 Route::get('vendorDetails',[EmployeeController::class,'vendorDetails']);
 
 Route::get('getallparkingAddress',[ParkingController::class,'getallparkingAddress']);  
+Route::get('getAllAddress',[GetAllAddressController::class,'getAllAddress']);  
+Route::post('addAddress',[GetAllAddressController::class,'addAddress']);  
+Route::get('bookingDetails',[UserBookingDetails::class,'bookingDetails']);  
 
