@@ -30,7 +30,7 @@ class WalletController extends Controller {
         if($order){
             $orderid=DB::table('orders')
            
-            ->where('ord_user_id','=',$request->input('ord_user_id'))->get('id');
+            ->where('ord_user_id','=',$request->input('ord_user_id'))->first('id');
 
        
 
