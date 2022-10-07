@@ -1,15 +1,19 @@
-version: 0.0
-os: linux 
-files:
-  - source: /*
+--- 
+file_exists_behavior: OVERWRITE
+files: 
+  - 
     destination: /var/www/cloudparking
-file_exists_behavior: OVERWRITE   
-trigger:
-  branches:
-    include:
-    - main
-    - releases/*
-  paths:
-    include:
-    exclude:
-    - /public/.htaccess
+    source: /*
+os: linux
+trigger: 
+  branches: 
+    include: 
+      - main
+      - releases/*
+  paths: 
+    exclude: 
+      - /public/.htaccess
+    hooks: ~
+    include: ~
+    install: ~
+version: 0.0
