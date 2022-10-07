@@ -24,7 +24,7 @@ class VendorCustomerController extends Controller
             ->leftjoin('users','book_parking.user_id','=','users.id')
             ->leftjoin('user_vehicle','user_vehicle.useveh_user_id','=','users.id')
             //->where('users.id','=','addresses.add_user_id')
-            ->where('users.is_admin','=',3)
+            ->where('users.is_admin','=',0)
            // ->where('addresses.add_user_id','=',$user->id)
             ->select('users.name','users.id','users.phonenumber','email','add_city_id','add_pincode','add_description','is_admin','user_vehicle.useveh_vehicle_name','user_vehicle.useveh_vehicle_number','book_parking.parking_status')
             // 
