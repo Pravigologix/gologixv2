@@ -110,7 +110,7 @@ class WalletController extends Controller {
             return response()->json( [ 'message'=>'Amount debited sucessfully', 'status'=>1 ], 200 );
 
         }
-        return response()->json( [ 'message'=>'recharge amount insufficent wallet balance', 'status'=>0 ], 200 );
+        return response()->json( [ 'message'=>'recharge amount insufficent wallet balance', 'status'=>0 ], 303 );
 
     }
 
