@@ -107,7 +107,7 @@ Route::post('securityRegister',[SecurityController::class,'securityRegister']);
 Route::get('customerDetails',[EmployeeController::class,'customerDetails']);
 Route::get('vendorDetails',[EmployeeController::class,'vendorDetails']);
 
-Route::get('getallparkingAddress',[ParkingController::class,'getallparkingAddress']);  
+Route::get('getallparkingAddress',[ParkingController::class,'getalladdress']);  
 Route::get('getAllAddress',[GetAllAddressController::class,'getAllAddress']);  
 Route::post('addAddress',[GetAllAddressController::class,'addAddress']);  
 Route::get('bookingDetails',[UserBookingDetails::class,'bookingDetails']);  
