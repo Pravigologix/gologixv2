@@ -50,12 +50,11 @@ public function getVendorAccountDetails(Request $request)
 
 $userdetails=Auth::user();  
 
-  $res= DB::table('vendor')->leftjoin('vendor_account','vendor.id','=','vendor_account.vendor_id')
-  ->leftjoin('users','vendor.ven_email','=','users.email')
-  //->where('users.is_admin','=',3)
- // ->where('users.phonenumber','=','vendor.ven_phone')
-  ->where('vendor.id','=',$userdetails->id)
-  ->select('vendor.ven_name','vendor.id','ven_phone','ven_email','venacc_name','venacc_bank_name','venacc_account_no','venacc_paymet_id','venacc_ifsc','is_admin')
+  $res= DB::table('vendor_account')
+
+
+  ->where('vendor_account.vendor_id','=',$userdetails->id)
+  
   ->get();
 
   return response()->json(['vendor details'=>$res],200);
