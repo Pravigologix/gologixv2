@@ -62,7 +62,7 @@ Route::controller(AuthController::class)
     Route::get('customervendor', [VendorCustomerController::class,'customer']);
     Route::get('vendorcustomer', [VendorCustomerController::class,'vendor']);
     Route::get('users', [UserDetailsControoller::class,'users']);
-    Route::get('parkingAddress',[ParkingController::class,'parkingAddress']);      
+         
     Route::get('getqrCode',[qrcodeController::class,'getqrCode']); 
     Route::post('addqrCode',[qrcodeController::class,'addqrCode']); 
     Route::post('/walletamount', [WalletController::class,'addwalletamount']);
