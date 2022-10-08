@@ -37,10 +37,12 @@ else{
         $userdetails= Auth::user();  
         //dd($userdetails->id);
 
-    $data=DB::table('vendor_account')->where('vendor_account.vendor_id','=',$userdetails->id)->update(['venacc_name'=>$request->input('venacc_name'),'venacc_bank_name'=>$request->input('venacc_bank_name'),'venacc_account_no'=>$request->input('venacc_account_no'),'venacc_ifsc'=>$request->input('venacc_ifsc')]);
+    $data=DB::table('vendor_account')
+        ->where('vendor_account.vendor_id','=',$userdetails->id)
+         ->where('vendor_account.id','=',$request->input('id'))
+        ->update(['venacc_name'=>$request->input('venacc_name'),'venacc_bank_name'=>$request->input('venacc_bank_name'),'venacc_account_no'=>$request->input('venacc_account_no'),'venacc_ifsc'=>$request->input('venacc_ifsc')]);
       
-    //$d=DB::table('banners')->get();
-    // return $d;
+   
       return response()->json(['data successfully updated.']);
   }
 
