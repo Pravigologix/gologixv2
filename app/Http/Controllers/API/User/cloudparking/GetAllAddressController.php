@@ -13,17 +13,11 @@ class GetAllAddressController extends Controller
     public function getAllAddress(Request $request)
     { 
 
-     $add=DB::table('addresses')
-    ->join('add_praking_slots','addresses.id','=','add_praking_slots.address_id')
-    ->join('parking_charges','add_praking_slots.id','=','parking_charges.add_praking_slot_id')
-    ->join('add_praking_desc','parking_charges.add_praking_desc_id','=','add_praking_desc.id')
-     ->where('addresses.is_cloud_parking','=',1)
-     ->where('add_praking_desc.is_active','=',0)
-     ->where('parking_charges.is_active','=',0)
-
-
-
-     ->get();
+    //dd($user->id);
+     $add=AddressModel::where('is_cloud_parking','=',1)->
+     with('praking_charge')->with('praking_slot')->
+     
+     get();
      return response()->json(['status'=>'Sucess','message'=>$add],200);
     }
 

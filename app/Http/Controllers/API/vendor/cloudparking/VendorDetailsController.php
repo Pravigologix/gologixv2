@@ -16,8 +16,8 @@ class VendorDetailsController extends Controller
 //<<<<<<< ashwini
         $user= Auth::user();  
 //=======
-     //   $userdetails= Auth::user();  
-     //   if($userdetails-> is_admin==2){
+      $userdetails= Auth::user();  
+      if($userdetails-> is_admin==2){
 //>>>>>>> main
             $userdetails=new VendorDetails;
             $userdetails->ven_name=$request->input('ven_name');
@@ -32,10 +32,13 @@ class VendorDetailsController extends Controller
             $userdetails->ven_default_tax=$request->input('ven_default_tax');
             $userdetails->ven_isactive=$request->input('ven_isactive');
             $userdetails->ven_isdeleted=$request->input('ven_isdeleted');
+            $userdetails->user_id=$request->input('user_id');
+
             $userdetails-> save();
             return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
       
 }
+    }
 public function editVendorDetails(Request $request){
 
   $userdetails= Auth::user();  
@@ -58,7 +61,7 @@ public function getVendorDetails(Request $request)
 $userdetails=Auth::user();  
 
   $res= DB::table('vendor')->select('vendor.ven_name','vendor.id','ven_description','ven_address_id','ven_phone','ven_email','ven_isactive','gst_no')
-  ->where('vendor.id','=',$userdetails->id)
+  ->where('vendor.user_id','=',$userdetails->id)
   ->get();
 
   return $res;

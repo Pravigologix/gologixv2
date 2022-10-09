@@ -54,7 +54,7 @@ $userdetails=Auth::user();
   ->leftjoin('users','vendor.ven_email','=','users.email')
   //->where('users.is_admin','=',3)
  // ->where('users.phonenumber','=','vendor.ven_phone')
-  ->where('vendor.id','=',$userdetails->id)
+  ->where('vendor_account.vendor_id','=',$userdetails->id)
   ->select('vendor.ven_name','vendor.id','ven_phone','ven_email','venacc_name','venacc_bank_name','venacc_account_no','venacc_paymet_id','venacc_ifsc','is_admin')
   ->get();
 
