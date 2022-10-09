@@ -42,7 +42,7 @@ class VehicleController extends Controller
 
   public function getVehicle(Request $request){
     $userdetails= Auth::user(); 
-    /
+    
     $data=DB::table('user_vehicle')
     
     ->where('user_vehicle.useveh_user_id','=',$userdetails->id)
