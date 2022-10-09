@@ -29,7 +29,10 @@ class AddParkingController extends Controller {
 
         if ( $userdetails-> is_admin == 2 ) {
 
-            $res = DB::table( 'addresses' )->where( 'add_user_id', '=', $userdetails->id )->where( 'add_isdeleted', 0 )
+            $res = DB::table( 'addresses' )
+                ->where( 'add_user_id', '=', $userdetails->id )
+                 ->where( 'is_cloud_parking', '=',1)
+                ->where( 'add_isdeleted', 0 )
             ->get();
 
             return response()->json( [ 'myslot'=>$res ], 200 );
