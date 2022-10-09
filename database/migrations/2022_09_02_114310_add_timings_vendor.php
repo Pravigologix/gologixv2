@@ -21,6 +21,8 @@ return new class extends Migration
             $table->bigInteger('add_praking_slot_id');
             $table->integer('is_active');
             $table->integer('is_delete');
+            $table->integer('address_id');
+
             $table->timestamps();
 
         });

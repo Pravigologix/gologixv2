@@ -11,31 +11,43 @@ use Auth;
 class VendorkycController extends Controller
 {
     public function addVendorkyc(Request $request){
+      $user= Auth::user();  
 
-/*
+
       $document=DB::table('documents')->insert([
         'doc_name'=>$request->input('doc_name'),
         'doc_description'=>$request->input('doc_description'),
-
         'doc_isactive'=>$request->input('doc_isactive'),
         'doc_isdeleted'=>$request->input('doc_isdeleted'),
-        'user_id'=>$request->input('user_id'),
-
+        'user_id'=>$user->id,
     ]);
     if($document){
       $document_id=DB::table('documents')
      
       ->where('documents.user_id','=',$request->input('user_id'))->first('id');
-      */
+
+
+      $doctype=DB::table('documents_type')->insert([
+        'doctyp_name'=>$request->input('doctyp_name'),
+        'doctyp_description'=>$request->input('doctyp_description'),
+        'doctyp_isactive'=>$request->input('doctyp_isactive'),
+        'doctyp_isdeleted'=>$request->input('doctyp_isdeleted'),
+        'user_id'=>$user->id,
+      ]);
+      if($doctype){
+        $doctype_id=DB::table('documents_type')
+        ->where('documents_type.user_id','=',$request->input('user_id'))->first('id');
+      
+      
         $user= Auth::user();  
       // dd($user->id);
             $vendordetails=new VendorKYC;
             $vendordetails->venkyc_docname=$request->input('venkyc_docname');
             $vendordetails->venkyc_docnumber=$request->input('venkyc_docnumber');
-            $vendordetails->venkyc_vendor_id=(int)$user->id;
+            $vendordetails->venkyc_vendor_id=$user->id;
             $vendordetails->venkyc_verifier_userid =$request->input('venkyc_verifier_userid');
-            $vendordetails->venkyc_document_id=$request->input('venkyc_document_id');
-            $vendordetails->venkyc_doctye_id=$request->input('venkyc_doctye_id');
+            $vendordetails->venkyc_document_id=$document_id;
+            $vendordetails->venkyc_doctye_id=$doctype_id;
             $vendordetails->venkyc_path=$request->input('venkyc_path');
             $vendordetails->venkyc_isapproved=$request->input('venkyc_isapproved');
             $vendordetails->venkyc_isactive=$request->input('venkyc_isactive');
@@ -45,7 +57,8 @@ class VendorkycController extends Controller
 
             return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
     
-//}
+}
+    }
     }
 public function getVendorkyc(Request $request)
 {  

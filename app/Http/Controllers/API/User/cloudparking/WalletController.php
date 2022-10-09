@@ -17,7 +17,7 @@ class WalletController extends Controller {
         
          $order=DB::table('orders')->insert([
             'ord_refid'=>Str::random(30000),
-            'ord_user_id'=>$request->input('user_id'),
+            'ord_user_id'=>$userdetails->id,
 
             'ord_status_id'=>$request->input('ord_status_id'),
             'ord_payment_status_id'=>$request->input('ord_payment_status_id'),
@@ -36,7 +36,7 @@ class WalletController extends Controller {
 
         $payment = DB::table( 'payments' )->insert( [
             'pay_price'=>$request->input( 'pay_price' ),
-            'pay_user_id'=>$request->input('user_id'),
+            'pay_user_id'=>$userdetails->id,
             // 'pay_description'=>$request->input( 'pay_description' ),
             'pay_description'=>$request->input( 'pay_description' ),
 
@@ -57,7 +57,7 @@ class WalletController extends Controller {
         $paymentid=DB::table('payments')
         ->where('pay_user_id','=',$request->input('user_id'),)
         ->where('pay_transaction_id','=',$request->input('pay_transaction_id'),)
-        ->where(  'pay_order_id','=',(string)$orderid,)->get('id');
+        ->where('pay_order_id','=',(string)$orderid,)->get('id');
 
 
        
