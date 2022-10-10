@@ -166,6 +166,7 @@ class AddParkingController extends Controller {
                     'parking_amt'=>$amt,
                     'add_praking_desc_id'=>$desc_id,
                     'add_praking_slot_id'=>$parking_slot->id,
+                    'address_id' => $request->input( 'address_id' ),
 
                 ] );
 
@@ -244,7 +245,8 @@ class AddParkingController extends Controller {
                 [
                     'parking_amt'=>$request->input( 'parking_amt' ),
                     'is_active'=>$request->input( 'parking_charge_isactive' ),
-                    'is_delete'=>$request->input( 'parking_charge_isdelete' )
+                    'is_delete'=>$request->input( 'parking_charge_isdelete' ),
+                    
 
                 ]
             );
@@ -271,8 +273,7 @@ class AddParkingController extends Controller {
         }
 
     }
-//<<<<<<< backupnew
-//=======
+
 
 
 }
@@ -280,6 +281,4 @@ class AddParkingController extends Controller {
 
 
 
-//>>>>>>> main
 
-// }
