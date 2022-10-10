@@ -244,6 +244,7 @@ class AddParkingController extends Controller {
             ->update(
                 [
                     'parking_amt'=>$request->input( 'parking_amt' ),
+                    'address_id' => $request->input( 'address_id' ),
                     'is_active'=>$request->input( 'parking_charge_isactive' ),
                     'is_delete'=>$request->input( 'parking_charge_isdelete' ),
                     
@@ -257,6 +258,7 @@ class AddParkingController extends Controller {
             ->update(
                 [
                     'parking_type'=>$request->input( 'parking_type' ),
+                    'address_id' => $request->input( 'address_id' ),
                     'parking_no'=>$request->input( 'parking_no' ),
                     'starts_at'=>$request->input( 'starts_at' ),
                     'ends_at'=>$request->input( 'ends_at' ),
