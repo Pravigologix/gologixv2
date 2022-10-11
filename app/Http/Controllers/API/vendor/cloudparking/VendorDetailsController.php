@@ -64,7 +64,7 @@ $userdetails=Auth::user();
   ->where('vendor.user_id','=',$userdetails->id)
   ->get();
 
-  return $res;
+  return response()->json(['vendorDetails'=>$res]);
 
 }
 

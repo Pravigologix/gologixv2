@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('parking_charges', function (Blueprint $table) {
-            $table->integer("address_id");
+        Schema::table('payments_status', function (Blueprint $table) {
+            $table->integer("user_id");
         });
     }
 
@@ -25,9 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('parking_charges', function (Blueprint $table) {
-            $table->dropColumn('address_id');
-
+        Schema::table('payments_status', function (Blueprint $table) {
+            $table->dropColumn('user_id');
         });
     }
 };
