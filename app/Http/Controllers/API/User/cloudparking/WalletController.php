@@ -49,7 +49,7 @@ class WalletController extends Controller {
 
          
 
-            'pay_order_id'=>json_decode($orderid),
+            'pay_order_id'=>json_decode(json_encode($orderid),true),
 
 
 
@@ -60,7 +60,7 @@ class WalletController extends Controller {
         $paymentid=DB::table('payments')
         ->where('pay_user_id','=',$request->input('user_id'),)
         ->where('pay_transaction_id','=',$request->input('pay_transaction_id'),)
-        ->where('pay_order_id','=',json_decode($orderid))->get('id');
+        ->where('pay_order_id','=',son_decode(json_encode($orderid),true))->get('id');
 
         $walletModel = new WalletModel();
         // $walletModel->wal_user_id = $request->input( 'user_id' );
