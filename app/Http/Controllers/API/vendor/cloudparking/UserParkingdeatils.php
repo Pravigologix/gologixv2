@@ -19,7 +19,7 @@ class UserParkingdeatils extends Controller
 
 
 
-    $get_no_slot=DB::table('add_praking_slot')->select('parking_slots','id')->where('user_id','=',$user->id)->get();
+    $get_no_slot=DB::table('add_praking_slots')->select('parking_slots','id')->where('user_id','=',$user->id)->get();
 
     $d=$get_no_slot[0]->parking_slots;
     

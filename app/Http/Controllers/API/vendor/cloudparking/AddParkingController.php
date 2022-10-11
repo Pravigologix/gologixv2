@@ -29,7 +29,10 @@ class AddParkingController extends Controller {
 
         if ( $userdetails-> is_admin == 2 ) {
 
-            $res = DB::table( 'addresses' )->where( 'add_user_id', '=', $userdetails->id )->where( 'add_isdeleted', 0 )
+            $res = DB::table( 'addresses' )
+                ->where( 'add_user_id', '=', $userdetails->id )
+                 ->where( 'is_cloud_parking', '=',1)
+                ->where( 'add_isdeleted', 0 )
             ->get();
 
             return response()->json( [ 'myslot'=>$res ], 200 );
@@ -163,6 +166,7 @@ class AddParkingController extends Controller {
                     'parking_amt'=>$amt,
                     'add_praking_desc_id'=>$desc_id,
                     'add_praking_slot_id'=>$parking_slot->id,
+                    'address_id' => $request->input( 'address_id' ),
 
                 ] );
 
@@ -240,8 +244,11 @@ class AddParkingController extends Controller {
             ->update(
                 [
                     'parking_amt'=>$request->input( 'parking_amt' ),
+                    'address_id' => $request->input( 'address_id' ),
                     'is_active'=>$request->input( 'parking_charge_isactive' ),
-                    'is_delete'=>$request->input( 'parking_charge_isdelete' )
+                    'is_delete'=>$request->input( 'parking_charge_isdelete' ),
+                     'address_id' => $request->input( 'address_id' ),
+                    
 
                 ]
             );
@@ -252,10 +259,12 @@ class AddParkingController extends Controller {
             ->update(
                 [
                     'parking_type'=>$request->input( 'parking_type' ),
+                    'address_id' => $request->input( 'address_id' ),
                     'parking_no'=>$request->input( 'parking_no' ),
                     'starts_at'=>$request->input( 'starts_at' ),
                     'ends_at'=>$request->input( 'ends_at' ),
                     'parking_slots'=>$request->input( 'parking_slots' ),
+                     'address_id' => $request->input( 'address_id' ),
 
                 ]
             );
@@ -268,8 +277,7 @@ class AddParkingController extends Controller {
         }
 
     }
-//<<<<<<< backupnew
-//=======
+
 
 
 }
@@ -277,6 +285,4 @@ class AddParkingController extends Controller {
 
 
 
-//>>>>>>> main
 
-// }

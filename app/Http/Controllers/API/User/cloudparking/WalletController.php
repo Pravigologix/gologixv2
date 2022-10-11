@@ -66,7 +66,7 @@ class WalletController extends Controller {
         // $walletModel->wal_user_id = $request->input( 'user_id' );
         $walletModel->wal_user_id = $userdetails->id;
 
-        $walletModel->wal_transaction_id = $request->input( 'wal_transaction_id' );
+      
         $walletModel->wal_transaction_id =(string)$paymentid;
         $walletModel->credited_amt = $request->input( 'credited_amt' );
         $walletModel->debited_amt = $request->input( 'debited_amt' );
