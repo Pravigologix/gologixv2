@@ -49,7 +49,7 @@ class WalletController extends Controller {
 
          
 
-            'pay_order_id'=>(string)$orderid,
+            'pay_order_id'=>$orderid,
 
 
 
