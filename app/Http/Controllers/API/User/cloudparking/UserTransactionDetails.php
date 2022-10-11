@@ -12,7 +12,7 @@ class UserTransactionDetails extends Controller
     public function getTransactionDetails(Request $request)
     {
         $user= Auth::user();  
-        if($user->is_admin==3){
+        if($user->is_admin==0){
         //dd($user->id);
         $details=DB::table('payments')
         ->where('payments.pay_user_id','=',$user->id)
