@@ -10,10 +10,12 @@ use Auth;
 
 class VendorkycController extends Controller
 {
+
     public function addVendorkyc(Request $request){
+   
       $user= Auth::user();  
 
-
+   
       $document=DB::table('documents')->insert([
         'doc_name'=>$request->input('doc_name'),
         'doc_description'=>$request->input('doc_description'),
@@ -24,8 +26,11 @@ class VendorkycController extends Controller
     if($document){
       $document_id=DB::table('documents')
      
-      ->where('documents.user_id','=',$request->input('user_id'))->first('id');
+      ->where('documents.user_id','=',$user->id)->first('id');
 
+     // dd($document_id);
+
+      $user= Auth::user();  
 
       $doctype=DB::table('documents_type')->insert([
         'doctyp_name'=>$request->input('doctyp_name'),
@@ -36,8 +41,8 @@ class VendorkycController extends Controller
       ]);
       if($doctype){
         $doctype_id=DB::table('documents_type')
-        ->where('documents_type.user_id','=',$request->input('user_id'))->first('id');
-
+        ->where('documents_type.user_id','=',$user->id)->first('id');
+  
         $files=$request['venkyc_path'];
         $hostname=$_SERVER['HTTP_HOST'];
         
@@ -48,14 +53,29 @@ class VendorkycController extends Controller
                 $destinationPath = public_path().'/images'.'/kyc_docs';
                 $fileupload=$files->move($destinationPath,$fileName);
                 $kyc_docs=env('APP_URL').'/images'.'/kyc_docs'.'/'.$fileName; 
-      
-      
+
+
+                $vendor=DB::table('vendor')->insert([
+                  'ven_name'=>$request->input('ven_name'),
+                  'ven_description'=>$request->input('ven_description'),
+                  'ven_address_id'=>$request->input('ven_address_id'),
+                  'ven_phone'=>$request->input('ven_phone'),
+                  'ven_email'=>$request->input('ven_email'),
+                  'user_id'=>$request->input('user_id'),
+              ]);
+              if($vendor){
+                $vendor_id=DB::table('vendor')
+               
+                ->where('vendor.user_id','=',$user->id)->first();
+          
+  // dd($vendor_id);
         $user= Auth::user();  
-      // dd($user->id);
+       //dd($user->id);
+
             $vendordetails=new VendorKYC;
             $vendordetails->venkyc_docname=$request->input('venkyc_docname');
             $vendordetails->venkyc_docnumber=$request->input('venkyc_docnumber');
-            $vendordetails->venkyc_vendor_id=$user->id;
+            $vendordetails->venkyc_vendor_id=$vendor_id;
             $vendordetails->venkyc_verifier_userid =$request->input('venkyc_verifier_userid');
             $vendordetails->venkyc_document_id=$document_id;
             $vendordetails->venkyc_doctye_id=$doctype_id;
@@ -66,13 +86,14 @@ class VendorkycController extends Controller
 
             $vendordetails-> save();
 
+
             return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
-    
-}
+      }
+     }
     }
     }
-public function getVendorkyc(Request $request)
-{  
+      public function getVendorkyc(Request $request)
+ {  
 
 $vendordetails=Auth::user();
 
