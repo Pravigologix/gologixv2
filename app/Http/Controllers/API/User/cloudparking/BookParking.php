@@ -81,7 +81,7 @@ class BookParking extends Controller
                 ->where('parking_status','=',$request->input('parking_status'),)
                ->where( 'address_id','=',$request->input('address_id'))->get('id');
 
-        return response()->json(['message'=>'Booking Confired',
+        return response()->json(['message'=>'Booking initaited',
                                   'payment_id'=>$paymentid,
           "booking_id"=>$bookingid,
    
@@ -130,6 +130,13 @@ class BookParking extends Controller
         
        
     ]);
+        
+        if($request->input('payment_status')==4){
+            
+             return response()->json(['message'=>'Booking Canceled', 'status'=>0],303);
+            
+            
+        }
 
     return response()->json(['message'=>'Booking Confired',
 
@@ -138,7 +145,7 @@ class BookParking extends Controller
   
 
 
-    'status'=>1,'user_id'=>$request->input('user_id')],200);
+    'status'=>1],200);
 
 
 
