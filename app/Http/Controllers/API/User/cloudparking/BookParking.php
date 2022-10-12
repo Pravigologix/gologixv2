@@ -10,6 +10,8 @@ class BookParking extends Controller
 {
     public function bookpakingbyuser(Request $request) {
         
+        $userdetails=Auth::user();
+        
          $trans_id=(string)$request->input( 'pay_price' ).(string)$userdetails->id.'2022'.$request->input( 'date' );
        
         $payment = DB::table( 'payments' )->insert( [
@@ -103,6 +105,7 @@ class BookParking extends Controller
 
 
     public function updatebookpakingbyuser(Request $request) {
+         $userdetails=Auth::user();
         
         
            $payment = DB::table( 'payments' )->where('id','=',$request->input('payment_id'))
