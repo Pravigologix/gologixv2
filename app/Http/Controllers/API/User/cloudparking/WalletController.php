@@ -14,20 +14,8 @@ class WalletController extends Controller {
     public function addwalletamount( Request $request ) {
 
         $userdetails = Auth::user();
-        
-         $order=DB::table('orders')->insert([
-            'ord_refid'=>Str::random(30000),
-            'ord_user_id'=>$userdetails->id,
-
-            'ord_status_id'=>$request->input('ord_status_id'),
-            'ord_payment_status_id'=>$request->input('ord_payment_status_id'),
-            'ord_paymethod_id'=>$request->input('ord_paymethod_id'),
-            'ord_delivery_address_id'=>$request->input('ord_delivery_address_id')
-           
-
-
-        ]);
-        if($order){
+       
+       
             $orderid=DB::table('orders')
            
             ->where('ord_user_id','=',$userdetails->id)->first('id');
@@ -37,30 +25,17 @@ class WalletController extends Controller {
         $payment = DB::table( 'payments' )->insert( [
             'pay_price'=>$request->input( 'pay_price' ),
             'pay_user_id'=>$userdetails->id,
-            // 'pay_description'=>$request->input( 'pay_description' ),
             'pay_description'=>$request->input( 'pay_description' ),
-
-            //'pay_description'=>$request->input( 'pay_description' ),
-
-
             'pay_transaction_id'=>$request->input( 'pay_transaction_id' ),
             'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
             'pay_method'=>$request->input( 'pay_method' ),
-
-         
-
             'pay_order_id'=>(string)$orderid,
-
-
-
-       
-
         ] );
 
         $paymentid=DB::table('payments')
         ->where('pay_user_id','=',$request->input('user_id'),)
         ->where('pay_transaction_id','=',$request->input('pay_transaction_id'),)
-        ->where('pay_order_id','=',(string)$orderid)->get('id');
+        ->get('id');
 
         $walletModel = new WalletModel();
         // $walletModel->wal_user_id = $request->input( 'user_id' );
@@ -74,7 +49,7 @@ class WalletController extends Controller {
         $walletModel->save();
 
         return response()->json( [ 'message'=>'payment Satus Updated' ], 200 );
-    }
+    
 
     }
 
