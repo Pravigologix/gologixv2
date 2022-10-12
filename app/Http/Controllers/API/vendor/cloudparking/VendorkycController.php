@@ -26,9 +26,9 @@ class VendorkycController extends Controller
     if($document){
       $document_id=DB::table('documents')
      
-      ->where('documents.user_id','=',$user->id)->first('id');
+      ->where('documents.user_id','=',$user->id)->latest('created_at')->first('id');
 
-     // dd($document_id);
+      dd($document_id);
 
       $user= Auth::user();  
 
