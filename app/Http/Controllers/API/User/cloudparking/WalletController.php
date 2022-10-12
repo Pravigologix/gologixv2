@@ -55,32 +55,19 @@ class WalletController extends Controller {
 
     public function debitwalletamount( Request $request ) {
 
-        // public function getwalletamount( Request $request ) {
         $userdetails = Auth::user();
-
-        //$walletdetails = WalletModel::where( 'wal_user_id', $userdetails->id )->get();
-
-        //$walletModel = WalletModel()::where( 'wal_user_id', $request->input( 'user_id' ) )->get;
-        //$walletModel->wal_user_id = $request->input( 'user_id' );
         $credited_amt = WalletModel::where( 'wal_user_id', $userdetails->id )
         ->sum( 'credited_amt' );
         $debited_amt = WalletModel::where( 'wal_user_id', $userdetails->id )
         ->sum( 'debited_amt' );
 
         $balance = $credited_amt-$debited_amt;
-
-        // dd();
-
-      
         if ( $balance >= $request->input( 'debited_amt' ) ) {
             $walletModel = new WalletModel();
             $walletModel->wal_user_id = $userdetails->id;
             $walletModel->wal_transaction_id = $request->input( 'wal_transaction_id' );
-
-            // $walletModel->wal_transaction_id = $payment->id;
             $walletModel->credited_amt = $request->input( 'credited_amt' );
             $walletModel->debited_amt = $request->input( 'debited_amt' );
-
             $walletModel->save();
             return response()->json( [ 'message'=>'Amount debited sucessfully', 'status'=>1 ], 200 );
 
@@ -92,9 +79,7 @@ class WalletController extends Controller {
     public function getwalletamount( Request $request ) {
 
         $userdetails = Auth::user();
-
         $walletdetails = WalletModel::where( 'wal_user_id', $userdetails->id )->get();
-
         $credited_amt = WalletModel::where( 'wal_user_id', $userdetails->id )
         ->sum( 'credited_amt' );
         $debited_amt = WalletModel::where( 'wal_user_id', $userdetails->id )
