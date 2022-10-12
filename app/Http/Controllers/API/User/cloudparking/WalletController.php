@@ -81,7 +81,7 @@ class WalletController extends Controller {
 
         
        
-             $payment = DB::table( 'payments' )->where('id','=','payment_id')
+             $payment = DB::table( 'payments' )->where('id','=',$request->input( 'payment_id'))
                  ->update( [
             'pay_transaction_id'=>$request->input( 'trnas_id' ),
             'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
