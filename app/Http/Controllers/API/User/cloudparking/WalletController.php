@@ -29,8 +29,13 @@ class WalletController extends Controller {
 
         $paymentid=DB::table('payments')
         ->where('pay_user_id','=',$request->input('user_id'),)
+//<<<<<<< branch4
+    //    ->where('pay_transaction_id','=',$request->input('pay_transaction_id'),)
+      //  ->where('pay_order_id','=',json_encode($orderid))->get('id');
+//=======
         ->where('pay_transaction_id','=', $trans_id)
         ->get('id');
+//>>>>>>> main
 
         $walletModel = new WalletModel();
         // $walletModel->wal_user_id = $request->input( 'user_id' );
