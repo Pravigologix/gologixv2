@@ -64,14 +64,29 @@ class VendorDetailsController extends Controller
     }
 public function editVendorDetails(Request $request){
 
+  
   $userdetails= Auth::user();  
-  //dd($userdetails->id);
+       
 
-$data=DB::table('vendor')->where('vendor.id','=',$userdetails->id)->update(['ven_description'=>$request->input('ven_description')]);
+  $data=DB::table('vendor')
+      ->where('vendor.id','=',$request->input('id'))
+     
+      ->update(['ven_name'=>$request->input('ven_name'),
+      'ven_description'=>$request->input('ven_description'),
+      'ven_address_id'=>$request->input('ven_address_id'),
+      'ven_phone'=>$request->input('ven_phone'),
+      'ven_mobile'=>$request->input('ven_mobile'),
+      'ven_email'=>$request->input('ven_email'),
+      'ven_information'=>$request->input('ven_information'),
+      'ven_admin_commission'=>$request->input('ven_admin_commission'),
+      'ven_default_tax'=>$request->input('ven_default_tax'),
+      'ven_isactive'=>$request->input('ven_isactive'),
+      'ven_isdeleted'=>$request->input('ven_isdeleted')]);
+    
+     
+    return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
 
-//$d=DB::table('banners')->get();
-// return $d;
-return response()->json(['data successfully updated.']);
+ 
 }
 
 
@@ -84,16 +99,17 @@ public function getVendorDetails(Request $request)
 $userdetails=Auth::user();  
 
   $res= DB::table('vendor')
-  ->join('addresses','vendor.user_id','addresses.add_user_id')->select('vendor.user_id','vendor.ven_name','vendor.id as vendor_id','ven_description','ven_address_id as vendor_address_id','ven_phone','ven_email','ven_isactive','gst_no','addresses.id as address_id','addresses.add_address','addresses.add_description','addresses.add_city_id','add_pincode','add_latitude','add_longitude','add_isactive','add_isdeleted','add_user_id')
-  ->where('vendor.user_id','=',$userdetails->id)
-  ->where('addresses.add_user_id','=',$userdetails->id)
-  ->whereNotNull('vendor.ven_address_id')  
+  ->join('addresses','vendor.user_id','addresses.add_user_id')
+  ->select('vendor.user_id','vendor.ven_name','vendor.id as vendor_id','ven_description',
+  'ven_address_id as vendor_address_id','ven_phone','ven_email','ven_isactive',
+  'gst_no','addresses.id as address_id','addresses.add_address','addresses.add_description','addresses.add_city_id','add_pincode','add_latitude','add_longitude','add_isactive','add_isdeleted','add_user_id')
+  
+  ->where('vendor.id','=',$request->input('id'))
+ 
   ->get();
 
   return response()->json(['vendorDetails'=>$res]);
 
 }
-
-
 
 }
