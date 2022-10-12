@@ -15,13 +15,6 @@ class WalletController extends Controller {
 
         $userdetails = Auth::user();
        
-       
-            $orderid=DB::table('orders')
-           
-            ->where('ord_user_id','=',$userdetails->id)->first('id');
-
-       
-
         $payment = DB::table( 'payments' )->insert( [
             'pay_price'=>$request->input( 'pay_price' ),
             'pay_user_id'=>$userdetails->id,
@@ -29,7 +22,7 @@ class WalletController extends Controller {
             'pay_transaction_id'=>$request->input( 'pay_transaction_id' ),
             'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
             'pay_method'=>$request->input( 'pay_method' ),
-            'pay_order_id'=>(string)$orderid,
+           
         ] );
 
         $paymentid=DB::table('payments')
