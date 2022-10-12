@@ -9,6 +9,23 @@ use DB;
 class BookParking extends Controller
 {
     public function bookpakingbyuser(Request $request) {
+        
+         $trans_id=(string)$request->input( 'pay_price' ).(string)$userdetails->id.'2022';
+       
+        $payment = DB::table( 'payments' )->insert( [
+            'pay_price'=>$request->input( 'pay_price' ),
+            'pay_user_id'=>$userdetails->id,
+            'pay_description'=>$request->input( 'pay_description' ),
+            'pay_transaction_id'=>$trans_id,
+            'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
+            'pay_method'=>$request->input( 'pay_method' ),
+           
+        ] );
+
+        $paymentid=DB::table('payments')
+        ->where('pay_user_id','=',$request->input('user_id'),)
+        ->where('pay_transaction_id','=', $trans_id)
+        ->get('id');
 
         $booking_count=DB::table('book_parking')
         ->where('address_id','=',$request->input('address_id'))->count();
@@ -52,7 +69,7 @@ class BookParking extends Controller
             'address_id'=>$request->input('address_id'),
             'payment_status'=>$request->input('payment_status'),
             'parking_status'=>$request->input('parking_status'),
-            'payment_id'=>$request->input('payment_id'),
+            'payment_id'=>(string)$paymentid,
             'start_date'=>$request->input('start_date'),
             'is_cacnceled'=>$request->input('is_canceled'),
             'parking_slot_number'=>$slot_no,
