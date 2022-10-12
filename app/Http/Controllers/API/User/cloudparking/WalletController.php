@@ -43,7 +43,11 @@ class WalletController extends Controller {
 
         $walletModel->save();
 
-        return response()->json( [ 'message'=>'payment Satus Updated' ], 200 );
+        return response()->json( [ 
+            'payment_id'=>$paymentid,
+          
+            
+            'message'=>'payment Satus Updated' ], 200 );
     
 
     }
@@ -67,7 +71,26 @@ class WalletController extends Controller {
             return response()->json( [ 'message'=>'Amount debited sucessfully', 'status'=>1 ], 200 );
 
         }
-        return response()->json( [ 'message'=>'recharge amount insufficent wallet balance', 'status'=>0 ], 303 );
+        return response()->json( [ 
+            
+            
+            'message'=>'recharge amount insufficent wallet balance', 'status'=>0 ], 303 );
+
+    }
+     public function updatewalletamount( Request $request ) {
+
+        
+       
+             $payment = DB::table( 'payments' )->where('id','=','payment_id')
+                 ->update( [
+            'pay_transaction_id'=>$request->input( 'trnas_id' ),
+            'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
+            'pay_method'=>$request->input( 'pay_method' ),
+           
+        ] );
+            return response()->json( [ 'message'=>'Amount debited sucessfully', 'status'=>1 ], 200 );
+
+        
 
     }
 
