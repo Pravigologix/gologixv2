@@ -103,6 +103,15 @@ class BookParking extends Controller
 
 
     public function updatebookpakingbyuser(Request $request) {
+        
+        
+           $payment = DB::table( 'payments' )->where('id','=','payment_id')
+                 ->update( [
+            'pay_transaction_id'=>$request->input( 'trnas_id' ),
+            'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
+            'pay_method'=>$request->input( 'pay_method' ),
+           
+        ] );
 
       $user_bokking= DB::table('book_parking')
       ->where('user_id','=',$request->input('user_id'))
@@ -113,20 +122,19 @@ class BookParking extends Controller
       
       ->update([
         'paking_type'=>$request->input('paking_type'),
-        'parking_amt'=>$request->input('parking_amt'),
+     
         'payment_status'=>$request->input('payment_status'),
         'parking_status'=>$request->input('parking_status'),
-        'payment_id'=>$request->input('payment_id'),
-        'start_date'=>$request->input('start_date'),
-        'is_cacnceled'=>$request->input('is_canceled'),
-        "end_date"=>$request->input('end_date')
+        
+        
+       
     ]);
 
     return response()->json(['message'=>'Booking Confired',
 
 
  
-    'slot_no'=>$slot_no,
+  
 
 
     'status'=>1,'user_id'=>$request->input('user_id')],200);
@@ -135,22 +143,7 @@ class BookParking extends Controller
 
     }
     
-     public function updatebookingdetails( Request $request ) {
-
-        
-       
-             $payment = DB::table( 'payments' )->where('id','=','payment_id')
-                 ->update( [
-            'pay_transaction_id'=>$request->input( 'trnas_id' ),
-            'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
-            'pay_method'=>$request->input( 'pay_method' ),
-           
-        ] );
-            return response()->json( [ 'message'=>'Amount debited sucessfully', 'status'=>1 ], 200 );
-
-        
-
-    }
+    
 
   
 }
