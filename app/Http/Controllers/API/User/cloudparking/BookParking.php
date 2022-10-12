@@ -28,7 +28,7 @@ class BookParking extends Controller
         $paymentid=DB::table('payments')
         ->where('pay_user_id','=',$request->input('user_id'),)
         ->where('pay_transaction_id','=', $trans_id)
-            ->sortByDesc("id");
+            ->sortByDesc("id")
         ->first('id');
         
       
