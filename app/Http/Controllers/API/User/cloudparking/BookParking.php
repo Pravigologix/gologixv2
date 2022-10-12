@@ -28,7 +28,10 @@ class BookParking extends Controller
         $paymentid=DB::table('payments')
         ->where('pay_user_id','=',$request->input('user_id'),)
         ->where('pay_transaction_id','=', $trans_id)
-        ->get('id');
+            ->sortByDesc("id");
+        ->first('id');
+        
+      
 
         $booking_count=DB::table('book_parking')
         ->where('address_id','=',$request->input('address_id'))->count();
@@ -72,7 +75,7 @@ class BookParking extends Controller
             'address_id'=>$request->input('address_id'),
             'payment_status'=>$request->input('payment_status'),
             'parking_status'=>$request->input('parking_status'),
-            'payment_id'=>$paymentid->id,
+            'payment_id'=>$paymentid,
             'start_date'=>$request->input('start_date'),
             'is_cacnceled'=>$request->input('is_canceled'),
             'parking_slot_number'=>$slot_no,
