@@ -24,6 +24,10 @@ use App\Http\Controllers\API\profile\ProfileController;
 use App\Http\Controllers\API\User\cloudparking\GetAllAddressController;
 use App\Http\Controllers\API\User\cloudparking\UserBookingDetails;
 use App\Http\Controllers\API\User\cloudparking\UserTransactionDetails;
+use App\Http\Controllers\API\vendor\cloudparking\UserBookingDeatils;
+
+
+
 
 
 use App\Http\Controllers\API\User\cloudparking\userStatus;
@@ -64,6 +68,9 @@ Route::controller(AuthController::class)
     Route::get('customervendor', [VendorCustomerController::class,'customer']);
     Route::get('vendorcustomer', [VendorCustomerController::class,'vendor']);
     Route::get('users', [UserDetailsControoller::class,'users']);
+
+    Route::get('getuserdetailstovendor', [UserBookingDeatils::class,'getuserdetails']);
+
          
     Route::get('getqrCode',[qrcodeController::class,'getqrCode']); 
     Route::post('addqrCode',[qrcodeController::class,'addqrCode']); 
