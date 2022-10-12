@@ -75,8 +75,15 @@ class BookParking extends Controller
             'parking_slot_number'=>$slot_no,
             "end_date"=>'',
         ]);
+          
+           $bookingid= DB::table('book_parking')->where('paking_type','=',$request->input('paking_type'))
+               ->where('payment_id','=',(string)$paymentid)
+                ->where('parking_status','=',$request->input('parking_status'),)
+               ->where( 'address_id','=',$request->input('address_id'))->get('id');
 
         return response()->json(['message'=>'Booking Confired',
+                                  'payment_id'=>$paymentid,
+          "booking_id"=>$bookingid,
    
    
      
@@ -88,6 +95,7 @@ class BookParking extends Controller
       }
       return response()->json([
         'status'=>0,
+         
         'message'=>'Bokking failed try again'
       ]);
 
@@ -124,6 +132,23 @@ class BookParking extends Controller
     'status'=>1,'user_id'=>$request->input('user_id')],200);
 
 
+
+    }
+    
+     public function updatebookingdetails( Request $request ) {
+
+        
+       
+             $payment = DB::table( 'payments' )->where('id','=','payment_id')
+                 ->update( [
+            'pay_transaction_id'=>$request->input( 'trnas_id' ),
+            'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
+            'pay_method'=>$request->input( 'pay_method' ),
+           
+        ] );
+            return response()->json( [ 'message'=>'Amount debited sucessfully', 'status'=>1 ], 200 );
+
+        
 
     }
 
