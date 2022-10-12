@@ -9,4 +9,8 @@ class BookParkingModel extends Model
 {
    // use HasFactory;
    protected $table = "book_parking";
+
+   public function booking_payment_details(){
+      return $this->belongsTo(Payments::class);
+  }
 }
