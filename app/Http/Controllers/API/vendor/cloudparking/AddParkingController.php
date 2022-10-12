@@ -66,8 +66,18 @@ class AddParkingController extends Controller {
             $addaddress-> is_cloud_parking = $request->input( 'is_cloud_parking' );
 
             $addaddress-> save();
+            
+            
+            $addressid=AddressModel::where('add_latitude','=', $request->input( 'add_latitude' ))
+                ->where('add_longitude','=', $request->input( 'add_longitude' ))
+                  ->where('add_city_id','=', $request->input( 'add_city_id' ))
+                 ->where('add_city_id','=', $request->input( 'add_city_id' ))
+                  ->where('add_address','=', $request->input( 'add_address' ))
+                ->where('add_user_id','=', $userdetails->id)->get('id');
 
-            return response()->json( [ 'status'=>'Sucess', 'message'=>'Deatils uploaded sucessfully' ], 200 );
+            return response()->json( [ 
+                'address_id'=> $addressid,
+                'status'=>'Sucess', 'message'=>'Deatils uploaded sucessfully' ], 200 );
         }
 
         return response()->json( [ 'status'=>'failed', 'message'=>'invalid credential' ], 301 );

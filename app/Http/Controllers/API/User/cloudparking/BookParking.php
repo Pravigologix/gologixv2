@@ -4,11 +4,31 @@ namespace App\Http\Controllers\API\User\cloudparking;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 class BookParking extends Controller
 {
     public function bookpakingbyuser(Request $request) {
+        
+        $userdetails=Auth::user();
+        
+         $trans_id=(string)$request->input( 'pay_price' ).(string)$userdetails->id.'2022'.$request->input( 'date' );
+       
+        $payment = DB::table( 'payments' )->insert( [
+            'pay_price'=>$request->input( 'pay_price' ),
+            'pay_user_id'=>$userdetails->id,
+            'pay_description'=>$request->input( 'pay_description' ),
+            'pay_transaction_id'=>$trans_id,
+            'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
+            'pay_method'=>$request->input( 'pay_method' ),
+           
+        ] );
+
+        $paymentid=DB::table('payments')
+        ->where('pay_user_id','=',$request->input('user_id'),)
+        ->where('pay_transaction_id','=', $trans_id)
+        ->get('id');
 
         $booking_count=DB::table('book_parking')
         ->where('address_id','=',$request->input('address_id'))->count();
@@ -52,14 +72,21 @@ class BookParking extends Controller
             'address_id'=>$request->input('address_id'),
             'payment_status'=>$request->input('payment_status'),
             'parking_status'=>$request->input('parking_status'),
-            'payment_id'=>$request->input('payment_id'),
+            'payment_id'=>(string)$paymentid,
             'start_date'=>$request->input('start_date'),
             'is_cacnceled'=>$request->input('is_canceled'),
             'parking_slot_number'=>$slot_no,
             "end_date"=>'',
         ]);
+          
+           $bookingid= DB::table('book_parking')->where('paking_type','=',$request->input('paking_type'))
+               ->where('payment_id','=',(string)$paymentid)
+                ->where('parking_status','=',$request->input('parking_status'),)
+               ->where( 'address_id','=',$request->input('address_id'))->get('id');
 
-        return response()->json(['message'=>'Booking Confired',
+        return response()->json(['message'=>'Booking initaited',
+                                  'payment_id'=>$paymentid,
+          "booking_id"=>$bookingid,
    
    
      
@@ -71,6 +98,7 @@ class BookParking extends Controller
       }
       return response()->json([
         'status'=>0,
+         
         'message'=>'Bokking failed try again'
       ]);
 
@@ -78,6 +106,16 @@ class BookParking extends Controller
 
 
     public function updatebookpakingbyuser(Request $request) {
+         $userdetails=Auth::user();
+        
+        
+           $payment = DB::table( 'payments' )->where('id','=',$request->input('payment_id'))
+                 ->update( [
+            'pay_transaction_id'=>$request->input( 'trnas_id' ),
+            'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
+            'pay_method'=>$request->input( 'pay_method' ),
+           
+        ] );
 
       $user_bokking= DB::table('book_parking')
       ->where('user_id','=',$request->input('user_id'))
@@ -88,27 +126,36 @@ class BookParking extends Controller
       
       ->update([
         'paking_type'=>$request->input('paking_type'),
-        'parking_amt'=>$request->input('parking_amt'),
+          'parking_slot_number'=>$request->input('slot_no'),
+     
         'payment_status'=>$request->input('payment_status'),
         'parking_status'=>$request->input('parking_status'),
-        'payment_id'=>$request->input('payment_id'),
-        'start_date'=>$request->input('start_date'),
-        'is_cacnceled'=>$request->input('is_canceled'),
-        "end_date"=>$request->input('end_date')
+        
+        
+       
     ]);
+        
+        if($request->input('payment_status')==4){
+            
+             return response()->json(['message'=>'Booking Canceled', 'status'=>0],303);
+            
+            
+        }
 
     return response()->json(['message'=>'Booking Confired',
 
 
  
-    'slot_no'=>$slot_no,
+  
 
 
-    'status'=>1,'user_id'=>$request->input('user_id')],200);
+    'status'=>1],200);
 
 
 
     }
+    
+    
 
   
 }
