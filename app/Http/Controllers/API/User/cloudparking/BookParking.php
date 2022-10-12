@@ -10,7 +10,7 @@ class BookParking extends Controller
 {
     public function bookpakingbyuser(Request $request) {
         
-         $trans_id=(string)$request->input( 'pay_price' ).(string)$userdetails->id.'2022';
+         $trans_id=(string)$request->input( 'pay_price' ).(string)$userdetails->id.'2022'.$request->input( 'date' );
        
         $payment = DB::table( 'payments' )->insert( [
             'pay_price'=>$request->input( 'pay_price' ),
