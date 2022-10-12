@@ -15,7 +15,7 @@ class WalletController extends Controller {
 
         $userdetails = Auth::user();
         
-        $trans_id=(string)$request->input( 'pay_price' ).(string)$userdetails->id;
+        $trans_id=(string)$request->input( 'pay_price' ).(string)$userdetails->id.'2022';
        
         $payment = DB::table( 'payments' )->insert( [
             'pay_price'=>$request->input( 'pay_price' ),
