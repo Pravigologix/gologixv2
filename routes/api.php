@@ -70,6 +70,10 @@ Route::controller(AuthController::class)
     Route::post('/walletamount', [WalletController::class,'addwalletamount']);
     Route::get('/getwalletamount', [WalletController::class,'getwalletamount']);
     Route::post('/debitwalletamount', [WalletController::class,'debitwalletamount']);
+         Route::post('/updatewalletamount', [WalletController::class,'updatewalletamount']);
+        
+        
+        
     Route::get('getparkingaddress',[AddParkingController::class,'getparkingdeatils']);
     Route::post('getparkingcharges',[AddParkingController::class,'getparkingcharges']);
     Route::post('addpakingaddress',[AddParkingController::class,'addparkingdetails']);
