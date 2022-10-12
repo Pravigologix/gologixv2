@@ -72,7 +72,7 @@ class BookParking extends Controller
             'address_id'=>$request->input('address_id'),
             'payment_status'=>$request->input('payment_status'),
             'parking_status'=>$request->input('parking_status'),
-            'payment_id'=>(string)$paymentid,
+            'payment_id'=>$paymentid->id,
             'start_date'=>$request->input('start_date'),
             'is_cacnceled'=>$request->input('is_canceled'),
             'parking_slot_number'=>$slot_no,
