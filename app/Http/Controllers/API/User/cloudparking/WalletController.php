@@ -14,12 +14,14 @@ class WalletController extends Controller {
     public function addwalletamount( Request $request ) {
 
         $userdetails = Auth::user();
+        
+        $trans_id=(string)$request->input( 'pay_price' ).(string)$userdetails->id;
        
         $payment = DB::table( 'payments' )->insert( [
             'pay_price'=>$request->input( 'pay_price' ),
             'pay_user_id'=>$userdetails->id,
             'pay_description'=>$request->input( 'pay_description' ),
-            'pay_transaction_id'=>$request->input( 'pay_transaction_id' ),
+            'pay_transaction_id'=>$trans_id,
             'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
             'pay_method'=>$request->input( 'pay_method' ),
            
