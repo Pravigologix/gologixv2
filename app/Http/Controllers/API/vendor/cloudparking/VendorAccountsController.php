@@ -60,7 +60,7 @@ public function getVendorAccountDetails(Request $request)
 
 
 {
-  $data=VendorAccounts::find($request->input('id'));
+  $data=VendorAccounts::all();
   return response()->json(["vendor account details"=>$data],200);
 }
 }
