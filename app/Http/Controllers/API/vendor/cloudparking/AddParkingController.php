@@ -279,7 +279,7 @@ class AddParkingController extends Controller {
                 ]
             );
 
-            return response()->json( [ 'status'=>( $parking_desc && $parking_slot ), 'message'=>'updated Sucessfully' ], 200 );
+            return response()->json( [ 'status'=>true, 'message'=>'updated Sucessfully' ], 200 );
         } catch ( Exception $e ) {
             // return $e;
             return response()->json( [ 'status'=>'0', 'message'=>$e ], 401 );
