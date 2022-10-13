@@ -104,7 +104,7 @@ $userdetails=Auth::user();
   'ven_address_id as vendor_address_id','ven_phone','ven_email','ven_isactive',
   'gst_no','addresses.id as address_id','addresses.add_address','addresses.add_description','addresses.add_city_id','add_pincode','add_latitude','add_longitude','add_isactive','add_isdeleted','add_user_id')
   
-  ->where('vendor.id','=',$request->input('id'))
+  //->where('vendor.id','=',$request->input('id'))
  
   ->get();
 
