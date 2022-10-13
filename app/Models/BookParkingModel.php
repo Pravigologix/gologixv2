@@ -11,6 +11,23 @@ class BookParkingModel extends Model
    protected $table = "book_parking";
 
    public function booking_payment_details(){
-      return $this->hasMany(Payments::class,'id');
+      return $this->hasMany(Payments::class,'id','payment_id');
   }
+
+  public function user_details(){
+   return $this->hasMany(User::class,'id','user_id');
+  }
+  public function address_details(){
+   return $this->hasMany(AddressModel::class,'id','address_id');
+  }
+
+  public function parking_charge_details(){
+   return $this->hasMany(ParkingChargeModel::class,'address_id','address_id');
+  }
+
+  public function parking_slot_address_details(){
+   return $this->hasMany(ParkingSlotModel::class,'address_id','address_id');
+  }
+
+ 
 }

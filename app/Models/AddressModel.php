@@ -11,9 +11,9 @@ class AddressModel extends Model
     // use HasFactory;
 	protected $table = "addresses";
 
-    // public function add_praking_desc(){
-    //     return $this->belongsTo(ParkingDescriptionModel::class);
-    // }
+    public function booking_desc(){
+        return $this->belongsToMany(BookParkingModel::class);
+    }
     public function praking_charge(){
         return $this->hasMany(ParkingChargeModel::class,'address_id')->where('is_active','0');
     }

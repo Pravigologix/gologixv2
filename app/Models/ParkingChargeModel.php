@@ -16,6 +16,10 @@ class ParkingChargeModel extends Model
     public function add_praking_desc(){
         return $this->belongsTo(ParkingDescriptionModel::class);
     }
+
+    public function add_desc(){
+        return $this->belongsTo(AddressModel::class);
+    }
     public function add_praking_slot(){
         return $this->belongsTo(ParkingSlotModel::class);
     }

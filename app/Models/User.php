@@ -22,6 +22,10 @@ class User extends Authenticatable implements JWTSubject
 
     protected $table = "users";
 
+    public function booking_user(){
+        return $this->belongsTo(BookParkingModel::class);
+    }
+
     // protected $fillable = [
     //     'name',
     //     'email',
