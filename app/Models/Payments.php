@@ -11,6 +11,6 @@ class Payments extends Model
     protected $table = "payments";
 
     public function book_payment(){
-        return $this->hasmany(BookParkingModel::class);
+        return $this->belongsTo(BookParkingModel::class);
     }
 }

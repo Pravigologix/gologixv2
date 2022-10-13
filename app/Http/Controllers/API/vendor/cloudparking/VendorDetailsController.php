@@ -13,9 +13,9 @@ class VendorDetailsController extends Controller
 
 
     public function addVendorDetails(Request $request){
-//<<<<<<< ashwini
+
         $user= Auth::user();  
-//=======
+
       $userdetails= Auth::user();
       $addresses=DB::table('addresses')->insert([
         //'id'=>$request->input('id'),
@@ -87,14 +87,14 @@ public function editVendorDetails(Request $request){
     return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
 
  
-}
+ }
 
 
 
 
 
 public function getVendorDetails(Request $request)
-{  
+ {  
 
 $userdetails=Auth::user();  
 
@@ -104,12 +104,12 @@ $userdetails=Auth::user();
   'ven_address_id as vendor_address_id','ven_phone','ven_email','ven_isactive',
   'gst_no','addresses.id as address_id','addresses.add_address','addresses.add_description','addresses.add_city_id','add_pincode','add_latitude','add_longitude','add_isactive','add_isdeleted','add_user_id')
   
-  ->where('vendor.id','=',$request->input('id'))
+  //->where('vendor.id','=',$request->input('id'))
  
   ->get();
 
   return response()->json(['vendorDetails'=>$res]);
-
-}
+   
+ }
 
 }

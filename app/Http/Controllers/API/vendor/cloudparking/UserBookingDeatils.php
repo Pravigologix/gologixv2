@@ -8,8 +8,13 @@ use App\Models\BookParkingModel;
 use DB;
 
 class UserBookingDeatils extends Controller
+
+
+
+
 {
-    public function getuserdetails(Request $request){
+    public function getuserdetails
+    (Request $request){
 
         $bookparking=BookParkingModel::where('id',"=",$request->input('booking_id'))
         ->where('user_id','=',$request->input('user_id'))->with('booking_payment_details')
