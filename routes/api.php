@@ -24,9 +24,7 @@ use App\Http\Controllers\API\profile\ProfileController;
 use App\Http\Controllers\API\User\cloudparking\GetAllAddressController;
 use App\Http\Controllers\API\User\cloudparking\UserBookingDetails;
 use App\Http\Controllers\API\User\cloudparking\UserTransactionDetails;
-use App\Http\Controllers\API\vendor\cloudparking\UserBookingDeatils;
-
-
+use App\Http\Controllers\API\User\cloudparking\TimeController;
 
 
 
@@ -126,3 +124,5 @@ Route::get('getAllAddress',[GetAllAddressController::class,'getAllAddress']);
 Route::post('addAddress',[GetAllAddressController::class,'addAddress']);  
 Route::get('bookingDetails',[UserBookingDetails::class,'bookingDetails']);  
 Route::get('getTransactionDetails',[UserTransactionDetails::class,'getTransactionDetails']);  
+Route::get('time',[TimeController::class,'time']);  
+Route::post('updateTime',[TimeController::class,'updateTime']); 
