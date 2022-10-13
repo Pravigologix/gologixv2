@@ -20,7 +20,17 @@ class UserBookingDetails extends Controller
     ->join('add_praking_desc','parking_charges.add_praking_desc_id','=','add_praking_desc.id')
 
     ->where('book_parking.user_id','=',$user->id)
-    ->select('parking_charges.id as parking_id','parking_charges.vendor_id','parking_charges.parking_amt','parking_charges.add_praking_desc_id','parking_charges.add_praking_slot_id','parking_charges.is_active','parking_charges.is_delete','add_praking_slots.id as parking_slot_id','add_praking_slots.parking_type','add_praking_slots.parking_no','add_praking_slots.starts_at','add_praking_slots.ends_at','add_praking_slots.parking_slots','add_praking_slots.user_id','add_praking_slots.address_id','add_praking_desc.id as add_parking_desc_id','add_praking_desc.timings','add_praking_desc.is_active','add_praking_desc.is_delette','addresses.id as address_id','add_description','add_address','add_city_id','add_pincode','add_latitude','add_longitude')
+    ->select('parking_charges.id as parking_id','parking_charges.vendor_id',
+    'parking_charges.parking_amt','parking_charges.add_praking_desc_id',
+    'parking_charges.add_praking_slot_id','parking_charges.is_active',
+    'parking_charges.is_delete','add_praking_slots.id as parking_slot_id',
+    'add_praking_slots.parking_type','add_praking_slots.parking_no',
+    'add_praking_slots.starts_at','add_praking_slots.ends_at',
+    'add_praking_slots.parking_slots','add_praking_slots.user_id',
+    'add_praking_slots.address_id','add_praking_desc.id as add_parking_desc_id',
+    'add_praking_desc.timings','add_praking_desc.is_active','add_praking_desc.is_delette',
+    'addresses.id as address_id','add_description','add_address','add_city_id','add_pincode',
+    'add_latitude','add_longitude')
 
     ->get();
 

@@ -15,6 +15,7 @@ use App\Http\Controllers\API\User\cloudparking\ImageController;
 use App\Http\Controllers\API\User\cloudparking\BannerController;
 use App\Http\Controllers\API\User\cloudparking\WalletController;
 use App\Http\Controllers\API\User\cloudparking\SearchCustomerController;
+use App\Http\Controllers\API\User\cloudparking\BookingDetailsController;
 
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
@@ -126,3 +127,4 @@ Route::get('bookingDetails',[UserBookingDetails::class,'bookingDetails']);
 Route::get('getTransactionDetails',[UserTransactionDetails::class,'getTransactionDetails']);  
 Route::get('time',[TimeController::class,'time']);  
 Route::post('updateTime',[TimeController::class,'updateTime']); 
+Route::get('bookingDetails',[BookingDetailsController::class,'bookingDetails']); 
