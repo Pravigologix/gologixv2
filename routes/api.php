@@ -37,6 +37,7 @@ use App\Http\Controllers\API\User\cloudparking\User_documentController;
 use App\Http\Controllers\API\User\cloudparking\VehicleController;
 use App\Http\Controllers\API\vendor\cloudparking\SecurityController;
 use App\Http\Controllers\API\vendor\cloudparking\EmployeeController;
+use App\Http\Controllers\API\vendor\cloudparking\UserBookingDeatils;
 
 /*
 |--------------------------------------------------------------------------
