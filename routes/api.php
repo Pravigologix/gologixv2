@@ -69,7 +69,7 @@ Route::controller(AuthController::class)
     Route::get('vendorcustomer', [VendorCustomerController::class,'vendor']);
     Route::get('users', [UserDetailsControoller::class,'users']);
 
-    Route::get('getuserdetailstovendor', [UserBookingDeatils::class,'getuserdetails']);
+    Route::post('getuserdetailstovendor', [UserBookingDeatils::class,'getuserdetails']);
 
          
     Route::get('getqrCode',[qrcodeController::class,'getqrCode']); 
