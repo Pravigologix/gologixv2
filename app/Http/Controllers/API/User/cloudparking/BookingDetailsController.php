@@ -23,7 +23,7 @@ class BookingDetailsController extends Controller
         
       
         ->get();
-        return $details;
+        return response(["all_booking_deatils"=>$details],200);
 
     }
 }
