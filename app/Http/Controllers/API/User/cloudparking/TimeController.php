@@ -23,7 +23,7 @@ class TimeController extends Controller
            'parking_amt'=>$req->input('parking_amt')]);
        
        return response()->json([
-           'time'
+           'time'=> $time
            'status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
 
     }
