@@ -16,7 +16,7 @@ class UserTransactionDetails extends Controller
         //dd($user->id);
         $details=DB::table('payments')
         ->where('payments.pay_user_id','=',$user->id)
-        ->select('payments.id','payments.pay_price','payments.pay_description','pay_user_id','pay_transaction_id','pay_paysta_status_id','pay_method')
+      
         ->get();
         return response()->json( [ 'User transaction details'=>$details ],200 );
         }

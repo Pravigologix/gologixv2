@@ -15,10 +15,10 @@ class AddressModel extends Model
         return $this->belongsToMany(BookParkingModel::class);
     }
     public function praking_charge(){
-        return $this->hasMany(ParkingChargeModel::class,'address_id')->where('is_active','0');
+        return $this->hasMany(ParkingChargeModel::class,'address_id');
     }
     public function praking_slot(){
-        return $this->hasMany(ParkingSlotModel::class,'address_id')->where('is_active','0');
+        return $this->hasMany(ParkingSlotModel::class,'address_id');
     }
 
 }

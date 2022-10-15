@@ -38,6 +38,7 @@ use App\Http\Controllers\API\User\cloudparking\User_documentController;
 use App\Http\Controllers\API\User\cloudparking\VehicleController;
 use App\Http\Controllers\API\vendor\cloudparking\SecurityController;
 use App\Http\Controllers\API\vendor\cloudparking\EmployeeController;
+use App\Http\Controllers\API\vendor\cloudparking\UserBookingDeatils;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +70,7 @@ Route::controller(AuthController::class)
     Route::get('vendorcustomer', [VendorCustomerController::class,'vendor']);
     Route::get('users', [UserDetailsControoller::class,'users']);
 
-    Route::get('getuserdetailstovendor', [UserBookingDeatils::class,'getuserdetails']);
+    Route::post('getuserdetailstovendor', [UserBookingDeatils::class,'getuserdetails']);
 
          
     Route::get('getqrCode',[qrcodeController::class,'getqrCode']); 
@@ -129,4 +130,7 @@ Route::get('getTransactionDetails',[UserTransactionDetails::class,'getTransactio
 Route::get('time',[TimeController::class,'time']);  
 Route::post('updateTime',[TimeController::class,'updateTime']); 
 Route::get('bookingDetails',[BookingDetailsController::class,'bookingDetails']); 
+//<<<<<<< time2
 Route::post('forgetPassword',[ProfileController::class,'forgetPassword']); 
+//=======
+//>>>>>>> main
