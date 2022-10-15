@@ -32,7 +32,8 @@ class VehicleController extends Controller
        
 
     $data=DB::table('user_vehicle')->where('id','=',$request->input('id'))
-        ->where('user_vehicle.useveh_user_id','=',$userdetails->id)->update(['useveh_vehicle_name'=>$request->input('useveh_vehicle_name'),'useveh_vehicle_number'=>$request->input('useveh_vehicle_number')]);
+        //->where('user_vehicle.useveh_user_id','=',$userdetails->id)
+        ->update(['useveh_vehicle_name'=>$request->input('useveh_vehicle_name'),'useveh_vehicle_number'=>$request->input('useveh_vehicle_number'),'useveh_isactive'=>$request->input('useveh_isactive'),'useveh_isdelete'=>$request->input('useveh_isdelete')]);
       
    
       return response()->json(['data successfully updated.']);

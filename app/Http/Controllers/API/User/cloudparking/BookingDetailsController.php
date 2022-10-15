@@ -19,7 +19,6 @@ class BookingDetailsController extends Controller
         ->with('booking_payment_details')
         ->with('parking_charge_details')
         ->with('parking_slot_address_details')
-
         
       
         ->get();

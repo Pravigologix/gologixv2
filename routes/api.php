@@ -20,12 +20,13 @@ use App\Http\Controllers\API\User\cloudparking\BookingDetailsController;
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
 use App\Http\Controllers\API\User\cloudparking\BookParking;
-use App\Http\Controllers\API\profile\ProfileController;
+//use App\Http\Controllers\API\profile\ProfileController;
 
 use App\Http\Controllers\API\User\cloudparking\GetAllAddressController;
 use App\Http\Controllers\API\User\cloudparking\UserBookingDetails;
 use App\Http\Controllers\API\User\cloudparking\UserTransactionDetails;
 use App\Http\Controllers\API\User\cloudparking\TimeController;
+use App\Http\Controllers\API\User\cloudparking\ProfileController;
 
 
 
@@ -128,3 +129,4 @@ Route::get('getTransactionDetails',[UserTransactionDetails::class,'getTransactio
 Route::get('time',[TimeController::class,'time']);  
 Route::post('updateTime',[TimeController::class,'updateTime']); 
 Route::get('bookingDetails',[BookingDetailsController::class,'bookingDetails']); 
+Route::post('forgetPassword',[ProfileController::class,'forgetPassword']); 
