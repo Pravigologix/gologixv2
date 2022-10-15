@@ -36,7 +36,7 @@ class VehicleController extends Controller
         ->update(['useveh_vehicle_name'=>$request->input('useveh_vehicle_name'),'useveh_vehicle_number'=>$request->input('useveh_vehicle_number'),'useveh_isactive'=>$request->input('useveh_isactive'),'useveh_isdelete'=>$request->input('useveh_isdelete')]);
       
    
-      return response()->json(['data successfully updated.']);
+      return response()->json(['message'=>'data updated','status'=>true],200);
   }
   
 
@@ -47,7 +47,7 @@ class VehicleController extends Controller
     
     ->where('user_vehicle.useveh_user_id','=',$userdetails->id)
     ->get();
-    return $data;
+    return response(["vehicel"=>$data],200);
   }
 
 
