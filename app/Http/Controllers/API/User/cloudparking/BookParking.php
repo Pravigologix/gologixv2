@@ -132,7 +132,7 @@ class BookParking extends Controller
       ->update([
         'paking_type'=>$request->input('paking_type'),
           'parking_slot_number'=>$request->input('slot_no'),
-          'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
+   
      
         'payment_status'=>$request->input('payment_status'),
         'parking_status'=>$request->input('parking_status'),
