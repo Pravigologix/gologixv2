@@ -30,26 +30,20 @@ class VendorAccountsController extends Controller
             $userdetails-> save();
             return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
 
-              
-              
-           // return response()->json([$userdetails]);
             }
 
-
-
-   
     public function editVendorAccountDetails(Request $request){
 
         $userdetails= Auth::user();  
-       
-
-    $data=DB::table('vendor_account')
+        $data=DB::table('vendor_account')
         ->where('vendor_account.id','=',$request->input('id'))
-       
-        ->update(['venacc_name'=>$request->input('venacc_name'),'venacc_alias'=>$request->input('venacc_alias'),'venacc_ifsc'=>$request->input('venacc_ifsc'),'venacc_bank_name'=>$request->input('venacc_bank_name'),'venacc_account_no'=>$request->input('venacc_account_no'),'venacc_ifsc'=>$request->input('venacc_ifsc')]);
-      
-       
-      return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
+        ->update(['venacc_name'=>$request->input('venacc_name'),
+        'venacc_alias'=>$request->input('venacc_alias'),
+        'venacc_ifsc'=>$request->input('venacc_ifsc'),
+        'venacc_bank_name'=>$request->input('venacc_bank_name'),
+        'venacc_account_no'=>$request->input('venacc_account_no'),
+        'venacc_ifsc'=>$request->input('venacc_ifsc')]);
+        return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
 
    
   }

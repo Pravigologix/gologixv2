@@ -16,18 +16,9 @@ class UserBookingDeatils extends Controller
             ->with('booking_payment_details')
               ->with('user_details')
               ->with('address_details')
-             ->with('parking_charge_details')
-             ->with('parking_slot_address_details')
-        ->get();
-
-
+              ->with('parking_charge_details')
+              ->with('parking_slot_address_details')
+              ->get();
         return response()->json(['user_details'=>$bookparking],200);
-
-
-
-
-
     }
-
-
 }

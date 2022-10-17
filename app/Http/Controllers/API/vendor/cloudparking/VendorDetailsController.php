@@ -13,9 +13,9 @@ class VendorDetailsController extends Controller
 
 
     public function addVendorDetails(Request $request){
-//<<<<<<< ashwini
+
         $user= Auth::user();  
-//=======
+
       $userdetails= Auth::user();
       $addresses=DB::table('addresses')->insert([
         //'id'=>$request->input('id'),
@@ -89,20 +89,16 @@ public function editVendorDetails(Request $request){
  
 }
 
-
-
-
-
 public function getVendorDetails(Request $request)
 {  
 
-$userdetails=Auth::user();  
+   $userdetails=Auth::user();  
 
-  $res= DB::table('vendor')
-  ->join('addresses','vendor.user_id','addresses.add_user_id')
-  ->select('vendor.user_id','vendor.ven_name','vendor.id as vendor_id','ven_description',
-  'ven_address_id as vendor_address_id','ven_phone','ven_email','ven_isactive',
-  'gst_no','addresses.id as address_id','addresses.add_address','addresses.add_description','addresses.add_city_id','add_pincode','add_latitude','add_longitude','add_isactive','add_isdeleted','add_user_id')
+   $res= DB::table('vendor')
+   ->join('addresses','vendor.user_id','addresses.add_user_id')
+   ->select('vendor.user_id','vendor.ven_name','vendor.id as vendor_id','ven_description',
+   'ven_address_id as vendor_address_id','ven_phone','ven_email','ven_isactive',
+   'gst_no','addresses.id as address_id','addresses.add_address','addresses.add_description','addresses.add_city_id','add_pincode','add_latitude','add_longitude','add_isactive','add_isdeleted','add_user_id')
   
   ->where('vendor.user_id','=',$userdetails->id)
  

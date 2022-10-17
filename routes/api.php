@@ -20,7 +20,7 @@ use App\Http\Controllers\API\User\cloudparking\BookingDetailsController;
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
 use App\Http\Controllers\API\User\cloudparking\BookParking;
-//use App\Http\Controllers\API\profile\ProfileController;
+use App\Http\Controllers\API\profile\Profile;
 
 use App\Http\Controllers\API\User\cloudparking\GetAllAddressController;
 use App\Http\Controllers\API\User\cloudparking\UserBookingDetails;
@@ -90,8 +90,8 @@ Route::controller(AuthController::class)
     Route::get('getparkingslotdetails',[AddParkingController::class,'getparkingslotdetails']);
     Route::post('updateparkingslotdetails',[AddParkingController::class,'updateparkingslotdetails']);
     Route::get('getparkingdescdetails',[AddParkingController::class,'getparkingdescdetails']);
-    Route::get('getuserdetails',[ProfileController::class,'getprofile']);
-    Route::post('addprofile',[ProfileController::class,'addprofile']);
+    Route::get('getuserdetails',[Profile::class,'getprofile']);
+    Route::post('addprofile',[Profile::class,'addprofile']);
     Route::post('getdetails',[UserParkingdeatils::class,'generateparkinglslotforuser']);
     Route::post('bookparking',[BookParking::class,'bookpakingbyuser']);
          Route::post('updatebookpakingbyuser',[BookParking::class,'updatebookpakingbyuser']);
