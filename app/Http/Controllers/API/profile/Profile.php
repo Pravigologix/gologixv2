@@ -38,8 +38,6 @@ class Profile extends Controller {
         'profile_photo_path'=>env('APP_URL').'/'.$url
       ]);
 
-
-
         return response()->json( [ 'message'=>'Profile image uploaded sucessfully', 'image'=>$url ], 200 );
 
     }

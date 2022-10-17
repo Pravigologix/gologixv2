@@ -27,6 +27,7 @@ use App\Http\Controllers\API\User\cloudparking\UserBookingDetails;
 use App\Http\Controllers\API\User\cloudparking\UserTransactionDetails;
 use App\Http\Controllers\API\User\cloudparking\TimeController;
 use App\Http\Controllers\API\User\cloudparking\ProfileController;
+use App\Http\Controllers\API\User\cloudparking\ExtraAmountController;
 
 
 
@@ -132,5 +133,5 @@ Route::post('updateTime',[TimeController::class,'updateTime']);
 Route::get('bookingDetails',[BookingDetailsController::class,'bookingDetails']); 
 //<<<<<<< time2
 Route::post('forgetPassword',[ProfileController::class,'forgetPassword']); 
-//=======
-//>>>>>>> main
+Route::post('extramAmountUpdate',[ExtraAmountController::class,'extramAmountUpdate']); 
+Route::get('getExtraAmount',[ExtraAmountController::class,'getExtraAmount']); 
