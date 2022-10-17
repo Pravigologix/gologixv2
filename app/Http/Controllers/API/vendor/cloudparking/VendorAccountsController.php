@@ -25,32 +25,25 @@ class VendorAccountsController extends Controller
             $userdetails->venacc_account_no=$request->input('venacc_account_no');
             $userdetails->venacc_paymet_id=1;
             $userdetails->venacc_ifsc=$request->input('venacc_ifsc');
-            
             $userdetails->venacc_isactive=$request->input('venacc_isactive');
             $userdetails->venacc_isdeleted=$request->input('venacc_isdeleted');
             $userdetails-> save();
             return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
 
-              
-              
-           // return response()->json([$userdetails]);
             }
 
-
-
-   
     public function editVendorAccountDetails(Request $request){
 
         $userdetails= Auth::user();  
-       
-
-    $data=DB::table('vendor_account')
+        $data=DB::table('vendor_account')
         ->where('vendor_account.id','=',$request->input('id'))
-       
-        ->update(['venacc_name'=>$request->input('venacc_name'),'venacc_alias'=>$request->input('venacc_alias'),'venacc_ifsc'=>$request->input('venacc_ifsc'),'venacc_bank_name'=>$request->input('venacc_bank_name'),'venacc_account_no'=>$request->input('venacc_account_no'),'venacc_ifsc'=>$request->input('venacc_ifsc')]);
-      
-       
-      return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
+        ->update(['venacc_name'=>$request->input('venacc_name'),
+        'venacc_alias'=>$request->input('venacc_alias'),
+        'venacc_ifsc'=>$request->input('venacc_ifsc'),
+        'venacc_bank_name'=>$request->input('venacc_bank_name'),
+        'venacc_account_no'=>$request->input('venacc_account_no'),
+        'venacc_ifsc'=>$request->input('venacc_ifsc')]);
+        return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
 
    
   }
@@ -58,9 +51,13 @@ class VendorAccountsController extends Controller
 
 public function getVendorAccountDetails(Request $request)
 
-
 {
-  $data=VendorAccounts::all();
+  $user= Auth::user();  
+
+  $data=DB::table('vendor_account')
+        ->where('vendor_account.vendor_id','=',$user->id)
+        ->get();
   return response()->json(["vendor account details"=>$data],200);
 }
 }
+ 

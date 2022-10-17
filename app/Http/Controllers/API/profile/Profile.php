@@ -8,7 +8,7 @@ use Auth;
 use DB;
 use Illuminate\Support\Facades\Storage;
 
-class ProfileController extends Controller {
+class Profile extends Controller {
     public function getprofile( Request $request ) {
         $user = Auth::user();
 

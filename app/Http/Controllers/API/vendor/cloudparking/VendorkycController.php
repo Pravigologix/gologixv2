@@ -68,11 +68,6 @@ class VendorkycController extends Controller
                 $vendor_id=DB::table('vendor')
                
                 ->where('vendor.user_id','=',$user->id)->latest('id')->first();
-          
-  //dd($vendor_id);
-        //$user= Auth::user();  
-       //dd($user->id);
-
 
             $vendordetails=new VendorKYC;
             $vendordetails->venkyc_docname=$request->input('venkyc_docname');
@@ -85,27 +80,24 @@ class VendorkycController extends Controller
             $vendordetails->venkyc_isapproved=$request->input('venkyc_isapproved');
             $vendordetails->venkyc_isactive=$request->input('venkyc_isactive');
             $vendordetails->venkyc_isdeleted=$request->input('venkyc_isdeleted');
-
             $vendordetails-> save();
-
-
             return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
       }
      }
     }
     }
-      public function getVendorkyc(Request $request)
- {  
+      public function getVendorkyc(Request $request){
+          
+      $vendordetails=Auth::user();
 
-$vendordetails=Auth::user();
-
-  $res= DB::table('vendor_kyc')
-  ->join('vendor','vendor_kyc.venkyc_vendor_id','=','vendor.id')
-  ->where('vendor.user_id','=',$vendordetails->id)
-  ->whereNotNull('vendor_kyc.venkyc_path')
-  ->select('vendor.ven_name','vendor.ven_description','vendor.ven_address_id','vendor.ven_phone','vendor.ven_email','vendor_kyc.venkyc_docname','venkyc_docnumber','venkyc_path','venkyc_isapproved')
-  
-  ->get();
+      $res= DB::table('vendor_kyc')
+      ->join('vendor','vendor_kyc.venkyc_vendor_id','=','vendor.id')
+      ->where('vendor.user_id','=',$vendordetails->id)
+      ->whereNotNull('vendor_kyc.venkyc_path')
+      ->select('vendor.ven_name','vendor.ven_description','vendor.ven_address_id',
+      'vendor.ven_phone','vendor.ven_email','vendor_kyc.venkyc_docname',
+      'venkyc_docnumber','venkyc_path','venkyc_isapproved')
+      ->get();
 
   return response()->json(['vendor details kyc details'=>$res],200);
 }
