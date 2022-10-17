@@ -20,7 +20,7 @@ class BannerController extends Controller {
 //<<<<<<< ashwini
    
      // Display the specified resource.
-   
+    
     public function bannerdeatail(Request $request)
     {
         $data=Banner::find($request->input('id'));

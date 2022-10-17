@@ -17,7 +17,7 @@ class TimeController extends Controller
        ->where('book_parking.user_id','=','$user->id')
        ->where('book_parking.id','=',$req->input('id'))
        ->update([
-            "parking_status": $req->input('parking_status'),
+            "parking_status"=> $req->input('parking_status'),
            'start_date'=>$req->input('start_date'),
            'end_date'=>$req->input('end_date'),
            'parking_amt'=>$req->input('parking_amt')]);
