@@ -58,8 +58,9 @@ class VendorAccountsController extends Controller
 
 public function getVendorAccountDetails(Request $request)
 
-
 {
+  $user= Auth::user();  
+
   $data=VendorAccounts::all();
   return response()->json(["vendor account details"=>$data],200);
 }
