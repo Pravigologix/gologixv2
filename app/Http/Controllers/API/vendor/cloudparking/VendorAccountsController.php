@@ -25,7 +25,6 @@ class VendorAccountsController extends Controller
             $userdetails->venacc_account_no=$request->input('venacc_account_no');
             $userdetails->venacc_paymet_id=1;
             $userdetails->venacc_ifsc=$request->input('venacc_ifsc');
-            
             $userdetails->venacc_isactive=$request->input('venacc_isactive');
             $userdetails->venacc_isdeleted=$request->input('venacc_isdeleted');
             $userdetails-> save();
@@ -61,7 +60,10 @@ public function getVendorAccountDetails(Request $request)
 {
   $user= Auth::user();  
 
-  $data=VendorAccounts::all();
+  $data=DB::table('vendor_account')
+        ->where('vendor_account.vendor_id','=',$user->id)
+        ->get();
   return response()->json(["vendor account details"=>$data],200);
 }
 }
+ 
