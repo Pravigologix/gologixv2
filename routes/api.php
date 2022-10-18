@@ -135,3 +135,5 @@ Route::get('bookingDetails',[BookingDetailsController::class,'bookingDetails']);
 Route::post('forgetPassword',[ProfileController::class,'forgetPassword']); 
 Route::post('extramAmountUpdate',[ExtraAmountController::class,'extramAmountUpdate']); 
 Route::get('getExtraAmount',[ExtraAmountController::class,'getExtraAmount']); 
+Route::post('updateUser',[Profile::class,'updateUser']); 
+
