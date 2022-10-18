@@ -29,7 +29,7 @@ class Profile extends Controller {
 
         $path = $request->file( 'profile_image' )->store( 'public/image' );
 
-        $url = Storage::url( $path );
+        $url = Storage::file( $path );
 
 
       $details_update=DB::table('users')->where('id','=',$user->id)
