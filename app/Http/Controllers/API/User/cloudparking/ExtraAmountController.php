@@ -81,7 +81,7 @@ class ExtraAmountController extends Controller
 
     public function getextraAmount(Request $request){
         $user= Auth::user();  
-        $data=NewPayments::where('user_id','=',$user->id)
+        $data=NewPayments::where('user_id','=',$request->input('user_id'))
         ->where('booking_id','=',$request->input('booking_id'))
         ->with('new_payment')
         ->get();
