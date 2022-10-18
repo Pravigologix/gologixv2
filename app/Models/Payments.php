@@ -13,4 +13,7 @@ class Payments extends Model
     public function book_payment(){
         return $this->belongsTo(BookParkingModel::class);
     }
+    public function new_addtional_payment(){
+        return $this->belongsTo(NewPayments::class);
+    }
 }
