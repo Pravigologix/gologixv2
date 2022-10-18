@@ -113,6 +113,10 @@ Route::get('getUserVehicleDocuments',[User_documentController::class,'getUserVeh
 Route::post('addVehicle',[VehicleController::class,'addVehicle']);
 Route::post('editVehicle',[VehicleController::class,'editVehicle']);
 Route::get('getVehicle',[VehicleController::class,'getVehicle']);
+        
+Route::post('extramAmountadd',[ExtraAmountController::class,'extramAmountadd']); 
+Route::post('extraAmountupdate',[ExtraAmountController::class,'extraAmountupdate']); 
+Route::get('getextraAmount',[ExtraAmountController::class,'getextraAmount']); 
 
 Route::post('addEmployee',[EmployeeController::class,'addEmployee']);
 Route::post('editEmployee',[EmployeeController::class,'editEmployee']);
@@ -133,9 +137,7 @@ Route::post('updateTime',[TimeController::class,'updateTime']);
 Route::get('bookingDetails',[BookingDetailsController::class,'bookingDetails']); 
 //<<<<<<< time2
 Route::post('forgetPassword',[ProfileController::class,'forgetPassword']); 
-Route::post('extramAmountadd',[ExtraAmountController::class,'extramAmountadd']); 
-Route::post('extraAmountupdate',[ExtraAmountController::class,'extraAmountupdate']); 
-Route::get('getextraAmount',[ExtraAmountController::class,'getextraAmount']); 
+
 
 Route::post('updateUser',[Profile::class,'updateUser']); 
 
