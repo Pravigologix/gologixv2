@@ -133,5 +133,9 @@ Route::post('updateTime',[TimeController::class,'updateTime']);
 Route::get('bookingDetails',[BookingDetailsController::class,'bookingDetails']); 
 //<<<<<<< time2
 Route::post('forgetPassword',[ProfileController::class,'forgetPassword']); 
-Route::post('extramAmountUpdate',[ExtraAmountController::class,'extramAmountUpdate']); 
-Route::get('getExtraAmount',[ExtraAmountController::class,'getExtraAmount']); 
+Route::post('extramAmountadd',[ExtraAmountController::class,'extramAmountadd']); 
+Route::post('extraAmountupdate',[ExtraAmountController::class,'extraAmountupdate']); 
+Route::get('getextraAmount',[ExtraAmountController::class,'getextraAmount']); 
+
+Route::post('updateUser',[Profile::class,'updateUser']); 
+

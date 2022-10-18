@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API\vendor\cloudparking;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BookParkingModel;
+use App\Models\NewPayments;
+
 use DB;
 
 class UserBookingDeatils extends Controller
@@ -19,6 +21,13 @@ class UserBookingDeatils extends Controller
               ->with('parking_charge_details')
               ->with('parking_slot_address_details')
               ->get();
-        return response()->json(['user_details'=>$bookparking],200);
+
+              
+        $addtional_payments=NewPayments::where('user_id','=',$user->id)->
+        where('booking_id',"=",$request->input('booking_id'))
+       
+        ->with('new_payment')
+        ->get();
+        return response()->json(['user_details'=>$bookparking,"additioanl_payments"=>$addtional_payments],200);
     }
 }

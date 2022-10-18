@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\User\cloudparking;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BookParkingModel;
+use App\Models\NewPayments;
 use DB;
 use Auth;
 
@@ -22,7 +23,13 @@ class BookingDetailsController extends Controller
         
       
         ->get();
-        return response(["all_booking_deatils"=>$details],200);
+
+
+        $addtional_payments=NewPayments::where('user_id','=',$user->id)
+       
+        ->with('new_payment')
+        ->get();
+        return response(["all_booking_deatils"=>$details,"addtional_payments"=>$addtional_payments],200);
 
     }
 }
