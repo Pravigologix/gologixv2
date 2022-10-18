@@ -14,7 +14,7 @@ class ProfileController extends Controller
         
 		$password=DB::table('users')
 		         //->where('id','=',$request->input('id'))
-				 ->where('email','=',$request->input('email'))
+				->where('email','=',$request->input('email'))
 		        ->update(['users.password'=> bcrypt($request->input('password'))]);
 		if($password){
 			

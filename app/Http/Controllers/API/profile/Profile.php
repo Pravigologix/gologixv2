@@ -29,7 +29,7 @@ class Profile extends Controller {
 
         $path = $request->file( 'profile_image' )->store( 'public/image' );
 
-        $url = Storage::url( $path );
+        $url = Storage::file( $path );
 
 
       $details_update=DB::table('users')->where('id','=',$user->id)
@@ -37,8 +37,6 @@ class Profile extends Controller {
       ->update([
         'profile_photo_path'=>env('APP_URL').'/'.$url
       ]);
-
-
 
         return response()->json( [ 'message'=>'Profile image uploaded sucessfully', 'image'=>$url ], 200 );
 
