@@ -19,7 +19,7 @@ class ExtraAmountController extends Controller
        
         $payment = DB::table( 'payments' )->insert( [
             'pay_price'=>$request->input( 'pay_price' ),
-            'pay_user_id'=>$userdetails->id,
+            'pay_user_id'=>$user->id,
             'pay_description'=>$request->input( 'pay_description' ),
             'pay_transaction_id'=>$trans_id,
             'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
