@@ -13,7 +13,7 @@ class ExtraAmountController extends Controller
 {
     public function extramAmountadd(Request $request){
         $user= Auth::user();  
-        $trans_id=(string)$request->input( 'pay_price' ).(string)$userdetails->id.'2022'.$request->input( 'date' );
+        $trans_id=(string)$request->input( 'pay_price' ).(string)$user->id.'2022'.$request->input( 'date' );
 
         if($userdetails->id==$request->input('user_id')){
        
