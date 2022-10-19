@@ -116,7 +116,7 @@ Route::get('getVehicle',[VehicleController::class,'getVehicle']);
         
 Route::post('extramAmountadd',[ExtraAmountController::class,'extramAmountadd']); 
 Route::post('extraAmountupdate',[ExtraAmountController::class,'extraAmountupdate']); 
-Route::get('getextraAmount',[ExtraAmountController::class,'getextraAmount']); 
+Route::post('getextraAmount',[ExtraAmountController::class,'getextraAmount']); 
 
 Route::post('addEmployee',[EmployeeController::class,'addEmployee']);
 Route::post('editEmployee',[EmployeeController::class,'editEmployee']);
