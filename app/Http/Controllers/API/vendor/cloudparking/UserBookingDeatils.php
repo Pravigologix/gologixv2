@@ -23,7 +23,7 @@ class UserBookingDeatils extends Controller
               ->get();
 
               
-        $addtional_payments=NewPayments::where('user_id','=',$user->id)->
+        $addtional_payments=NewPayments::where('user_id','=',$request->input('user_id'))->
         where('booking_id',"=",$request->input('booking_id'))
        
         ->with('new_payment')
