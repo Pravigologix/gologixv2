@@ -15,7 +15,7 @@ class ExtraAmountController extends Controller
         $user= Auth::user();  
         $trans_id=(string)$request->input( 'pay_price' ).(string)$user->id.'2022'.$request->input( 'date' );
 
-        if($userdetails->id==$request->input('user_id')){
+        if($user->id==$request->input('user_id')){
        
         $payment = DB::table( 'payments' )->insert( [
             'pay_price'=>$request->input( 'pay_price' ),
