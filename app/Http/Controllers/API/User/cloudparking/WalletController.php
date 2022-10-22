@@ -79,7 +79,7 @@ class WalletController extends Controller {
         return response()->json( [ 
             
             
-            'message'=>'recharge amount insufficent wallet balance', 'status'=>0 ], 303 );
+            'message'=>'recharge amount insufficent wallet balance', 'status'=>0 ], 412 );
 
     }
      public function updatewalletamount( Request $request ) {
