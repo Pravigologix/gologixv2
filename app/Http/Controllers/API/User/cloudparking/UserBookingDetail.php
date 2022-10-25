@@ -10,10 +10,11 @@ use Auth;
 
 class UserBookingDetail extends Controller
 {
-    public function allUserBooking(Request $request){
+    public function UserBooking(Request $request){
         $user= Auth::user(); 
 
         $details=BookParkingModel::where('book_parking.user_id','=',$user->id)
+        
         ->with('user_details')
         ->with('address_details')
         ->with('parking_charge_details')

@@ -141,4 +141,4 @@ Route::post('extraAmountupdate',[ExtraAmountController::class,'extraAmountupdate
 Route::get('getextraAmount',[ExtraAmountController::class,'getextraAmount']); 
 
 Route::post('updateUser',[Profile::class,'updateUser']); 
-Route::get('allUserBooking',[UserBookingDetail::class,'allUserBooking']); 
+Route::get('UserBooking',[UserBookingDetail::class,'UserBooking']); 
