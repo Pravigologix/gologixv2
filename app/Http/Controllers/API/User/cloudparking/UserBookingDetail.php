@@ -6,20 +6,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BookParkingModel;
 use DB;
-//use Auth;
+use Auth;
 
 class UserBookingDetail extends Controller
 {
     public function allUserBooking(Request $request){
-       // $user= Auth::user(); 
+        $user= Auth::user(); 
 
-        $details=BookParkingModel::all();
-        //->with('user_details')
-        //->with('address_details')
-        //->with('parking_charge_details')
-       // ->with('parking_slot_address_details')
+        $details=BookParkingModel::where('book_parking.user_id','=',$user->id)
+        ->with('user_details')
+        ->with('address_details')
+        ->with('parking_charge_details')
+        ->with('parking_slot_address_details')
         
-       // ->get();
+        ->get();
         return response(["booking_deatils"=>$details,200]);
     }
 
