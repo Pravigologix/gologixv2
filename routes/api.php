@@ -16,6 +16,9 @@ use App\Http\Controllers\API\User\cloudparking\BannerController;
 use App\Http\Controllers\API\User\cloudparking\WalletController;
 use App\Http\Controllers\API\User\cloudparking\SearchCustomerController;
 use App\Http\Controllers\API\User\cloudparking\BookingDetailsController;
+use App\Http\Controllers\API\User\cloudparking\UserBookingDetail;
+
+
 
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
@@ -138,4 +141,4 @@ Route::post('extraAmountupdate',[ExtraAmountController::class,'extraAmountupdate
 Route::get('getextraAmount',[ExtraAmountController::class,'getextraAmount']); 
 
 Route::post('updateUser',[Profile::class,'updateUser']); 
-
+Route::get('allUserBooking',[UserBookingDetail::class,'allUserBooking']); 

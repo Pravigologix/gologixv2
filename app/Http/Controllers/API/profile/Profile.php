@@ -55,6 +55,7 @@ class Profile extends Controller {
     public function updateUser(Request $request) {
       //checking if users exists or not
       $user = Auth::user();
+      
 
       $users = User::find($user->id);
   

@@ -17,7 +17,7 @@ class ProfileController extends Controller
 				->where('email','=',$request->input('email'))
 		        ->update(['users.password'=> bcrypt($request->input('password'))]);
 		if($password){
-			
+		
 			return["message"=>"User Updated password Successfully","success"=>1];
 		}
 
