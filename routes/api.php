@@ -64,6 +64,9 @@ Route::controller(AuthController::class)
     Route::post('register', 'request_otp');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
+    Route::post('forgotpassword', 'forgotpassword');
+    Route::post('forgotpasswordotp', 'forgotpasswordotp');
+
     Route::post('register/verify_otp', 'register');
     Route::get('auth/google', 'AuthController@redirectToGoogle');
     Route::get('get_session', 'get_session');
