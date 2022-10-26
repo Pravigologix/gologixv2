@@ -64,8 +64,7 @@ Route::controller(AuthController::class)
     Route::post('register', 'request_otp');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
-    Route::post('forgotpassword', 'forgotpassword');
-    Route::post('forgotpasswordotp', 'forgotpasswordotp');
+  
 
     Route::post('register/verify_otp', 'register');
     Route::get('auth/google', 'AuthController@redirectToGoogle');
@@ -158,6 +157,9 @@ Route::post('updatemobilenumberbyotp',[Profile::class,'updatemobilenumberbyotp']
 
 Route::get('UserBooking',[UserBookingDetail::class,'UserBooking']); 
 Route::get('allUserBookingDetails',[AllUserBookingDetails::class,'allUserBookingDetails']); 
+
+  Route::post('forgotpassword', [AuthController::class,'forgotpassword']);
+  Route::post('forgotpasswordotp',[AuthController::class,'forgotpasswordotp']);
 
 
 
