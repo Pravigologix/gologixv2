@@ -16,6 +16,12 @@ $MSG_TEMPLATES = [
        ' -GoLogix'
         // 'Dear User, you are trying to Login for  your A/c. Your OTP is ',
         // ' DONT SHARE WITH ANYONE'
+	],
+	'Update' => [
+        'Please use this OTP to change your mobile number-',
+       ' -GoLogix'
+        // 'Dear User, you are trying to Login for  your A/c. Your OTP is ',
+        // ' DONT SHARE WITH ANYONE'
     ]
 ];
 

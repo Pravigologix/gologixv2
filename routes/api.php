@@ -136,11 +136,17 @@ Route::get('time',[TimeController::class,'time']);
 Route::post('updateTime',[TimeController::class,'updateTime']); 
 Route::get('bookingDetails',[BookingDetailsController::class,'bookingDetails']); 
 //<<<<<<< time2
-Route::post('forgetPassword',[ProfileController::class,'forgetPassword']); 
+
 Route::post('extramAmountadd',[ExtraAmountController::class,'extramAmountadd']); 
 Route::post('extraAmountupdate',[ExtraAmountController::class,'extraAmountupdate']); 
 Route::get('getextraAmount',[ExtraAmountController::class,'getextraAmount']); 
 
 Route::post('updateUser',[Profile::class,'updateUser']); 
+Route::post('updatemobilenumberbyotp',[Profile::class,'updatemobilenumberbyotp']); 
+
 Route::get('UserBooking',[UserBookingDetail::class,'UserBooking']); 
 Route::get('allUserBookingDetails',[AllUserBookingDetails::class,'allUserBookingDetails']); 
+
+
+
+
