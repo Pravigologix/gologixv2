@@ -10,7 +10,7 @@ class ParkingSlotModel extends Model
     // use HasFactory;
 	protected $table = "add_praking_slots";
     public function add_praking_slot(){
-        return $this->hasmanyMany(ParkingChargeModel::class);
+        return $this->hasMany(ParkingChargeModel::class);
     }
 
     public function add_park_desc(){

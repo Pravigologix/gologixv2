@@ -13,13 +13,13 @@ class ExtraAmountController extends Controller
 {
     public function extramAmountadd(Request $request){
         $user= Auth::user();  
-        $trans_id=(string)$request->input( 'pay_price' ).(string)$userdetails->id.'2022'.$request->input( 'date' );
+        $trans_id=(string)$request->input( 'pay_price' ).(string)$user->id.'2022'.$request->input( 'date' );
 
-        if($userdetails->id==$request->input('user_id')){
+        if($user->id==$request->input('user_id')){
        
         $payment = DB::table( 'payments' )->insert( [
             'pay_price'=>$request->input( 'pay_price' ),
-            'pay_user_id'=>$userdetails->id,
+            'pay_user_id'=>$user->id,
             'pay_description'=>$request->input( 'pay_description' ),
             'pay_transaction_id'=>$trans_id,
             'pay_paysta_status_id'=>$request->input( 'pay_paysta_status_id' ),
@@ -81,7 +81,7 @@ class ExtraAmountController extends Controller
 
     public function getextraAmount(Request $request){
         $user= Auth::user();  
-        $data=NewPayments::where('user_id','=',$user->id)
+        $data=NewPayments::where('user_id','=',$request->input('user_id'))
         ->where('booking_id','=',$request->input('booking_id'))
         ->with('new_payment')
         ->get();

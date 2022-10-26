@@ -105,7 +105,7 @@ class BookParking extends Controller
         'status'=>0,
          
         'message'=>'Bokking failed try again'
-      ],303);
+      ],412);
 
     }
 
@@ -132,6 +132,7 @@ class BookParking extends Controller
       ->update([
         'paking_type'=>$request->input('paking_type'),
           'parking_slot_number'=>$request->input('slot_no'),
+   
      
         'payment_status'=>$request->input('payment_status'),
         'parking_status'=>$request->input('parking_status'),

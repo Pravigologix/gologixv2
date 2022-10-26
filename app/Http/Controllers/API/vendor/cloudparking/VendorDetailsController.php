@@ -56,7 +56,7 @@ class VendorDetailsController extends Controller
             $userdetails->user_id=$user->id;
 
             $userdetails->save();
-           return $userdetails;
+        
           return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
       
 }
@@ -104,7 +104,7 @@ public function getVendorDetails(Request $request)
  
   ->get();
 
-  return response()->json(['vendorDetails'=>$res]);
+  return response()->json(['vendorDetails'=>$res],200);
 
 }
 
