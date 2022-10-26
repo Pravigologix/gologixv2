@@ -246,6 +246,62 @@ class AuthController extends Controller {
 
         }
 
+        public function forgotpasswordotp( Request $request ) {
+
+            $smsConnectorInstance = new SmsConnector();
+            $msgType = 'Register';
+            $otp = rand( 100000, 999999 );
+            $mobile = '+91' . $request->input( 'phonenumber' );
+            $templates = Config::get( 'constants.MSG_TEMPLATES' );
+            $msg = $templates[ $msgType ][ 0 ].$otp.$templates[ $msgType ][ 1 ];
+            $result = $smsConnectorInstance->sendSms( $mobile, $msg );
+            if ( $result ) {
+    
+                $smsLog = new Sms();
+                $smsLog->tsl_phonenumber = $mobile;
+                $smsLog->tsl_otp = $otp;
+                $smsLog->tsl_type = '1';
+                $smsLog->tsl_msg = $msg;
+                $smsLog->tsl_issent = '1';
+                $smsLog->save();
+                if($smsLog){
+                return [
+    
+                    'message'   => 'Sucess',
+                    'otp'=>$otp,
+    
+                    'status' => $result, 'success' => 1, ];
+    
+                }}else
+                return [ 'message' => 'Something went wrong', 'success' => 0, ];
+    
+            }
+
+            
+        public function forgotpassword( Request $request ) {
+            $password = $request->input( 'password' );
+
+          
+         
+
+              $user=  User::where('phonenumber','=',$request->input('phonenumber'))->update([
+                "password"=>app( 'hash' )->make( $password )
+              ]);
+    
+               
+                if($user){
+                return [
+    
+                    'message'   => 'Sucess',
+                   
+    
+                    'success' => 1, ];
+    
+                }else
+                return [ 'message' => 'Something went wrong', 'success' => 0, ];
+    
+            }
+
         public function register( RegisterRequest $request ) {
             $mobile = '+91' . $request->input( 'phonenumber' );
 
