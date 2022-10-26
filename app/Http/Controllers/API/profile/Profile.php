@@ -67,7 +67,7 @@ class Profile extends Controller {
 
 
     }
-    public function updateUser(ProfileRequest $request) {
+    public function updateUser(Request $request) {
       //checking if users exists or not
       $user = Auth::user();
       
@@ -77,6 +77,10 @@ class Profile extends Controller {
       if($users === null) {
         return ['message' => 'Invalid User', 'success' => 0];
       }else if($users->phonenumber!=$request->input('phonenumber')){
+          $user_number = User::where('phonenumber', '=', Input::get('phonenumber'))->first();
+if ($user_number != null) {
+   return response()->json ([ 'message' => 'Number already exits', 'success' => 0, ],412);
+}
         
       $smsConnectorInstance = new SmsConnector();
       $msgType = 'Update';
@@ -103,7 +107,7 @@ class Profile extends Controller {
             'status' => $result, 'success' => 1, ];
 
         }}else
-        return [ 'message' => 'Something went wrong', 'success' => 0, ];
+        return response()->json([ 'message' => 'Something went wrong', 'success' => 0, ],412);
 
 
 
