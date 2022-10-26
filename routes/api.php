@@ -16,6 +16,10 @@ use App\Http\Controllers\API\User\cloudparking\BannerController;
 use App\Http\Controllers\API\User\cloudparking\WalletController;
 use App\Http\Controllers\API\User\cloudparking\SearchCustomerController;
 use App\Http\Controllers\API\User\cloudparking\BookingDetailsController;
+use App\Http\Controllers\API\User\cloudparking\UserBookingDetail;
+use App\Http\Controllers\API\User\cloudparking\AllUserBookingDetails;
+
+
 
 use App\Http\Controllers\API\vendor\cloudparking\AddParkingController;
 use App\Http\Controllers\API\vendor\cloudparking\UserParkingdeatils;
@@ -136,8 +140,22 @@ Route::get('time',[TimeController::class,'time']);
 Route::post('updateTime',[TimeController::class,'updateTime']); 
 Route::get('bookingDetails',[BookingDetailsController::class,'bookingDetails']); 
 //<<<<<<< time2
+//<<<<<<< time2
+
+//Route::post('extramAmountadd',[ExtraAmountController::class,'extramAmountadd']); 
+//Route::post('extraAmountupdate',[ExtraAmountController::class,'extraAmountupdate']); 
+//Route::get('getextraAmount',[ExtraAmountController::class,'getextraAmount']); 
+//=======
 Route::post('forgetPassword',[ProfileController::class,'forgetPassword']); 
 
+//>>>>>>> main
 
 Route::post('updateUser',[Profile::class,'updateUser']); 
+Route::post('updatemobilenumberbyotp',[Profile::class,'updatemobilenumberbyotp']); 
+
+Route::get('UserBooking',[UserBookingDetail::class,'UserBooking']); 
+Route::get('allUserBookingDetails',[AllUserBookingDetails::class,'allUserBookingDetails']); 
+
+
+
 
