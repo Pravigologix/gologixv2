@@ -99,12 +99,12 @@ if ($user_number != null) {
         $smsLog->tsl_issent = '1';
         $smsLog->save();
         if($smsLog){
-        return [
+        return response()->json([
 
             'message'   => 'Sucess',
             'otp'=>$otp,
 
-            'status' => $result, 'success' => 1, ];
+            'status' => $result, 'success' => 1, ],200);
 
         }}else
         return response()->json([ 'message' => 'Something went wrong', 'success' => 0, ],412);
@@ -136,6 +136,11 @@ if ($user_number != null) {
       $users->phonenumber=$request->input('phonenumber');
       
       $users->save();
+          return response()->json( [
+                        'status' => 'success',
+                        'message' => 'User updated successfully',
+                       
+                    ] ,200);
 
      
 
@@ -169,7 +174,7 @@ if ($user_number != null) {
                     'status' => 'falied',
 
                     'message' => "Otp didn't match",
-                ] );
+                ],412 );
             }
 
         }
