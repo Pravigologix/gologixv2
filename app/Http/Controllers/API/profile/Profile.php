@@ -77,7 +77,7 @@ class Profile extends Controller {
       if($users === null) {
         return ['message' => 'Invalid User', 'success' => 0];
       }else if($users->phonenumber!=$request->input('phonenumber')){
-          $user_number = User::where('phonenumber', '=', Input::get('phonenumber'))->first();
+          $user_number = User::where('phonenumber', '=', $request->input('phonenumber'))->first();
 if ($user_number != null) {
    return response()->json ([ 'message' => 'Number already exits', 'success' => 0, ],412);
 }
