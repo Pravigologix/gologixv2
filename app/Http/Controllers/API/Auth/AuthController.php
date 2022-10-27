@@ -26,7 +26,7 @@ use Config;
 class AuthController extends Controller {
     public function __construct() {
         $this->middleware( 'auth:api', [ 'except' => [
-            'login', 'register', 'request_otp', 'redirectToGoogle', 'handleGoogleCallback', 'get_session'
+            'login', 'register', 'request_otp', 'redirectToGoogle', 'handleGoogleCallback', 'get_session','forgotpasswordotp','forgotpassword'
         ] ] );
     }
 
