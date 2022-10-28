@@ -16,6 +16,13 @@ class BannerController extends Controller {
         $data = DB::select( 'SELECT * FROM banners' );
         return response()->json( [ 'Banner_details'=>$data ], 200 );
     }
+    
+      public function getbanners() {
+        
+        $data = DB::table('banners')->get(); 
+           $data_video = DB::table('video_clip')->get(); 
+        return response()->json( [ 'Banner_details'=>$data,'Banner_video_details'=>$data_video,], 200 );
+    }
 
 //<<<<<<< ashwini
    
