@@ -40,3 +40,7 @@ Route::get('routes', function () {
     }
     echo "</table>";
 });
+
+Route::get('login', function () {
+    return view('welcome');
+});
