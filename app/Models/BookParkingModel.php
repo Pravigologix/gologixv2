@@ -22,6 +22,9 @@ class BookParkingModel extends Model
   }
 
   public function parking_charge_details(){
+   return $this->hasMany(ParkingChargeModel::class,'parking_charge_id','id');
+  }
+  public function all_parking_charge_details(){
    return $this->hasMany(ParkingChargeModel::class,'address_id','address_id');
   }
 
