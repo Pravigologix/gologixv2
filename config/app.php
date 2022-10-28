@@ -197,6 +197,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         // SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        \Conner\Tagging\Providers\TaggingServiceProvider::class,
 
     ],
 

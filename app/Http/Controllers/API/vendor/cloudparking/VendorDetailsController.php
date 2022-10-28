@@ -108,4 +108,45 @@ public function getVendorDetails(Request $request)
 
 }
 
+
+public function getvendordashboarddetails(Request $request)
+{  
+
+  $bookingcount=DB::table('addresses')
+  ->join('book_parking','addresses.id','=','book_parking.address_id')
+  ->where('add_user_id','=',$request->input('user_id'))->count();
+
+  $parkingcount=DB::table('addresses')
+  ->join('add_praking_slots','addresses.id','=','add_praking_slots.address_id')
+  ->where('add_user_id','=',$request->input('user_id'))->select('add_praking_slots.parking_type','add_praking_slots.parking_slots')->get();
+
+  $bookedbiketype=DB::table('addresses')
+  ->join('book_parking','addresses.id','=','book_parking.address_id')
+  ->where('add_user_id','=',$request->input('user_id'))
+  ->where('parking_type','=',1)
+  ->where('parking_status','=',1)
+
+  ->count();
+
+  $bookedcartype=DB::table('addresses')
+  ->join('book_parking','addresses.id','=','book_parking.address_id')
+  ->where('add_user_id','=',$request->input('user_id'))
+  ->where('parking_type','=',2)
+  ->where('parking_status','=',1)
+
+  ->count();
+
+
+  return response()->json([
+    "booking_count"=>$bookingcount,
+    "parking_count"=>$parkingcount,
+    "bookedbiketype_count"=>$bookedbiketype,
+    "bookedcartype_count"=>$bookedcartype,
+
+  ],200);
+
+
+
+}
+
 }

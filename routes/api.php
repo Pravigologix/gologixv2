@@ -107,6 +107,8 @@ Route::controller(AuthController::class)
     Route::post('editVendorDetails',[VendorDetailsController::class,'editVendorDetails']);
 
 Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
+Route::get('getvendordashboard',[VendorDetailsController::class,'getvendordashboarddetails']);
+
 Route::post('addVendorAccountDetails',[VendorAccountsController::class,'addVendorAccountDetails']);
 Route::post('editVendorAccountDetails',[VendorAccountsController::class,'editVendorAccountDetails']);
 Route::get('getVendorAccountDetails',[VendorAccountsController::class,'getVendorAccountDetails']);

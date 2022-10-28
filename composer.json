@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
         "php-open-source-saver/jwt-auth": "^1.4",
+        "rtconner/laravel-tagging": "^4.1",
         "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {
