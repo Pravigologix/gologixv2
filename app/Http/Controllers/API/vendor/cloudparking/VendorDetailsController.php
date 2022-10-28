@@ -122,17 +122,17 @@ public function getvendordashboarddetails(Request $request)
 
   $bookedbiketype=DB::table('addresses')
   ->join('book_parking','addresses.id','=','book_parking.address_id')
-  ->where('add_user_id','=',$request->input('user_id'))
-  ->where('parking_type','=',1)
-  ->where('parking_status','=',1)
+  ->where('addresses.add_user_id','=',$request->input('user_id'))
+  ->where('book_parking.parking_type','=',1)
+  ->where('book_parking.parking_status','=',1)
 
   ->count();
 
   $bookedcartype=DB::table('addresses')
   ->join('book_parking','addresses.id','=','book_parking.address_id')
-  ->where('add_user_id','=',$request->input('user_id'))
-  ->where('parking_type','=',2)
-  ->where('parking_status','=',1)
+  ->where('addresses.add_user_id','=',$request->input('user_id'))
+  ->where('book_parking.parking_type','=',2)
+  ->where('book_parking.parking_status','=',1)
 
   ->count();
 
