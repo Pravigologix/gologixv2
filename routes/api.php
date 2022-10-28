@@ -64,8 +64,7 @@ Route::controller(AuthController::class)
     Route::post('register', 'request_otp');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
-    Route::post('forgotpassword', 'forgotpassword');
-    Route::post('forgotpasswordotp', 'forgotpasswordotp');
+  
 
     Route::post('register/verify_otp', 'register');
     Route::get('auth/google', 'AuthController@redirectToGoogle');
@@ -107,8 +106,13 @@ Route::controller(AuthController::class)
     Route::post('addVendorDetails',[VendorDetailsController::class,'addVendorDetails']);
     Route::post('editVendorDetails',[VendorDetailsController::class,'editVendorDetails']);
 
-    Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
-    Route::get('getvendordashboard',[VendorDetailsController::class,'getvendordashboarddetails']);
+//<<<<<<< time2
+   // Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
+   // Route::get('getvendordashboard',[VendorDetailsController::class,'getvendordashboarddetails']);
+//=======
+Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
+Route::post('getvendordashboard',[VendorDetailsController::class,'getvendordashboarddetails']);
+//>>>>>>> main
 
     Route::post('addVendorAccountDetails',[VendorAccountsController::class,'addVendorAccountDetails']);
     Route::post('editVendorAccountDetails',[VendorAccountsController::class,'editVendorAccountDetails']);
@@ -161,6 +165,9 @@ Route::post('updatemobilenumberbyotp',[Profile::class,'updatemobilenumberbyotp']
 Route::get('UserBooking',[UserBookingDetail::class,'UserBooking']); 
 Route::get('allUserBookingDetails',[AllUserBookingDetails::class,'allUserBookingDetails']); 
 
+  Route::post('forgotpassword', [AuthController::class,'forgotpassword']);
+  Route::post('forgotpasswordotp',[AuthController::class,'forgotpasswordotp']);
 
+ Route::post('getbannerforuser',[BannerController::class,'getbanners']);
 
 
