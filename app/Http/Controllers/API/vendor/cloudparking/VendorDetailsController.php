@@ -121,7 +121,9 @@ public function getvendordashboarddetails(Request $request)
   ->where('addresses.add_user_id','=',$request->input('user_id'))->select('add_praking_slots.parking_type','add_praking_slots.parking_slots')->get();
 
   $bookedbiketype=DB::table('addresses')
+
   ->leftJoin('book_parking','addresses.id','=','book_parking.address_id')
+
   ->where('addresses.add_user_id','=',$request->input('user_id'))
   ->where('book_parking.parking_type','=',1)
   ->where('book_parking.parking_status','=',1)
@@ -129,7 +131,9 @@ public function getvendordashboarddetails(Request $request)
   ->count();
 
   $bookedcartype=DB::table('addresses')
+
   ->leftJoin('book_parking','addresses.id','=','book_parking.address_id')
+
   ->where('addresses.add_user_id','=',$request->input('user_id'))
   ->where('book_parking.parking_type','=',2)
   ->where('book_parking.parking_status','=',1)
