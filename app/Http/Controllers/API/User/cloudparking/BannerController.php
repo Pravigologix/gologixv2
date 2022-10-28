@@ -20,7 +20,7 @@ class BannerController extends Controller {
       public function getbanners() {
         
         $data = DB::table('banners')->get(); 
-           $data_video = DB::table('video_clip')->get(); 
+           $data_video = DB::table('videoclip')->get(); 
         return response()->json( [ 'Banner_details'=>$data,'Banner_video_details'=>$data_video,], 200 );
     }
 
