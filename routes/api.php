@@ -102,20 +102,20 @@ Route::controller(AuthController::class)
     Route::post('addprofile',[Profile::class,'addprofile']);
     Route::post('getdetails',[UserParkingdeatils::class,'generateparkinglslotforuser']);
     Route::post('bookparking',[BookParking::class,'bookpakingbyuser']);
-         Route::post('updatebookpakingbyuser',[BookParking::class,'updatebookpakingbyuser']);
+    Route::post('updatebookpakingbyuser',[BookParking::class,'updatebookpakingbyuser']);
         
     Route::post('addVendorDetails',[VendorDetailsController::class,'addVendorDetails']);
     Route::post('editVendorDetails',[VendorDetailsController::class,'editVendorDetails']);
 
-Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
-Route::get('getvendordashboard',[VendorDetailsController::class,'getvendordashboarddetails']);
+    Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
+    Route::get('getvendordashboard',[VendorDetailsController::class,'getvendordashboarddetails']);
 
-Route::post('addVendorAccountDetails',[VendorAccountsController::class,'addVendorAccountDetails']);
-Route::post('editVendorAccountDetails',[VendorAccountsController::class,'editVendorAccountDetails']);
-Route::get('getVendorAccountDetails',[VendorAccountsController::class,'getVendorAccountDetails']);
-Route::post('addVendorkyc',[VendorkycController::class,'addVendorkyc']);
-Route::get('getVendorkyc',[VendorkycController::class,'getVendorkyc']);
-Route::post('addUserVehicleDocuments',[User_documentController::class,'addUserVehicleDocuments']);
+    Route::post('addVendorAccountDetails',[VendorAccountsController::class,'addVendorAccountDetails']);
+    Route::post('editVendorAccountDetails',[VendorAccountsController::class,'editVendorAccountDetails']);
+    Route::get('getVendorAccountDetails',[VendorAccountsController::class,'getVendorAccountDetails']);
+    Route::post('addVendorkyc',[VendorkycController::class,'addVendorkyc']);
+    Route::get('getVendorkyc',[VendorkycController::class,'getVendorkyc']);
+ Route::post('addUserVehicleDocuments',[User_documentController::class,'addUserVehicleDocuments']);
 Route::post('editUserVehicleDocuments',[User_documentController::class,'editUserVehicleDocuments']);
 
 Route::get('getUserVehicleDocuments',[User_documentController::class,'getUserVehicleDocuments']);
