@@ -76,6 +76,7 @@ class BookParking extends Controller
             'user_id'=>$request->input('user_id'),
             'address_id'=>$request->input('address_id'),
             'payment_status'=>$request->input('payment_status'),
+             'parking_status'=>$request->input('parking_status'),
             'payment_id'=>$payid,
             'parking_charge_id'=>$request->input('parking_charge_id'),
             'start_date'=>$request->input('start_date'),
