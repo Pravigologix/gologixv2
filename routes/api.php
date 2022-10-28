@@ -161,6 +161,6 @@ Route::get('allUserBookingDetails',[AllUserBookingDetails::class,'allUserBooking
   Route::post('forgotpassword', [AuthController::class,'forgotpassword']);
   Route::post('forgotpasswordotp',[AuthController::class,'forgotpasswordotp']);
 
-
+ Route::post('getbannerforuser',[BannerController::class,'getbanners']);
 
 
