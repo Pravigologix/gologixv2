@@ -30,6 +30,7 @@ class BookParking extends Controller
         ->where('pay_transaction_id','=', $trans_id)
            ->orderBy('id', 'asc')
         ->first('id');
+        // dd($paymentid);
         
         $payid=$paymentid->id;
         
@@ -61,9 +62,14 @@ class BookParking extends Controller
         $arraylist=json_decode($slots[0]);
 
        
-      $slot_no= rand(1,100);
 
-      $compare=($booking_count<$slots[0]);
+       
+      $slot_no= rand(1,$arraylist);
+      $compare=($booking_count<$arraylist);
+
+      
+
+
 
 
    
