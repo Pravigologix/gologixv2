@@ -169,6 +169,7 @@ Route::get('allUserBookingDetails',[AllUserBookingDetails::class,'allUserBooking
   Route::post('forgotpasswordotp',[AuthController::class,'forgotpasswordotp']);
 
  Route::post('getbannerforuser',[BannerController::class,'getbanners']);
+
  Route::get('getcity',[UserBookingDeatils::class,'getallcity']);
 
 
