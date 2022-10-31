@@ -53,7 +53,7 @@ class WalletController extends Controller {
 
         return response()->json( [ 
             'payment_id'=>$paymentid,
-            '$wal_id'=>$wal_id,
+            'wal_id'=>$wal_id,
           
             
             'message'=>'payment Satus Updated' ], 200 );
