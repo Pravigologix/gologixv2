@@ -88,7 +88,7 @@ class WalletController extends Controller {
     }
      public function updatewalletamount( Request $request ) {
 
-        $wallet=DB::table('wallet')->where('id','=',$request->input( 'wallet_id'))->update(['wal_isactive'=>1]);
+        $wallet=DB::table('wallet_parking')->where('id','=',$request->input( 'wallet_id'))->update(['wal_isactive'=>1]);
 
         
        
