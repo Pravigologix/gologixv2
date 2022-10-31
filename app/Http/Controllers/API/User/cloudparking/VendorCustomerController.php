@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API\User\cloudparking;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\BookParkingModel;
+
+
 use DB;
 use Auth;
 
