@@ -57,6 +57,7 @@ class VendorCustomerController extends Controller
            ->with('all_parking_charge_details')
 
            ->with('parking_slot_address_details')
+                ->orderBy("id", "desc")
 
 
         
