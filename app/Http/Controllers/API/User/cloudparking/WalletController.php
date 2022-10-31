@@ -42,14 +42,18 @@ class WalletController extends Controller {
         $walletModel->wal_user_id = $userdetails->id;
 
       
-        $walletModel->wal_transaction_id =(string)$paymentid;
+        $walletModel->wal_transaction_id =(string)$paymentid->id;
         $walletModel->credited_amt = $request->input( 'credited_amt' );
         $walletModel->debited_amt = $request->input( 'debited_amt' );
-
+        $walletModel->wal_isactive =0;
         $walletModel->save();
+
+
+        $wal_id=WalletModel::where('wal_transaction_id','=',(string)$paymentid)->where('credited_amt', $request->input( 'credited_amt' ))->get('id');
 
         return response()->json( [ 
             'payment_id'=>$paymentid,
+            '$wal_id'=>$wal_id,
           
             
             'message'=>'payment Satus Updated' ], 200 );
@@ -84,6 +88,8 @@ class WalletController extends Controller {
     }
      public function updatewalletamount( Request $request ) {
 
+        $wallet=DB::table('wallet')->where('id','=',$request->input( 'wallet_id'))->update(['wal_isactive'=>1]);
+
         
        
              $payment = DB::table( 'payments' )->where('id','=',$request->input( 'payment_id'))
@@ -103,7 +109,7 @@ class WalletController extends Controller {
 
         $userdetails = Auth::user();
         $walletdetails = WalletModel::where( 'wal_user_id', $userdetails->id )->get();
-        $credited_amt = WalletModel::where( 'wal_user_id', $userdetails->id )
+        $credited_amt = WalletModel::where( 'wal_user_id', $userdetails->id )->where('wal_isactive','=',1)
         ->sum( 'credited_amt' );
         $debited_amt = WalletModel::where( 'wal_user_id', $userdetails->id )
         ->sum( 'debited_amt' );
