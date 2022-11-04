@@ -29,18 +29,14 @@ public function editEmployee(Request $request){
 
       
     $emp= Auth::user();  
-        $employee=new employee;
-        if($emp->id){
- 
-        $employee->is_active=$request->input('is_active');
+        $employee=employee::where('id','=',$request->id)->update([
+            "is_active"=>$request->input('is_active'),
+        ]);
        
-        $employee-> save();
 
         return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
-        }
-        else{
-            return response()->json(['status'=>'fail','message'=>'not employee'],300);
-        }
+      
+          
 }
 public function getEmployee(Request $request){
     $emp= Auth::user();  
