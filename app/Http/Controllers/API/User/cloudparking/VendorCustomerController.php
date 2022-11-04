@@ -45,6 +45,7 @@ class VendorCustomerController extends Controller
         $user = Auth::user();
         //dd($user->id);
         if($user!=null){
+            
             $data=BookParkingModel::
             with('address_details')->
             whereHas('address_details',function($qurey){
@@ -57,13 +58,29 @@ class VendorCustomerController extends Controller
            ->with('all_parking_charge_details')
 
            ->with('parking_slot_address_details')
-                ->orderBy("id", "desc")
-
-
-        
-          
-            ->paginate(80);
-            return response()->json(["user_details_for_vendor"=>$data],200);
+                ->orderBy("id", "desc");
+            
+            if($request->name){
+                $data->whereHas('user_details',function($qurey) use($request){
+                         $qurey->where( 'name','Like','%'.$request->name.'%');
+                    }
+                               );
+            
+            }
+            
+            if($request->type){
+                $data->where('paking_type','Like','%'.$request->type.'%');
+            
+            }
+             if($request->parking_status){
+                $data->where('parking_status','Like','%'.$request->parking_status.'%');
+            
+            }
+             if($request->startdate){
+                $data->whereDate('start_date','Like','%'.$request->start_date.'%');
+            
+            }
+            return response()->json(["user_details_for_vendor"=>$data->paginate(10)],200);
         }
         else{
             return response()->json([
