@@ -11,24 +11,14 @@ use DB;
 class EmployeeController extends Controller
 {
     public function addEmployee(Request $request){
-        $files=$request['aadhar_document'];
-        $hostname=$_SERVER['HTTP_HOST'];
-                $filejustname =pathinfo($files, PATHINFO_FILENAME);
-                // Get just extension of user upload file
-                $extention =$files->getClientOriginalExtension();
-                $fileName = $filejustname .time() ."." .$extention ;
-                $destinationPath = public_path().'/images'.'/aadhar_card';
-                $fileupload=$files->move($destinationPath,$fileName);
-          $aadhar_image=env('APP_URL').'/images'.'/aadhar_card'.'/'.$fileName;    
-          
-        $emp= Auth::user();  
+        
             $employee=new employee;
             $employee->employee_name=$request->input('employee_name');
-            $employee->user_id=(int)$emp->id;
+            $employee->user_id=$request->input('user_id');
             $employee->vendor_id=$request->input('vendor_id');
-            $employee->aadhar_document=json_encode($aadhar_image);
+            $employee->aadhar_document="";
             $employee->is_active=$request->input('is_active');
-            $employee->is_delete=$request->input('is_delete');
+          
 
             $employee-> save();
 
@@ -41,10 +31,9 @@ public function editEmployee(Request $request){
     $emp= Auth::user();  
         $employee=new employee;
         if($emp->id){
-        $employee->vendor_id=$request->input('vendor_id');
+ 
         $employee->is_active=$request->input('is_active');
-        $employee->is_delete=$request->input('is_delete');
-
+       
         $employee-> save();
 
         return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
@@ -56,9 +45,9 @@ public function editEmployee(Request $request){
 public function getEmployee(Request $request){
     $emp= Auth::user();  
     $data=DB::table('employees')
-    ->join('vendor','employees.vendor_id','=','vendor.id')
+    ->join('vendor','employees.vendor_id','=',$emp->id)
     ->join('users','employees.user_id','=','users.id')
-    ->where('employees.user_id','=',$emp->id)
+   ->where('employees.is_active','=',0)
     ->where('users.is_admin','=',6)
 
     ->select('employees.user_id','employee_name','users.phonenumber','employees.vendor_id','employees.aadhar_document','employees.is_active','vendor.ven_name','vendor.ven_description','vendor.ven_phone')
