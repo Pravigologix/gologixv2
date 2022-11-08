@@ -146,8 +146,6 @@ public function getvendordashboarddetails(Request $request)
 
   ],200);
 
-
-
 }
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::get('routes', function () {
     echo "</table>";
 });
 
-Route::get('login', function () {
-    return view('welcome');
-});
+Route::post('web-login', [AdminController::class,'welcome']
+    
+   
+)->name('login.post');

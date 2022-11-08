@@ -9,9 +9,8 @@ use DB;
 
 class ProfileController extends Controller
 {
-    public function forgetPassword(Request $request)
+    public function updatePassword(Request $request)
 	{
-        
 		$password=DB::table('users')
 		         //->where('id','=',$request->input('id'))
 				->where('email','=',$request->input('email'))
@@ -20,7 +19,6 @@ class ProfileController extends Controller
 		
 			return["message"=>"User Updated password Successfully","success"=>1];
 		}
-
 			
 		return["message"=>"Failed to update the password","success"=>0];
 
