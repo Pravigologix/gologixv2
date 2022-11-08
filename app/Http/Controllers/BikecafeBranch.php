@@ -21,4 +21,32 @@ class BikecafeBranch extends Controller
 
 
     }
+    
+    
+    
+    
+     public function addallbcbranch(Request $req)
+    {
+        $bc_cafe=DB::table('bc_branch')->insert([
+            'isactive'=>$req->input('isactive'),
+            'bc_type'=>$req->input('bc_type'),
+            'name'=>$req->input('name'),
+            'address'=>$req->input('address'),
+            'add_lat'=>$req->input('add_lat'),
+            'add_lon'=>$req->input('add_lon'),
+            
+        
+        ]);
+            
+       
+
+        return response()->json([
+            "BC Cafe"=>$bc_cafe,
+           
+        ],200);
+
+
+
+
+    }
 }
