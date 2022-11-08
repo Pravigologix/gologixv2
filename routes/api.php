@@ -18,6 +18,7 @@ use App\Http\Controllers\API\User\cloudparking\SearchCustomerController;
 use App\Http\Controllers\API\User\cloudparking\BookingDetailsController;
 use App\Http\Controllers\API\User\cloudparking\UserBookingDetail;
 use App\Http\Controllers\API\User\cloudparking\AllUserBookingDetails;
+use App\Http\Controllers\Admin\AdminController;
 
 
 
@@ -158,7 +159,7 @@ Route::get('bookingDetails',[BookingDetailsController::class,'bookingDetails']);
 //Route::post('extraAmountupdate',[ExtraAmountController::class,'extraAmountupdate']); 
 //Route::get('getextraAmount',[ExtraAmountController::class,'getextraAmount']); 
 //=======
-Route::post('forgetPassword',[ProfileController::class,'forgetPassword']); 
+Route::post('updatePassword',[ProfileController::class,'updatePassword']); 
 
 //>>>>>>> main
 
@@ -180,4 +181,15 @@ Route::get('getbcbranch',[BikecafeBranch::class,'getallbcbranch']);
 
 
 
+
+//Admin dashboard route
+Route::get('admin/dashboard',[AdminController::class,'dashboard']);
+//admin login
+Route::get('admin/login',[AdminController::class,'login']);
+//admin register
+Route::get('admin/register',[AdminController::class,'register']);
+//password update
+Route::get('admin/password',[AdminController::class,'password']);
+
+Route::post('admin/welcome',[AdminController::class,'welcome']);
 
