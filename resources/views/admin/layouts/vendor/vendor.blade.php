@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,7 +68,8 @@
 <nav class="navbar navbar-light bg-light">
 
 
-@include('admin.layouts.sidebars.dashboard')
+@include('admin.layouts.sidebars.vendor')
+
 
 
 
@@ -75,7 +77,7 @@
 
 <div class="mainbody">
 
-<h1>Dashboard</h1>
+<h1>Vendor</h1>
 
 
     </div>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,7 +68,8 @@
 <nav class="navbar navbar-light bg-light">
 
 
-@include('admin.layouts.sidebars.dashboard')
+@include('admin.layouts.sidebars.users')
+
 
 
 
@@ -75,10 +77,74 @@
 
 <div class="mainbody">
 
-<h1>Dashboard</h1>
+<h1>Users</h1>
+
+
+   
+
+
+
+
+<div class="container">
+   
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Created at</th>
+
+                <!-- <th></th>
+                <th>Payment Status</th>
+                <th>Payment At</th> -->
+
+
+
+
+
+                <!-- <th width="300px;">Action</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            @if(!empty($users) && $users->count())
+                @foreach($users as $key => $value)
+                    <tr>
+                        <td>{{ $value->id }}</td>
+                        <td>{{ $value->name }}</td>
+                        <td>{{ $value->email }}</td>
+                        <td>{{ $value->phonenumber }}</td>
+
+                       
+                       
+                        <td>{{ $value->created_at }}</td>
+                      
+
+                        <!-- <td>
+                            <button class="btn btn-danger">Delete</button>
+                        </td> -->
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="10">There are no data.</td>
+                </tr>
+            @endif
+        </tbody>
+    </table>
+         
+    {!! $users->links('pagination::bootstrap-4') !!}
+</div>
+
+
 
 
     </div>
+  
+
+
+   
   
 
 

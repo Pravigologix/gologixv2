@@ -18,7 +18,33 @@ class AdminController extends Controller
     }
     
     public function login(){
-        return view('admin.login');
+        return view('auth.login');
+    }
+    public function adminlogin(Request $request){
+
+        // dd($req);
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+ 
+        $credentials = $request->only( 'email', 'password' );
+
+        $token = Auth::attempt( $credentials,['exp' => Carbon\Carbon::now()->addDays(60)->timestamp] );
+        if ( !$token ) {
+       
+            return redirect('/')->with('error',"Credential didn't match");
+        }
+        else if(Auth::user()->is_admin==1){
+        return view('admin.dashboard');
+
+           
+        }else{
+    
+            return redirect('/')->with('error',"You Are Not Admin");
+     
+
+    }
     }
 
     public function register(){
@@ -29,17 +55,7 @@ class AdminController extends Controller
         return view('admin.password');
     }
     public function welcome(Request $request){
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
- 
-        $credentials = $request->only( 'email', 'password' );
-
-        $token = Auth::attempt( $credentials,['exp' => Carbon\Carbon::now()->addDays(60)->timestamp] );
-        if ( !$token ) {
-            return view('admin.dashboard');
-        }
+       
         return response()->json($token); 
     }
 

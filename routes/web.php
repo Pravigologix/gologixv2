@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\HomeController;
+use DB;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +17,7 @@ use App\Http\Controllers\Admin\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('routes', function () {
     $routeCollection = Route::getRoutes();
@@ -42,7 +43,42 @@ Route::get('routes', function () {
     echo "</table>";
 });
 
-Route::post('web-login', [AdminController::class,'welcome']
+
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/', [AdminController::class, 'login'])->name('admin-login');
+Route::post('/admin-login-post', [AdminController::class, 'adminlogin'])->name('adminlogin');
+Route::get('/admin-login-posts',function(){
+    return view('admin.dashboard');
+
+});
+
+Route::get('/banner',function(){
+    return view('admin.layouts.banners.banner');
+
+});
+Route::get('/transaction',function(){
+    $trans=DB::table('payments')->join('users','payments.pay_user_id','=','users.id')
+    ->orderBy('id','desc')->select("payments.*",'users.name')
+    ->paginate(80);
+    $total_price=DB::table('payments')->where('pay_paysta_status_id',7)->sum('pay_price');
     
-   
-)->name('login.post');
+    return view('admin.layouts.payment.payment',["trans"=>$trans,"total_price"=>$total_price]);
+
+});Route::get('/vendor',function(){
+    return view('admin.layouts.vendor.vendor');
+
+});Route::get('/users',function(){
+
+    $users=DB::table('users')->where('is_admin',0)->paginate(10);
+    return view('admin.layouts.users.users',["users"=>$users]);
+
+});Route::get('/help&suppot',function(){
+    return view('admin.layouts.help.help');
+
+});
+
+
