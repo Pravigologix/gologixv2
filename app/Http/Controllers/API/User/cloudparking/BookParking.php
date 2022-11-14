@@ -89,6 +89,7 @@ class BookParking extends Controller
             'is_cacnceled'=>$request->input('is_canceled'),
             'parking_slot_number'=>$slot_no,
             "end_date"=>'',
+            "vehicle_id"=>$request->input('vehicle_id')
         ]);
           
            $bookingid= DB::table('book_parking')->where('paking_type','=',$request->input('paking_type'))
@@ -114,6 +115,29 @@ class BookParking extends Controller
         'message'=>'Bokking failed try again'
       ],412);
 
+    }
+
+
+    public function cancelbooking(Request $request) {
+        
+      $userdetails=Auth::user();
+
+      $cancel_booking=DB::table('book_parking')->where('parking_status',1)
+      ->where('user_id','=',$userdetails->id)
+      ->where('id','=',$request->input('booking_id'))
+
+      ->update([
+        "parking_status"=>"4",
+        "is_cacnceled"=>0
+      ]);
+
+      if($cancel_booking){
+        return response()->json(["Sucess"=>"Parking Canceled"],200);
+      }
+      return response()->json(["Failed"=>"Parking Didn't Canceled"],412);
+
+    
+    
     }
 
 

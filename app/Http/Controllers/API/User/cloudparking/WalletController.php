@@ -70,7 +70,14 @@ class WalletController extends Controller {
         ->sum( 'debited_amt' );
 
         $balance = $credited_amt-$debited_amt;
-        if ( $balance >= $request->input( 'debited_amt' ) ) {
+        if( (int)$balance <0){
+            return response()->json( [ 
+            
+            
+                'message'=>'recharge amount insufficent wallet balance', 'status'=>0 ], 412 );
+
+        }
+       else if ($balance>=0&& (int)$balance >= (int)$request->input( 'debited_amt' ) ) {
             $walletModel = new WalletModel();
             $walletModel->wal_user_id = $userdetails->id;
             $walletModel->wal_transaction_id = $request->input( 'wal_transaction_id' );

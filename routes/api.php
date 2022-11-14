@@ -104,6 +104,8 @@ Route::controller(AuthController::class)
     Route::post('addprofile',[Profile::class,'addprofile']);
     Route::post('getdetails',[UserParkingdeatils::class,'generateparkinglslotforuser']);
     Route::post('bookparking',[BookParking::class,'bookpakingbyuser']);
+    Route::post('cancelbookingbyuser',[BookParking::class,'cancelbooking']);
+
     Route::post('updatebookpakingbyuser',[BookParking::class,'updatebookpakingbyuser']);
         
     Route::post('addVendorDetails',[VendorDetailsController::class,'addVendorDetails']);
