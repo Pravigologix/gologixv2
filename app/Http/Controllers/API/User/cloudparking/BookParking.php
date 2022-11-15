@@ -75,7 +75,7 @@ class BookParking extends Controller
    
 
 
-      if(!$book_slot_id->contains($slot_no)&&$compare){
+      if($compare){
         $user_bokking= DB::table('book_parking')->insert([
             'paking_type'=>$request->input('paking_type'),
             'parking_amt'=>$request->input('parking_amt'),
