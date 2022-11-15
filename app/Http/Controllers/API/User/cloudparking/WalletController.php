@@ -70,6 +70,9 @@ class WalletController extends Controller {
         ->sum( 'debited_amt' );
 
         $balance = $credited_amt-$debited_amt;
+        // dd($balance>=0&& (int)$balance >= (int)$request->input( 'debited_amt' ));
+
+      
         if( (int)$balance <0){
             return response()->json( [ 
             
@@ -77,6 +80,7 @@ class WalletController extends Controller {
                 'message'=>'recharge amount insufficent wallet balance', 'status'=>0 ], 412 );
 
         }
+
        else if ($balance>=0&& (int)$balance >= (int)$request->input( 'debited_amt' ) ) {
             $walletModel = new WalletModel();
             $walletModel->wal_user_id = $userdetails->id;
@@ -116,7 +120,7 @@ class WalletController extends Controller {
 
         $userdetails = Auth::user();
         $walletdetails = WalletModel::where( 'wal_user_id', $userdetails->id )->get();
-        $credited_amt = WalletModel::where( 'wal_user_id', $userdetails->id )->where('wal_isactive','=',1)
+        $credited_amt = WalletModel::where( 'wal_user_id', $userdetails->id )
         ->sum( 'credited_amt' );
         $debited_amt = WalletModel::where( 'wal_user_id', $userdetails->id )
         ->sum( 'debited_amt' );
