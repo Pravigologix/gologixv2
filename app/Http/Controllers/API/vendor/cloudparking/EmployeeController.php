@@ -29,9 +29,10 @@ public function editEmployee(Request $request){
 
       
     $emp= Auth::user();  
-        $employee=employee::where('id','=',$request->id)->update([
-            "is_active"=>$request->input('is_active'),
-        ]);
+        $employee=employee::where('id','=',$request->input('id'))->delete(
+           
+        );
+        $epmstatus=DB::table('users')->where('id',$request->input('employee_id'))->update(["is_admin"=>0]);
        
 
         return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
@@ -40,15 +41,13 @@ public function editEmployee(Request $request){
 }
 public function getEmployee(Request $request){
     $emp= Auth::user();  
-    $data=DB::table('employees')
-    ->join('vendor','employees.vendor_id','=',$emp->id)
-    ->join('users','employees.user_id','=','users.id')
-   ->where('employees.is_active','=',0)
-    ->where('users.is_admin','=',6)
+    $data=DB::table('employees')->where('vendor_id',$emp->id)->get();
 
-    ->select('employees.user_id','employee_name','users.phonenumber','employees.vendor_id','employees.aadhar_document','employees.is_active','vendor.ven_name','vendor.ven_description','vendor.ven_phone')
-    ->get();
-    return $data;
+
+
+
+    
+    return response(["data"=>$data],200);
 }
 
 public function customerDetails(Request $request){
