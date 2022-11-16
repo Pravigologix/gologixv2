@@ -30,6 +30,7 @@ class BookParking extends Controller
         ->where('pay_transaction_id','=', $trans_id)
            ->orderBy('id', 'asc')
         ->first('id');
+        // dd($paymentid);
         
         $payid=$paymentid->id;
         
@@ -61,27 +62,34 @@ class BookParking extends Controller
         $arraylist=json_decode($slots[0]);
 
        
-      $slot_no= rand(1,100);
 
-      $compare=($booking_count<$slots[0]);
+       
+      $slot_no= rand(1,$arraylist);
+      $compare=($booking_count<$arraylist);
+
+      
+
+
 
 
    
 
 
-      if(!$book_slot_id->contains($slot_no)&&$compare){
+      if($compare){
         $user_bokking= DB::table('book_parking')->insert([
             'paking_type'=>$request->input('paking_type'),
             'parking_amt'=>$request->input('parking_amt'),
             'user_id'=>$request->input('user_id'),
             'address_id'=>$request->input('address_id'),
             'payment_status'=>$request->input('payment_status'),
+             'parking_status'=>$request->input('parking_status'),
             'payment_id'=>$payid,
             'parking_charge_id'=>$request->input('parking_charge_id'),
             'start_date'=>$request->input('start_date'),
             'is_cacnceled'=>$request->input('is_canceled'),
             'parking_slot_number'=>$slot_no,
             "end_date"=>'',
+            "vehicle_id"=>$request->input('vehicle_id')
         ]);
           
            $bookingid= DB::table('book_parking')->where('paking_type','=',$request->input('paking_type'))
@@ -107,6 +115,29 @@ class BookParking extends Controller
         'message'=>'Bokking failed try again'
       ],412);
 
+    }
+
+
+    public function cancelbooking(Request $request) {
+        
+      $userdetails=Auth::user();
+
+      $cancel_booking=DB::table('book_parking')->where('parking_status',1)
+      ->where('user_id','=',$userdetails->id)
+      ->where('id','=',$request->input('booking_id'))
+
+      ->update([
+        "parking_status"=>"4",
+        "is_cacnceled"=>0
+      ]);
+
+      if($cancel_booking){
+        return response()->json(["Sucess"=>"Parking Canceled"],200);
+      }
+      return response()->json(["Failed"=>"Parking Didn't Canceled"],412);
+
+    
+    
     }
 
 

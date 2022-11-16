@@ -30,4 +30,14 @@ class UserBookingDeatils extends Controller
         ->get();
         return response()->json(['user_details'=>$bookparking,"additioanl_payments"=>$addtional_payments],200);
     }
+    
+     public function getallcity(Request $request){
+         
+         $city=DB::table('city')->get();
+         
+         return response()->json(['city'=>$city],200);
+         
+         
+         
+     }
 }

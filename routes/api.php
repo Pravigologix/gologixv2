@@ -33,6 +33,8 @@ use App\Http\Controllers\API\User\cloudparking\UserTransactionDetails;
 use App\Http\Controllers\API\User\cloudparking\TimeController;
 use App\Http\Controllers\API\User\cloudparking\ProfileController;
 use App\Http\Controllers\API\User\cloudparking\ExtraAmountController;
+use App\Http\Controllers\BikecafeBranch;
+
 
 
 
@@ -102,6 +104,8 @@ Route::controller(AuthController::class)
     Route::post('addprofile',[Profile::class,'addprofile']);
     Route::post('getdetails',[UserParkingdeatils::class,'generateparkinglslotforuser']);
     Route::post('bookparking',[BookParking::class,'bookpakingbyuser']);
+    Route::post('cancelbookingbyuser',[BookParking::class,'cancelbooking']);
+
     Route::post('updatebookpakingbyuser',[BookParking::class,'updatebookpakingbyuser']);
         
     Route::post('addVendorDetails',[VendorDetailsController::class,'addVendorDetails']);
@@ -112,6 +116,7 @@ Route::controller(AuthController::class)
    // Route::get('getvendordashboard',[VendorDetailsController::class,'getvendordashboarddetails']);
 //=======
 Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
+
 Route::post('getvendordashboard',[VendorDetailsController::class,'getvendordashboarddetails']);
 //>>>>>>> main
 
@@ -171,7 +176,15 @@ Route::get('allUserBookingDetails',[AllUserBookingDetails::class,'allUserBooking
 
  Route::post('getbannerforuser',[BannerController::class,'getbanners']);
 
- Route::post('addBanner',[BannerController::class,'addBannerbyadmin']);
+
+ Route::get('getcity',[UserBookingDeatils::class,'getallcity']);
+
+Route::get('getbcbranch',[BikecafeBranch::class,'getallbcbranch']);
+
+
+
+
+
 
 //Admin dashboard route
 

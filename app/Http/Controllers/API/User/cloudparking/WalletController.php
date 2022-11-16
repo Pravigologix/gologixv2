@@ -45,11 +45,15 @@ class WalletController extends Controller {
         $walletModel->wal_transaction_id =(string)$paymentid;
         $walletModel->credited_amt = $request->input( 'credited_amt' );
         $walletModel->debited_amt = $request->input( 'debited_amt' );
-
+        $walletModel->wal_isactive =0;
         $walletModel->save();
+
+
+        $wal_id=WalletModel::where('wal_transaction_id','=',(string)$paymentid)->where('credited_amt', $request->input( 'credited_amt' ))->get('id');
 
         return response()->json( [ 
             'payment_id'=>$paymentid,
+            'wal_id'=>$wal_id,
           
             
             'message'=>'payment Satus Updated' ], 200 );
@@ -66,7 +70,18 @@ class WalletController extends Controller {
         ->sum( 'debited_amt' );
 
         $balance = $credited_amt-$debited_amt;
-        if ( $balance >= $request->input( 'debited_amt' ) ) {
+        // dd($balance>=0&& (int)$balance >= (int)$request->input( 'debited_amt' ));
+
+      
+        if( (int)$balance <0){
+            return response()->json( [ 
+            
+            
+                'message'=>'recharge amount insufficent wallet balance', 'status'=>0 ], 412 );
+
+        }
+
+       else if ($balance>=0&& (int)$balance >= (int)$request->input( 'debited_amt' ) ) {
             $walletModel = new WalletModel();
             $walletModel->wal_user_id = $userdetails->id;
             $walletModel->wal_transaction_id = $request->input( 'wal_transaction_id' );
@@ -83,6 +98,8 @@ class WalletController extends Controller {
 
     }
      public function updatewalletamount( Request $request ) {
+
+        $wallet=DB::table('wallet_parking')->where('id','=',$request->input( 'wallet_id'))->update(['wal_isactive'=>1]);
 
         
        
