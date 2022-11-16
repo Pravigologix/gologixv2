@@ -22,7 +22,7 @@
 }
 @media (min-width: 991.98px) {
   main {
-    padding-left: 240px;
+    padding-left: 260px;
   }
 }
 
@@ -40,7 +40,7 @@
 
 @media (max-width: 991.98px) {
   .sidebar {
-    width: 30%;
+    width: 240px;
   }
 }
 .sidebar .active {
@@ -60,7 +60,7 @@
 .mainbody{
     /* left:50%;
      */
-    padding-left: 260px;
+    padding-left: 280px;
 }
 </style>
 
@@ -80,7 +80,7 @@
 <h1>Vendor</h1>
 
 
-    </div>
+
   
 <div class="container">
    
@@ -90,10 +90,10 @@
               <th>id</th>
               <th>ven_name</th>
               <th>ven_phone</th>
-              <th>gst_no</th>
-              <th>created_at</th>
-              <th>ven_isactive</th>
-              <th>ven_isdeleted</th> -->
+              <th>email</th>
+       
+       
+           
           </tr>
       </thead>
       <tbody>
@@ -101,16 +101,15 @@
               @foreach($vendor as $key => $value)
                   <tr>
                       <td>{{ $value->id }}</td>
-                      <td>{{ $value->ven_name }}</td>
-                      <td>{{ $value->ven_phone }}</td>
-                      <td>{{ $value->gst_no }}</td>
-                      <td>{{ $value->created_at }}</td>
-                      <td>{{ $value->ven_isactive }}</td>
-                      <td>{{ $value->ven_isdeleted }}</td>
+                      <td>{{ $value->name }}</td>
+                      <td>{{ $value->phonenumber }}</td>
+                      <td>{{ $value->email }}</td>
+                   
+                   
 
-                      <!-- <td>
-                          <button class="btn btn-danger">Delete</button>
-                      </td> -->
+                      <td>
+                          <button class="btn btn-primary">View</button>
+                      </td>
                   </tr>
               @endforeach
           @else
@@ -121,10 +120,10 @@
       </tbody>
   </table>
        
-  {!! $vendor->links('pagination::bootstrap-4') !!}
 </div>
 
 
+{!! $vendor->links('pagination::bootstrap-4') !!}
 
 </div>
 

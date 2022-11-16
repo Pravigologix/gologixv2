@@ -50,6 +50,18 @@ class AdminController extends Controller
     public function register(){
         return view('admin.register');
     }
+    public function support(Request $request){
+        $data=DB::table('helpandsupport')->insert([
+            "name"=>$request->input('name'),
+            "email"=>$request->input('email'),
+            "phonenumber"=>$request->input('phonenumber'),
+            "message"=>$request->input('message')
+
+
+
+        ]);
+        return redirect('/help/all')->with('Sucess',"Administrator will contact soon");
+    }
     
     public function password(){
         return view('admin.password');
@@ -58,6 +70,8 @@ class AdminController extends Controller
        
         return response()->json($token); 
     }
+
+
 
 
     public function getalltrancationforadmin(){

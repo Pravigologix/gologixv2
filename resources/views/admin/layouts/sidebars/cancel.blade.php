@@ -9,17 +9,17 @@
   <div class="list-group list-group-flush mx-3 mt-4">
     <a
       href="{{ url('/admin-login-posts') }}"
-      class="list-group-item list-group-item-action py-2 ripple "
+      class="list-group-item list-group-item-action py-2 ripple"
       aria-current="true"
     >
       <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
     </a>
   
-    <a href="{{ url('/vendor') }}" class="list-group-item list-group-item-action py-2 ripple">
+    <a href="{{ url('/vendor') }}" class="list-group-item list-group-item-action py-2  }}">
       <i class="fas fa-chart-area fa-fw me-3"></i><span>Vendor</span>
     </a>
 
-    <a href="{{ url('/users') }}" class="list-group-item list-group-item-action py-2 ripple active"
+    <a href="{{ url('/users') }}" class="list-group-item list-group-item-action py-2 ripple"
       ><i class="fas fa-lock fa-fw me-3"></i><span>Users</span></a
     >
     <a href="{{ url('/banner') }}" class="list-group-item list-group-item-action py-2 ripple"
@@ -34,7 +34,7 @@
     <a href="#" class="list-group-item list-group-item-action py-2 ripple"
       ><i class="fas fa-chart-bar fa-fw me-3"></i><span>BC Branch</span></a
     >
-    <a href="{{ url('/cancel/orders') }}" class="list-group-item list-group-item-action py-2 ripple">
+    <a href="{{ url('/cancel/orders') }}" class="list-group-item list-group-item-action py-2 ripple active">
       <i class="fas fa-chart-pie fa-fw me-3"></i><span>Cancel orders</span>
     </a>
     
@@ -42,7 +42,7 @@
     <a href="{{ url('/') }}" class="list-group-item list-group-item-action py-2 ripple"
       ><i class="fas fa-money-bill fa-fw me-3"></i><span>LogOut</span></a
     >
-   
+  
   </div>
 </div>
 </nav>

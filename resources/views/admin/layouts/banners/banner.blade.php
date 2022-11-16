@@ -23,7 +23,7 @@
 }
 @media (min-width: 991.98px) {
   main {
-    padding-left: 240px;
+    padding-left: 30%;
   }
 }
 

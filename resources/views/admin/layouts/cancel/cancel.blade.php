@@ -68,7 +68,7 @@
 <nav class="navbar navbar-light bg-light">
 
 
-@include('admin.layouts.sidebars.help')
+@include('admin.layouts.sidebars.cancel')
 
 
 
@@ -77,7 +77,7 @@
 
 <div class="mainbody">
 
-<h1>Help And Support</h1>
+<h1>Cancled bookings</h1>
 
 
 <div class="container">
@@ -86,10 +86,10 @@
         <thead>
             <tr>
       
-                <th>Name</th>
-                <th>Phone Number</th>
-                <th>Email</th>
-                <th>Message</th>
+                <th>User_id</th>
+                <th>Start Date</th>
+              
+                <th>Price</th>
 
                 <th>Created at</th>
 
@@ -105,14 +105,16 @@
             </tr>
         </thead>
         <tbody>
-            @if(!empty($support) && $support->count())
-                @foreach($support as $key => $value)
+            @if(!empty($orders) && $orders->count())
+                @foreach($orders as $key => $value)
                     <tr>
                        
-                        <td>{{ $value->name }}</td>
-                        <td>{{ $value->email }}</td>
-                        <td>{{ $value->phonenumber }}</td>
-                        <td >{{ $value->message }}</td>
+                        <td>{{ $value->user_id }}</td>
+                        <td>{{ $value->start_date }}</td>
+                      
+                        <td>{{ $value->pay_price }}</td>
+
+                       
 
 
                        
@@ -120,9 +122,9 @@
                         <td>{{ $value->created_at }}</td>
                       
 
-                        <!-- <td>
-                            <button class="btn btn-danger">Delete</button>
-                        </td> -->
+                        <td>
+                            <button class="btn btn-success">Return Amount</button> / <button class="btn btn-danger">Clear Amount</button>
+                        </td>
                     </tr>
                 @endforeach
             @else
@@ -133,7 +135,7 @@
         </tbody>
     </table>
          
-    {!! $support->links('pagination::bootstrap-4') !!}
+    {!! $orders->links('pagination::bootstrap-4') !!}
 </div>
 
 

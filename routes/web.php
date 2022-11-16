@@ -45,6 +45,11 @@ Route::get('/admin-login-posts',function(){
     return view('admin.dashboard');
 
 });
+Route::get('/help/all',function(){
+    return view('helpandsupport');
+
+});
+Route::post('/help/all/post',[AdminController::class, 'support'])->name('postsupport');
 
 Route::get('/banner',function(){
     return view('admin.layouts.banners.banner');
@@ -60,7 +65,7 @@ Route::get('/transaction',function(){
 
 });
 Route::get('/vendor',function(){ 
-    $vendor=DB::table('vendor')->paginate(10);
+    $vendor=DB::table('users')->where('is_admin',2)->paginate(20);
     //return $vendor;
     return view('admin.layouts.vendor.vendor',["vendor"=>$vendor]);
 
@@ -69,8 +74,30 @@ Route::get('/vendor',function(){
     $users=DB::table('users')->where('is_admin',0)->paginate(10);
     return view('admin.layouts.users.users',["users"=>$users]);
 
-});Route::get('/help&suppot',function(){
-    return view('admin.layouts.help.help');
+});
+
+Route::get('/help&suppot',function(){
+
+    $support=DB::table('helpandsupport')->orderBy("id", "desc")->paginate(20);
+
+
+
+
+
+    return view('admin.layouts.help.help',["support"=>$support]);
+
+});
+
+Route::get('/cancel/orders',function(){
+
+    $orders=DB::table('book_parking')->orderBy("id", "desc")->where('parking_status',5)->where('is_cacnceled',0)->join('payments','book_parking.payment_id','=','payments.id')->select('book_parking.*','payments.pay_price')
+    ->paginate(30);
+
+
+
+
+
+    return view('admin.layouts.cancel.cancel',["orders"=>$orders]);
 
 });
 Route::get('/banner',function(){
@@ -81,7 +108,7 @@ Route::get('/banner',function(){
     });
       Route::get('delete',function(){ 
          $users=DB::table('banners')->where('id',1)->delete();
-        return view('admin.layouts.banners.delete',["banners"=>$users]);
+        return view('admin.layouts.banners',["banners"=>$users]);
     
     
   
