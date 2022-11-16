@@ -3,20 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\HomeController;
-use DB;
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+use Illuminate\Support\Facades\DB;
+use App\Models\Banner;
+use App\Models\vendor;
+use Illuminate\Http\Request;
 
 
 Route::get('routes', function () {
@@ -68,8 +58,11 @@ Route::get('/transaction',function(){
     
     return view('admin.layouts.payment.payment',["trans"=>$trans,"total_price"=>$total_price]);
 
-});Route::get('/vendor',function(){
-    return view('admin.layouts.vendor.vendor');
+});
+Route::get('/vendor',function(){ 
+    $vendor=DB::table('vendor')->paginate(10);
+    //return $vendor;
+    return view('admin.layouts.vendor.vendor',["vendor"=>$vendor]);
 
 });Route::get('/users',function(){
 
@@ -80,5 +73,17 @@ Route::get('/transaction',function(){
     return view('admin.layouts.help.help');
 
 });
+Route::get('/banner',function(){
 
+    $users=DB::table('banners')->get();
+
+      return view('admin.layouts.banners.banner',["banners"=>$users]);
+    });
+      Route::get('delete',function(){ 
+         $users=DB::table('banners')->where('id',1)->delete();
+        return view('admin.layouts.banners.delete',["banners"=>$users]);
+    
+    
+  
+});
 

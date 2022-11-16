@@ -171,8 +171,10 @@ Route::get('allUserBookingDetails',[AllUserBookingDetails::class,'allUserBooking
 
  Route::post('getbannerforuser',[BannerController::class,'getbanners']);
 
+ Route::post('addBanner',[BannerController::class,'addBannerbyadmin']);
 
 //Admin dashboard route
+
 Route::get('admin/dashboard',[AdminController::class,'dashboard']);
 //admin login
 Route::get('admin/login',[AdminController::class,'login']);

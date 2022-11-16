@@ -31,10 +31,7 @@
         <a href="{{ url('/help&suppot') }}" class="list-group-item list-group-item-action py-2 ripple">
           <i class="fas fa-chart-pie fa-fw me-3"></i><span>Help & Support</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Orders</span></a
-        >
-
+        
         <a href="{{ url('/') }}" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-money-bill fa-fw me-3"></i><span>LogOut</span></a
         >
