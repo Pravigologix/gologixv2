@@ -139,6 +139,7 @@ public function getvendordashboarddetails(Request $request)
   ->where('book_parking.paking_type','=',2)
 
   ->where('book_parking.parking_status','=',1)
+  ->orWhere('book_parking.parking_status','=',2)
 
   ->count();
 
