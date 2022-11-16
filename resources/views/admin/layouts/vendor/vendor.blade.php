@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,7 +68,8 @@
 <nav class="navbar navbar-light bg-light">
 
 
-@include('admin.layouts.sidebars.dashboard')
+@include('admin.layouts.sidebars.vendor')
+
 
 
 
@@ -75,15 +77,56 @@
 
 <div class="mainbody">
 
-<h1>Dashboard</h1>
+<h1>Vendor</h1>
 
 
     </div>
   
+<div class="container">
+   
+  <table class="table table-bordered">
+      <thead>
+          <tr>
+              <th>id</th>
+              <th>ven_name</th>
+              <th>ven_phone</th>
+              <th>gst_no</th>
+              <th>created_at</th>
+              <th>ven_isactive</th>
+              <th>ven_isdeleted</th> -->
+          </tr>
+      </thead>
+      <tbody>
+          @if(!empty($vendor) && $vendor->count())
+              @foreach($vendor as $key => $value)
+                  <tr>
+                      <td>{{ $value->id }}</td>
+                      <td>{{ $value->ven_name }}</td>
+                      <td>{{ $value->ven_phone }}</td>
+                      <td>{{ $value->gst_no }}</td>
+                      <td>{{ $value->created_at }}</td>
+                      <td>{{ $value->ven_isactive }}</td>
+                      <td>{{ $value->ven_isdeleted }}</td>
+
+                      <!-- <td>
+                          <button class="btn btn-danger">Delete</button>
+                      </td> -->
+                  </tr>
+              @endforeach
+          @else
+              <tr>
+                  <td colspan="10">There are no data.</td>
+              </tr>
+          @endif
+      </tbody>
+  </table>
+       
+  {!! $vendor->links('pagination::bootstrap-4') !!}
+</div>
 
 
 
-
+</div>
 
 
     

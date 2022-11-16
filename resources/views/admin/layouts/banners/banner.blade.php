@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,7 @@
     body {
   background-color: #fbfbfb;
 }
+
 .navbar-brand{
   padding-left: 25%;
 
@@ -61,13 +63,15 @@
      */
     padding-left: 260px;
 }
+
 </style>
 
 <body >
 <nav class="navbar navbar-light bg-light">
 
 
-@include('admin.layouts.sidebars.dashboard')
+@include('admin.layouts.sidebars.banner')
+
 
 
 
@@ -75,8 +79,44 @@
 
 <div class="mainbody">
 
-<h1>Dashboard</h1>
+<h1>Banners</h1>
+<div class="container">
+   
+  <table class="table table-bordered">
+      <thead>
+          <tr>
+     
+              <th>banner_image_url</th>
+              <th>action</th>
+          
+          </tr>
+      </thead>
+      <tbody>
+        
+        @foreach($banners as $key => $value)
+            <tr>
+                <td>{{ $value->banner_image_url }}</td>
+              
 
+              <td>
+                <form action="delete">
+                    <button class="btn btn-danger">Delete</button>
+                  </form>
+                  <form action="delete">
+                    <button class="btn btn-danger">Add</button>
+                  </form>
+                    <form action="delete">
+                    <button class="btn btn-danger">Edit</button>
+                  </form>
+                </td> 
+            </tr>
+        @endforeach
+
+</tbody>
+</table>
+
+
+</div>
 
     </div>
   

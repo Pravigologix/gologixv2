@@ -176,6 +176,7 @@ Route::get('allUserBookingDetails',[AllUserBookingDetails::class,'allUserBooking
 
  Route::post('getbannerforuser',[BannerController::class,'getbanners']);
 
+
  Route::get('getcity',[UserBookingDeatils::class,'getallcity']);
 
 Route::get('getbcbranch',[BikecafeBranch::class,'getallbcbranch']);
@@ -184,7 +185,9 @@ Route::get('getbcbranch',[BikecafeBranch::class,'getallbcbranch']);
 
 
 
+
 //Admin dashboard route
+
 Route::get('admin/dashboard',[AdminController::class,'dashboard']);
 //admin login
 Route::get('admin/login',[AdminController::class,'login']);
