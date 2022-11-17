@@ -46,14 +46,14 @@ class BannerController extends Controller {
 
     //Remove the specified resource from storage.
 
-    public function destroy( Request $request ) {
-        $data = Banner::find( $request->input( 'id' ) );
-        $data->delete();
-
+    public function destroy( Request $request,$id ) {
+    
+        $data = Banner::find($id )->delete();
+      
         //$d = DB::table( 'banners' )->get();
         // return $d;
 
-        return redirect('admin.layouts.banners.banner');
+        return redirect('/banner');
     }
     public function destroyclip( $id ) {
         $data = DB::table('videoclip')->where('id',$id)->delete();
@@ -86,7 +86,7 @@ class BannerController extends Controller {
        
 
 
-        return redirect('admin.layouts.banners.banner');
+        return redirect('/banner');
 
 
     }

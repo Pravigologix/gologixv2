@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\API\User\cloudparking\BannerController;
+
 use Illuminate\Support\Facades\DB;
 use App\Models\Banner;
 use App\Models\vendor;
@@ -60,6 +62,9 @@ Route::post('/canceled/clear/{booking_id}',[AdminController::class, 'clearamout'
 
 
 Route::post('/add/banner',[BannerController::class, 'addBannerbyadmin'])->name('addbanner');
+
+Route::get('/delete/banner/{id}',[BannerController::class, 'destroy'])->name('deletebanner');
+
 Route::post('/add/video',[BannerController::class, 'addvideobyadmin'])->name('addvideo');
 
 Route::post('/delete/banner',[BannerController::class, 'destroy'])->name('deletebanner');
@@ -69,6 +74,7 @@ Route::post('/delete/video/{id}',[BannerController::class, 'destroyclip'])->name
 Route::post('/add/bcbranch',[AdminController::class, 'addbcbranch'])->name('addbcbranch');
 
 Route::post('/delete/bcbranch/{id}',[AdminController::class,'deletebcbranch'])->name('deletebanner');
+
 
 
 
@@ -130,10 +136,13 @@ Route::get('/banner',function(){
       return view('admin.layouts.banners.banner',["banners"=>$users,"videoclip"=>$videos]);
     });
 
+
     Route::get('/bcbranch',function(){
+
 
         $users=DB::table('bc_branch')->get();
     
+
           return view('admin.layouts.bcbranch.bcbranch',["banners"=>$users]);
         });
   
