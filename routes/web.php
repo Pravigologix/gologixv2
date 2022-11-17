@@ -80,10 +80,12 @@ Route::get('/delete/banner/{id}',[BannerController::class, 'destroy'])->name('de
 Route::post('/add/video',[BannerController::class, 'addvideobyadmin'])->name('addvideo');
 
 // Route::post('/delete/banner',[BannerController::class, 'destroy'])->name('deletebanner');
-Route::post('/delete/video/{id}',[BannerController::class, 'destroyclip'])->name('deletevidoe');
+Route::post('/delete/video/{id}',[BannerController::class, 'destroyclip'])->name('deletevideo');
 
 
 Route::post('/add/bcbranch',[AdminController::class, 'addbcbranch'])->name('addbcbranch');
+Route::post('/vendor/{id}',[AdminController::class, 'getvendordetailstoadminbyid'])->name('vendorbyid');
+
 
 Route::post('/delete/bcbranch/{id}',[AdminController::class,'deletebcbranch'])->name('deletebcbranch');
 

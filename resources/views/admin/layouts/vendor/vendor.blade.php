@@ -104,11 +104,11 @@
                       <td>{{ $value->name }}</td>
                       <td>{{ $value->phonenumber }}</td>
                       <td>{{ $value->email }}</td>
-                   
-                   
-
                       <td>
-                          <button class="btn btn-primary">View</button>
+                        <form action="{{route('vendorbyid', ['id'=> $value->id ])}}" method="post">
+                          @csrf
+                          <button type="submit" class="btn btn-primary">View</button>
+                        </form>
                       </td>
                   </tr>
               @endforeach
