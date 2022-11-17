@@ -197,7 +197,7 @@
 
 
                             <td>
-                                <form action="{{ route('deletebanner',['id'=>$value->id]) }}" method="POST">
+                                <form action="{{ route('deletebcbranch',['id'=>$value->id]) }}" method="POST">
                                  @csrf
                                     <button class="btn btn-danger">Delete</button>
                                 </form>

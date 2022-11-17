@@ -51,6 +51,18 @@ Route::get('/help/all',function(){
     return view('helpandsupport');
 
 });
+Route::group(['middleware' => 'prevent-back-history'],function(){
+Route::get('/logout',function(){
+    Session::flush();
+        
+    Redirect::back();
+    
+    return redirect('/');
+
+});
+});
+
+
 
 Route::get('/getvendordetailstoadminbyid/{id}', [AdminController::class, 'getvendordetailstoadminbyid'])->name('getvendordetailstoadminbyid');
 
@@ -67,13 +79,13 @@ Route::get('/delete/banner/{id}',[BannerController::class, 'destroy'])->name('de
 
 Route::post('/add/video',[BannerController::class, 'addvideobyadmin'])->name('addvideo');
 
-Route::post('/delete/banner',[BannerController::class, 'destroy'])->name('deletebanner');
+// Route::post('/delete/banner',[BannerController::class, 'destroy'])->name('deletebanner');
 Route::post('/delete/video/{id}',[BannerController::class, 'destroyclip'])->name('deletevidoe');
 
 
 Route::post('/add/bcbranch',[AdminController::class, 'addbcbranch'])->name('addbcbranch');
 
-Route::post('/delete/bcbranch/{id}',[AdminController::class,'deletebcbranch'])->name('deletebanner');
+Route::post('/delete/bcbranch/{id}',[AdminController::class,'deletebcbranch'])->name('deletebcbranch');
 
 
 

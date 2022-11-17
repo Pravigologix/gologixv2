@@ -36,7 +36,7 @@ class AdminController extends Controller {
 
             return redirect( '/' )->with( 'error', "Credential didn't match" );
         } else if ( Auth::user()->is_admin == 1 ) {
-            return view( 'admin.vendor.vendor' );
+            return redirect( '/vendor' );
 
         } else {
 

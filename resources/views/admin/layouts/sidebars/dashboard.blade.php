@@ -38,7 +38,7 @@
       <i class="fas fa-chart-pie fa-fw me-3"></i><span>Cancel orders</span>
     </a>
         
-        <a href="{{ url('/') }}" class="list-group-item list-group-item-action py-2 ripple"
+        <a href="{{ url('/logout') }}" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-money-bill fa-fw me-3"></i><span>LogOut</span></a
         >
       

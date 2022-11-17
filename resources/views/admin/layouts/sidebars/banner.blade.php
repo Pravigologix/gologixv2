@@ -16,31 +16,31 @@
     </a> --}}
   
     <a href="{{ url('/vendor') }}" class="list-group-item list-group-item-action py-2 ripple">
-      <i class="fas fa-chart-area fa-fw me-3"></i><span>Vendor</span>
+      <span>Vendor</span>
     </a>
 
     <a href="{{ url('/users') }}" class="list-group-item list-group-item-action py-2 ripple"
-      ><i class="fas fa-lock fa-fw me-3"></i><span>Users</span></a
+      ><span>Users</span></a
     >
     <a href="{{ url('/banner') }}" class="list-group-item list-group-item-action py-2 ripple active"
-      ><i class="fas fa-lock fa-fw me-3"></i><span>Banners</span></a
+      ><span>Banners</span></a
     >
     <a href="{{ url('/transaction') }}" class="list-group-item list-group-item-action py-2 ripple"
-      ><i class="fas fa-chart-line fa-fw me-3"></i><span>Transactions</span></a
+      ><span>Transactions</span></a
     >
     <a href="{{ url('/help&suppot') }}" class="list-group-item list-group-item-action py-2 ripple">
-      <i class="fas fa-chart-pie fa-fw me-3"></i><span>Help & Support</span>
+      <span>Help & Support</span>
     </a>
     <a href="{{ url('/bcbranch') }}" class="list-group-item list-group-item-action py-2 ripple "
-      ><i class="fas fa-chart-bar fa-fw me-3"></i><span>BC Branch</span></a
+      ><span>BC Branch</span></a
     >
     <a href="{{ url('/cancel/orders') }}" class="list-group-item list-group-item-action py-2 ripple">
-      <i class="fas fa-chart-pie fa-fw me-3"></i><span>Cancel orders</span>
+      <span>Cancel orders</span>
     </a>
   
 
     <a href="{{ url('/') }}" class="list-group-item list-group-item-action py-2 ripple"
-      ><i class="fas fa-money-bill fa-fw me-3"></i><span>LogOut</span></a
+      ><span>LogOut</span></a
     >
   </div>
 </div>
