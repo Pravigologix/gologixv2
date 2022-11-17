@@ -55,6 +55,14 @@ class BannerController extends Controller {
 
         return redirect('admin.layouts.banners.banner');
     }
+    public function destroyclip( $id ) {
+        $data = DB::table('videoclip')->where('id',$id)->delete();
+
+        //$d = DB::table( 'banners' )->get();
+        // return $d;
+
+        return redirect('admin.layouts.banners.banner');
+    }
 
     public function addBannerbyadmin(Request $request){
         $files=$request->file('banner_image_url');
@@ -71,6 +79,33 @@ class BannerController extends Controller {
         $users=DB::table('banners')->insert([
             "banner_image_url"=>$banner_url,
    "banner_descprition"=>$request->input('banner_descprition')
+
+
+        ]);
+       
+       
+
+
+        return redirect('admin.layouts.banners.banner');
+
+
+    }
+
+    public function addvideobyadmin(Request $request){
+        $files=$request->file('clip_url');
+        $hostname=$_SERVER['HTTP_HOST'];
+        
+                $filejustname =pathinfo($files, PATHINFO_FILENAME);
+                // Get just extension of user upload file
+                $extention =$files->getClientOriginalExtension();
+                $fileName = $filejustname .time()."." .$extention ;
+                $destinationPath = public_path().'/images'.'/banners';
+                $fileupload=$files->move($destinationPath,$fileName);
+                $banner_url=env('APP_URL').'/images'.'/banners'.'/'.$fileName; 
+
+        $users=DB::table('videoclip')->insert([
+            "clip_url"=>$banner_url,
+ 
 
 
         ]);

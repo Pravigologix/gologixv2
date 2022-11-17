@@ -49,13 +49,22 @@ Route::get('/help/all',function(){
     return view('helpandsupport');
 
 });
+
+Route::get('/getvendordetailstoadminbyid/{id}', [AdminController::class, 'getvendordetailstoadminbyid'])->name('getvendordetailstoadminbyid');
+
+
+
 Route::post('/help/all/post',[AdminController::class, 'support'])->name('postsupport');
 Route::post('/canceled/return/{id}/{booking_id}/{price}',[AdminController::class, 'returnamout'])->name('returnamt');
 Route::post('/canceled/clear/{booking_id}',[AdminController::class, 'clearamout'])->name('clearamt');
 
 
 Route::post('/add/banner',[BannerController::class, 'addBannerbyadmin'])->name('addbanner');
+Route::post('/add/video',[BannerController::class, 'addvideobyadmin'])->name('addvideo');
+
 Route::post('/delete/banner',[BannerController::class, 'destroy'])->name('deletebanner');
+Route::post('/delete/video/{id}',[BannerController::class, 'destroyclip'])->name('deletevidoe');
+
 
 Route::post('/add/bcbranch',[AdminController::class, 'addbcbranch'])->name('addbcbranch');
 
@@ -116,8 +125,9 @@ Route::get('/cancel/orders',function(){
 Route::get('/banner',function(){
 
     $users=DB::table('banners')->get();
+    $videos=DB::table('videoclip')->get();
 
-      return view('admin.layouts.banners.banner',["banners"=>$users]);
+      return view('admin.layouts.banners.banner',["banners"=>$users,"videoclip"=>$videos]);
     });
 
     Route::get('/bcbranch',function(){

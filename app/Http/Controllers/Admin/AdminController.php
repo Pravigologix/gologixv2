@@ -83,6 +83,16 @@ class AdminController extends Controller {
         return view( 'admin.password', [ 'vendor'=>$vendor ] );
     }
 
+    public function getvendordetailstoadminbyid($id) {
+        $vendor = DB::table( 'users' )->where( 'id', $id)->get();
+        $vendor_account = DB::table( 'vendor_account' )->where( 'vendor_id', $id)->get();
+        $vendor_kyc = DB::table( 'vendor_kyc' )->where( 'venkyc_vendor_id', $id)->get();
+
+
+
+        return view( 'admin.vendorview', [ 'vendor'=>$vendor,"account_details"=>$vendor_account,"kyc"=>$vendor_kyc ] );
+    }
+
     public function returnamout( $id, $booking_id, $price ) {
         $date = new DateTime();
         $trans = "{{$date->format(\DateTime::ISO8601)}}".$id.$price;
