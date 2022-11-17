@@ -53,7 +53,7 @@ class BannerController extends Controller {
         //$d = DB::table( 'banners' )->get();
         // return $d;
 
-        return response()->json( [ 'data successfully deleted.' ] );
+        return redirect('admin.layouts.banners.banner');
     }
 
     public function addBannerbyadmin(Request $request){
@@ -78,7 +78,7 @@ class BannerController extends Controller {
        
 
 
-        return response()->json( ["message"=> "Banner added successfully."] );
+        return redirect('admin.layouts.banners.banner');
 
 
     }

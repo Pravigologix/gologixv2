@@ -16,13 +16,14 @@
     body {
   background-color: #fbfbfb;
 }
+
 .navbar-brand{
   padding-left: 25%;
 
 }
 @media (min-width: 991.98px) {
   main {
-    padding-left: 240px;
+    padding-left: 30%;
   }
 }
 
@@ -62,13 +63,14 @@
      */
     padding-left: 260px;
 }
+
 </style>
 
 <body >
 <nav class="navbar navbar-light bg-light">
 
 
-@include('admin.layouts.sidebars.cancel')
+@include('admin.layouts.sidebars.bc_branch')
 
 
 
@@ -77,69 +79,44 @@
 
 <div class="mainbody">
 
-<h1>Cancled bookings</h1>
-
-
+<h1>Bc Branch</h1>
 <div class="container">
    
-    <table class="table table-bordered">
-        <thead>
+  <table class="table table-bordered">
+      <thead>
+          <tr>
+     
+              <th>banner_image_url</th>
+              <th>action</th>
+          
+          </tr>
+      </thead>
+      <tbody>
+        
+        @foreach($banners as $key => $value)
             <tr>
-      
-                <th>User_id</th>
-                <th>Booking_id</th>
-                <th>Start Date</th>
+                <td>{{ $value->banner_image_url }}</td>
               
-                <th>Price</th>
 
-                <th>Created at</th>
-
-                <!-- <th></th>
-                <th>Payment Status</th>
-                <th>Payment At</th> -->
-
-
-
-
-
-                <!-- <th width="300px;">Action</th> -->
+              <td>
+                <form action="delete">
+                    <button class="btn btn-danger">Delete</button>
+                  </form>
+                  <form action="delete">
+                    <button class="btn btn-danger">Add</button>
+                  </form>
+                    <form action="delete">
+                    <button class="btn btn-danger">Edit</button>
+                  </form>
+                </td> 
             </tr>
-        </thead>
-        <tbody>
-            @if(!empty($orders) && $orders->count())
-                @foreach($orders as $key => $value)
-                    <tr>
-                       
-                        <td>{{ $value->user_id }}</td>
-                        <td>{{ $value->id }}</td>
-                        <td>{{ $value->start_date }}</td>
-                      
-                        <td>{{ $value->pay_price }}</td>
+        @endforeach
 
-                       
+</tbody>
+</table>
 
 
-                       
-                       
-                        <td>{{ $value->created_at }}</td>
-                      
-
-                        <td>
-                            <button class="btn btn-success">Return Amount</button> / <button class="btn btn-danger">Clear Amount</button>
-                        </td>
-                    </tr>
-                @endforeach
-            @else
-                <tr>
-                    <td colspan="10">There are no data.</td>
-                </tr>
-            @endif
-        </tbody>
-    </table>
-         
-    {!! $orders->links('pagination::bootstrap-4') !!}
 </div>
-
 
     </div>
   

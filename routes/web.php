@@ -50,6 +50,10 @@ Route::get('/help/all',function(){
 
 });
 Route::post('/help/all/post',[AdminController::class, 'support'])->name('postsupport');
+Route::post('/add/banner',[BannerController::class, 'addBannerbyadmin'])->name('addbanner');
+Route::post('/delete/banner',[BannerController::class, 'destroy'])->name('deletebanner');
+
+
 
 Route::get('/banner',function(){
     return view('admin.layouts.banners.banner');
@@ -106,11 +110,12 @@ Route::get('/banner',function(){
 
       return view('admin.layouts.banners.banner',["banners"=>$users]);
     });
-      Route::get('delete',function(){ 
-         $users=DB::table('banners')->where('id',1)->delete();
-        return view('admin.layouts.banners',["banners"=>$users]);
+
+    Route::get('/bcbranch',function(){
+
+        $users=DB::table('banners')->get();
     
-    
+          return view('admin.layouts.bcbranch.bcbranch',["banners"=>$users]);
+        });
   
-});
 
