@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\API\User\cloudparking\BannerController;
+
 use Illuminate\Support\Facades\DB;
 use App\Models\Banner;
 use App\Models\vendor;
@@ -51,7 +53,7 @@ Route::get('/help/all',function(){
 });
 Route::post('/help/all/post',[AdminController::class, 'support'])->name('postsupport');
 Route::post('/add/banner',[BannerController::class, 'addBannerbyadmin'])->name('addbanner');
-Route::post('/delete/banner',[BannerController::class, 'destroy'])->name('deletebanner');
+Route::get('/delete/banner/{id}',[BannerController::class, 'destroy'])->name('deletebanner');
 
 
 
@@ -111,10 +113,11 @@ Route::get('/banner',function(){
       return view('admin.layouts.banners.banner',["banners"=>$users]);
     });
 
+
     Route::get('/bcbranch',function(){
 
         $users=DB::table('banners')->get();
-    
+
           return view('admin.layouts.bcbranch.bcbranch',["banners"=>$users]);
         });
   

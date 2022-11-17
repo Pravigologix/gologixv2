@@ -51,10 +51,10 @@ class BikecafeBranch extends Controller
     }
     
     
-     public function addallbcbranch(Request $req)
+     public function deleteallbcbranch(Request $req)
     {
         $bc_cafe=DB::table('bc_branch')->where(
-            'id'=>$req->input('id')
+            'id',$req->input('id'),
            
             
         
