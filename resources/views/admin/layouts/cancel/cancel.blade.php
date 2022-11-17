@@ -125,7 +125,18 @@
                       
 
                         <td>
-                            <button class="btn btn-success">Return Amount</button> / <button class="btn btn-danger">Clear Amount</button>
+                        <form method="POST" action="{{ route('returnamt',['id'=>$value->user_id,'booking_id'=>$value->id,'price'=>$value->pay_price]) }}">
+                        @csrf
+                            <button class="btn btn-success">Return Amount</button> 
+                            </form>
+                            / 
+                        <form method="POST" action="{{ route('clearamt',['booking_id'=>$value->id]) }}">
+                        @csrf
+
+                            <button class="btn btn-danger">Clear Amount</button>
+
+                            </form>
+
                         </td>
                     </tr>
                 @endforeach
