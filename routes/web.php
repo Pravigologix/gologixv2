@@ -93,10 +93,10 @@ Route::post('/delete/bcbranch/{id}',[AdminController::class,'deletebcbranch'])->
 
 
 
-Route::get('/banner',function(){
-    return view('admin.layouts.banners.banner');
+// Route::get('/banner',function(){
+//     return view('admin.layouts.banners.banner');
 
-});
+// });
 Route::get('/transaction',function(){
     $trans=DB::table('payments')->join('users','payments.pay_user_id','=','users.id')
     ->orderBy('id','desc')->select("payments.*",'users.name')
