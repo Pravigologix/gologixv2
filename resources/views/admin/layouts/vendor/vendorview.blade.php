@@ -118,7 +118,7 @@
         </div>
         <div class="mt-4">
             <div class="fw-bold h3">Account Details</div>
-            @if($kyc->count() > 0)
+            @if($account_details->count() > 0)
             @foreach($account_details as $key => $value)
             <div class="row mb-2">
                 <div class="col-2 me-5">Account holder name </div>
