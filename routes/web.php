@@ -132,7 +132,7 @@ Route::get('/help&suppot',function(){
 
 Route::get('/cancel/orders',function(){
 
-    $orders=DB::table('book_parking')->orderBy("id", "desc")->where('parking_status',5)->where('is_cacnceled',0)->join('payments','book_parking.payment_id','=','payments.id')->select('book_parking.*','payments.pay_price')
+    $orders=DB::table('book_parking')->orderBy("id", "desc")->where('parking_status',4)->where('is_cacnceled',0)->join('payments','book_parking.payment_id','=','payments.id')->select('book_parking.*','payments.pay_price')
     ->paginate(30);
 
 
