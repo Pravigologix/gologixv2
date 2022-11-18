@@ -72,13 +72,7 @@
 
 <body >
 <nav class="navbar navbar-light bg-light">
-
-
 @include('admin.layouts.sidebars.banner')
-
-
-
-
 </nav>
 
 <div class="mainbody">
@@ -113,7 +107,6 @@
             </div>
         </form>
         </div>
-        
       </div>
     </div>
   </div> 
@@ -167,11 +160,95 @@
 
 </tbody>
 </table>
-
-
 </div>
 
+<div class="row mt-5">
+  <div class="col-8">
+    <h1>Banners Videos</h1>
+  </div>
+  <div class="col-4">
+    <div>
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addBannerVideoModal">Add Banner Video</button>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="addBannerVideoModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Banner Video</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="{{route('addvideo')}}" method="POST" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <div class="modal-body">
+                <input type="file" name="clip_url" id="clip_url" class="form-control mb-3" >
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-success">Add Banner Video</button>
+            </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+<div class="container">
+   
+  <table class="table table-bordered">
+      <thead>
+          <tr>
+            <th>Banners video</th>
+            <th>action</th>
+          </tr>
+      </thead>
+      <tbody>
+        
+        @foreach($videoclip as $key => $value)
+            <tr>
+                <td>
+                  <video width="400" height="240" controls>
+                    <source src="{{ $value->clip_url }}" type="video/mp4">
+                    <source src="{{ $value->clip_url }}" type="video/ogg">
+                    Your browser does not support the video tag.
+                  </video>
+                </td>
+              <td>
+                <div>
+                  <div>
+                    <button type="button"  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBanVideoModal"><i class="material-icons" style="font-size:20px">delete</i></button>
+                  </div>
+                  <!-- Modal -->
+                  <div class="modal fade" id="deleteBanVideoModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Do you want delete banner video.
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <form method="POST" action="{{route('deletevideo', ['id'=> $value->id ])}}">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Delete </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>     
+              </td> 
+            </tr>
+        @endforeach
+
+</tbody>
+</table>
+</div>
+
+</div>
   
 
 

@@ -90,7 +90,7 @@ class AdminController extends Controller {
 
 
 
-        return view( 'admin.vendorview', [ 'vendor'=>$vendor,"account_details"=>$vendor_account,"kyc"=>$vendor_kyc ] );
+        return view( 'admin.layouts.vendor.vendorview', [ 'vendor'=>$vendor,"account_details"=>$vendor_account,"kyc"=>$vendor_kyc ] );
     }
 
     public function returnamout( $id, $booking_id, $price ) {

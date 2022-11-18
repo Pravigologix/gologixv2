@@ -61,7 +61,7 @@ class BannerController extends Controller {
         //$d = DB::table( 'banners' )->get();
         // return $d;
 
-        return redirect('admin.layouts.banners.banner');
+        return redirect('/banner');
     }
 
     public function addBannerbyadmin(Request $request){
@@ -109,11 +109,7 @@ class BannerController extends Controller {
 
 
         ]);
-       
-       
-
-
-        return redirect('admin.layouts.banners.banner');
+         return redirect('/banner');
 
 
     }
