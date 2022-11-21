@@ -65,7 +65,7 @@ class BookParking extends Controller
 
        
       $slot_no= rand(1,$arraylist);
-      $compare=($booking_count<$arraylist);
+      
 
       
 
@@ -75,7 +75,7 @@ class BookParking extends Controller
    
 
 
-      if($compare){
+   
         $user_bokking= DB::table('book_parking')->insert([
             'paking_type'=>$request->input('paking_type'),
             'parking_amt'=>$request->input('parking_amt'),
@@ -108,12 +108,7 @@ class BookParking extends Controller
 
         'status'=>1,'user_id'=>$request->input('user_id')],200);
        
-      }
-      return response()->json([
-        'status'=>0,
-         
-        'message'=>'Bokking failed try again'
-      ],412);
+     
 
     }
 
