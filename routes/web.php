@@ -34,12 +34,12 @@ Route::get('routes', function () {
     }
     echo "</table>";
 });
-
-
-
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+Route::domain('Admin.gologix.in' . env('APP_URL'))->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/', [AdminController::class, 'login'])->name('admin-login');
 Route::post('/admin-login-post', [AdminController::class, 'adminlogin'])->name('adminlogin');
@@ -47,10 +47,7 @@ Route::get('/admin-login-posts',function(){
     return view('admin.vendor.vendor');
 
 });
-Route::get('/help/all',function(){
-    return view('helpandsupport');
 
-});
 Route::group(['middleware' => 'prevent-back-history'],function(){
 Route::get('/logout',function(){
     Session::flush();
@@ -160,4 +157,12 @@ Route::get('/banner',function(){
           return view('admin.layouts.bcbranch.bcbranch',["banners"=>$users]);
         });
   
+   
+});
 
+
+
+        Route::get('/help/all',function(){
+            return view('helpandsupport');
+        
+        });
