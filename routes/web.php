@@ -37,7 +37,7 @@ Route::get('routes', function () {
 
 
 
-Route::group(['domain' =>'admin.gologix.in'])->group(function () {
+Route::prefix('admin')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/', [AdminController::class, 'login'])->name('admin-login');
