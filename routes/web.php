@@ -34,11 +34,10 @@ Route::get('routes', function () {
     }
     echo "</table>";
 });
-Auth::routes();
 
 
 
-Route::domain('Admin.gologix.in' . env('APP_URL'))->group(function () {
+Route::domain('Admin.gologix.in')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/', [AdminController::class, 'login'])->name('admin-login');
