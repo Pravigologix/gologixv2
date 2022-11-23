@@ -12,6 +12,13 @@ use DB;
 use DateTime;
 
 class AdminController extends Controller {
+
+
+    public function __construct() {
+        $this->middleware( 'auth:api', [ 'except' => [
+            'login', 'adminlogin',
+        ] ] );
+    }
     public function dashboard() {
         return view( 'admin.dashboard' );
 
