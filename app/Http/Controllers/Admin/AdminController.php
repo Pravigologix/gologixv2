@@ -12,13 +12,7 @@ use DB;
 use DateTime;
 
 class AdminController extends Controller {
-
-
-    public function __construct() {
-        $this->middleware( 'auth:api', [ 'except' => [
-            'login', 'adminlogin',
-        ] ] );
-    }
+    
     public function dashboard() {
         return view( 'admin.dashboard' );
 
@@ -31,25 +25,7 @@ class AdminController extends Controller {
     public function adminlogin( Request $request ) {
 
         // dd( $req );
-        $request->validate( [
-            'email' => 'required',
-            'password' => 'required',
-        ] );
-
-        $credentials = $request->only( 'email', 'password' );
-
-        $token = Auth::attempt( $credentials, [ 'exp' => Carbon\Carbon::now()->addDays( 60 )->timestamp ] );
-        if ( !$token ) {
-
-            return redirect( '/' )->with( 'error', "Credential didn't match" );
-        } else if ( Auth::user()->is_admin == 1 ) {
-            return redirect( '/vendor' );
-
-        } else {
-
-            return redirect( '/' )->with( 'error', 'You Are Not Admin' );
-
-        }
+       
     }
 
     public function register() {

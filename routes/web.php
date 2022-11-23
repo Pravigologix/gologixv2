@@ -16,11 +16,12 @@ use Illuminate\Http\Request;
 Route::get('/', [AdminController::class, 'login'])->name('admin-login');
 Route::post('/admin-login-post', [AdminController::class, 'adminlogin'])->name('adminlogin');
 
-Route::group(['middleware'=>['auth']],function(){
 
 
 
 
+Route::group([], function() {
+   
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -138,8 +139,8 @@ Route::get('/banner',function(){
           return view('admin.layouts.bcbranch.bcbranch',["banners"=>$users]);
         });
   
-   
     });
+
 
 
 

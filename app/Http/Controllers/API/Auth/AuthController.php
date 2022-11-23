@@ -57,6 +57,35 @@ class AuthController extends Controller {
             
         }
 
+        public function adminlogin( Request $request ) {
+
+
+            $request->validate( [
+                'email' => 'required',
+                'password' => 'required',
+            ] );
+    
+            $credentials = $request->only( 'email', 'password' );
+    
+            $token = Auth::attempt( $credentials, [ 'exp' => Carbon\Carbon::now()->addDays( 60 )->timestamp ] );
+            if ( !$token ) {
+    
+                return redirect( '/' )->with( 'error', "Credential didn't match" );
+            } else if ( Auth::user()->is_admin == 1 ) {
+                return redirect( '/vendor' );
+    
+            } else {
+    
+                return redirect( '/' )->with( 'error', 'You Are Not Admin' );
+    
+            }
+
+            
+    
+           
+                
+            }
+
     // }
 
 //     public function request_otp(RegisterRequest $request)
