@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\API\User\cloudparking\BannerController;
 
 use Illuminate\Support\Facades\DB;
@@ -35,15 +35,18 @@ Route::get('routes', function () {
     echo "</table>";
 });
 
+Route::get('/', [AdminController::class, 'login'])->name('admin-login');
+Route::group(['middleware'=>['auth']],function(){
 
 
-Route::prefix('admin')->group(function () {
+
+
+
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/', [AdminController::class, 'login'])->name('admin-login');
 Route::post('/admin-login-post', [AdminController::class, 'adminlogin'])->name('adminlogin');
 Route::get('/admin-login-posts',function(){
-    return view('admin.vendor.vendor');
+    return view('admin.layouts.vendor.vendor');
 
 });
 
@@ -157,7 +160,7 @@ Route::get('/banner',function(){
         });
   
    
-});
+    });
 
 
 
