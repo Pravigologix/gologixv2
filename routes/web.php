@@ -36,6 +36,8 @@ Route::get('routes', function () {
 });
 
 Route::get('/', [AdminController::class, 'login'])->name('admin-login');
+Route::post('/admin-login-post', [AdminController::class, 'adminlogin'])->name('adminlogin');
+
 Route::group(['middleware'=>['auth']],function(){
 
 
@@ -44,7 +46,6 @@ Route::group(['middleware'=>['auth']],function(){
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::post('/admin-login-post', [AdminController::class, 'adminlogin'])->name('adminlogin');
 Route::get('/admin-login-posts',function(){
     return view('admin.layouts.vendor.vendor');
 
