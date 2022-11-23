@@ -37,7 +37,7 @@ Route::get('routes', function () {
 
 
 
-Route::group(['domain' =>'admin.bikecafe.co.in'])->group(function () {
+
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/', [AdminController::class, 'login'])->name('admin-login');
@@ -157,7 +157,7 @@ Route::get('/banner',function(){
         });
   
    
-});
+
 
 
 
