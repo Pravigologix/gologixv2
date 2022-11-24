@@ -49,7 +49,7 @@ Route::get('/verify-user-active/{id}', [AdminController::class, 'makeuseractive'
 
 
 
-Route::get('/admin-login-post', [AdminController::class, 'adminlogin'])->name('adminlogin');
+Route::post('/admin-login-post', [AdminController::class, 'adminlogin'])->name('adminlogin');
 Route::get('/admin-login-posts',function(){
     return view('admin.vendor.vendor');
 

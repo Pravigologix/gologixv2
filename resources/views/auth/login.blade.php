@@ -140,7 +140,7 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="{{route('adminlogin')}}" method="GET">
+    <form action="{{route('adminlogin')}}" method="POST">
         {{csrf_field()}}
         <h3>Login Here</h3>
 

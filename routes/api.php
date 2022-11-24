@@ -75,23 +75,17 @@ Route::controller(AuthController::class)
     Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
     Route::get('auth/google/callback', 'AuthController@handleGoogleCallback');
     });
-    Route::group(['middleware'=>['auth']],function(){
+Route::group(['middleware'=>['auth']],function(){
     Route::get('customervendor', [VendorCustomerController::class,'customer']);
     Route::get('vendorcustomer', [VendorCustomerController::class,'vendor']);
     Route::get('users', [UserDetailsControoller::class,'users']);
-
-    Route::post('getuserdetailstovendor', [UserBookingDeatils::class,'getuserdetails']);
-
-         
+    Route::post('getuserdetailstovendor', [UserBookingDeatils::class,'getuserdetails']);   
     Route::get('getqrCode',[qrcodeController::class,'getqrCode']); 
     Route::post('addqrCode',[qrcodeController::class,'addqrCode']); 
     Route::post('/walletamount', [WalletController::class,'addwalletamount']);
     Route::get('/getwalletamount', [WalletController::class,'getwalletamount']);
     Route::post('/debitwalletamount', [WalletController::class,'debitwalletamount']);
-         Route::post('/updatewalletamount', [WalletController::class,'updatewalletamount']);
-        
-        
-        
+    Route::post('/updatewalletamount', [WalletController::class,'updatewalletamount']); 
     Route::get('getparkingaddress',[AddParkingController::class,'getparkingdeatils']);
     Route::post('getparkingcharges',[AddParkingController::class,'getparkingcharges']);
     Route::post('addpakingaddress',[AddParkingController::class,'addparkingdetails']);
@@ -105,9 +99,7 @@ Route::controller(AuthController::class)
     Route::post('getdetails',[UserParkingdeatils::class,'generateparkinglslotforuser']);
     Route::post('bookparking',[BookParking::class,'bookpakingbyuser']);
     Route::post('cancelbookingbyuser',[BookParking::class,'cancelbooking']);
-
-    Route::post('updatebookpakingbyuser',[BookParking::class,'updatebookpakingbyuser']);
-        
+    Route::post('updatebookpakingbyuser',[BookParking::class,'updatebookpakingbyuser']);     
     Route::post('addVendorDetails',[VendorDetailsController::class,'addVendorDetails']);
     Route::post('editVendorDetails',[VendorDetailsController::class,'editVendorDetails']);
 
@@ -115,9 +107,8 @@ Route::controller(AuthController::class)
    // Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
    // Route::get('getvendordashboard',[VendorDetailsController::class,'getvendordashboarddetails']);
 //=======
-Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
-
-Route::post('getvendordashboard',[VendorDetailsController::class,'getvendordashboarddetails']);
+    Route::get('getVendorDetails',[VendorDetailsController::class,'getVendorDetails']);
+    Route::post('getvendordashboard',[VendorDetailsController::class,'getvendordashboarddetails']);
 //>>>>>>> main
 
     Route::post('addVendorAccountDetails',[VendorAccountsController::class,'addVendorAccountDetails']);
