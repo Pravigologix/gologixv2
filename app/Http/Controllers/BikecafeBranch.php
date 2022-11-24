@@ -7,6 +7,10 @@ use DB;
 
 class BikecafeBranch extends Controller
 {
+    public function __construct()
+     {
+         $this->middleware('auth');
+     }
     public function getallbcbranch(Request $req)
     {
         $bc_cafe=DB::table('bc_branch')->where('bc_type',0)->get();

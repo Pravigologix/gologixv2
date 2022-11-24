@@ -6,30 +6,159 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Session;
+
+
 use App\Models\User;
 use Carbon;
 use DB;
 use DateTime;
 
 class AdminController extends Controller {
-    
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:web', ['except' => ['adminlogin']]);
+    // }
     public function dashboard() {
         return view( 'admin.dashboard' );
 
     }
 
     public function login() {
+        // dd("login succeeful");
         return view( 'auth.login' );
+    }
+
+    public function home123(){
+        // dd('hoem page');
+        $data= Session::get('islogin');
+        if(!$data){
+            return redirect('admin/login');
+        }
+    }
+    public function getvendor() {
+        $data= Session::get('islogin');
+        if(!$data){
+            return redirect('admin/login');
+        }
+
+  
+     
+        
+        $vendor=DB::table('users')->where('is_admin',2)->paginate(20);
+        //dd($vendor);
+        //return $vendor;
+        return view('admin.layouts.vendor.vendor',compact('vendor'));
     }
 
     public function adminlogin( Request $request ) {
 
         // dd( $req );
-       
+        $request->validate( [
+            'email' => 'required',
+            'password' => 'required',
+        ] );
+
+        $credentials = $request->only( 'email', 'password' );
+            //dd($credentials);
+        $token = JWTAuth::attempt( $credentials, [ 'exp' => Carbon\Carbon::now()->addDays( 60 )->timestamp ] );
+        //dd(Auth::attempt( $credentials, [ 'exp' => Carbon\Carbon::now()->addDays( 60 )->timestamp ] ));
+        
+        if($token){
+            if ( JWTAuth::user()->is_admin == 1 ) {
+                Session::put('islogin', true);
+                return redirect('/admin/vendor');
+
+            }else{
+            return redirect( '/admin/login' )->with( 'error', 'You Are Not Admin' );
+        }
+
+    }
+        else{ 
+            // dd(Auth::user()->is_admin == 1);
+            return redirect( '/admin/login' )->with( 'error', "Credential didn't match" );
+
+        } 
+        // return redirect()->route( 'Vendor' );
     }
 
     public function register() {
         return view( 'admin.register' );
+    }
+
+    public function bcbranch() {
+        $data= Session::get('islogin');
+        if(!$data){
+            return redirect('admin/login');
+        }
+        $users=DB::table('bc_branch')->get();
+        
+    
+        return view('admin.layouts.bcbranch.bcbranch',["banners"=>$users]);
+    
+    }
+    public function banners() {
+        $data= Session::get('islogin');
+        if(!$data){
+            return redirect('admin/login');
+        }
+        $users=DB::table('banners')->get();
+        $videos=DB::table('videoclip')->get();
+    
+          return view('admin.layouts.banners.banner',["banners"=>$users,"videoclip"=>$videos]);
+      
+    }
+    public function cancelorders() {
+        $data= Session::get('islogin');
+        if(!$data){
+            return redirect('admin/login');
+        }
+        $orders=DB::table('book_parking')->orderBy("id", "desc")->where('parking_status',4)->where('is_cacnceled',0)->join('payments','book_parking.payment_id','=','payments.id')->select('book_parking.*','payments.pay_price')
+        ->paginate(30);
+    
+    
+    
+    
+    
+        return view('admin.layouts.cancel.cancel',["orders"=>$orders]);
+    
+    }
+
+    public function getuser() {
+        $data= Session::get('islogin');
+        if(!$data){
+            return redirect('admin/login');
+        }
+        $users=DB::table('users')->where('is_admin',0)->paginate(10);
+        return view('admin.layouts.users.users',["users"=>$users]);
+    
+    }
+    public function helpandsupport() {
+        $data= Session::get('islogin');
+        if(!$data){
+            return redirect('admin/login');
+        }
+        $support=DB::table('helpandsupport')->orderBy("id", "desc")->paginate(20);
+    
+    
+    
+    
+    
+        return view('admin.layouts.help.help',["support"=>$support]);
+    
+    }
+    public function transcation() {
+        $data= Session::get('islogin');
+        if(!$data){
+            return redirect('admin/login');
+        }
+        $trans=DB::table('payments')->join('users','payments.pay_user_id','=','users.id')
+        ->orderBy('id','desc')->select("payments.*",'users.name')
+        ->paginate(80);
+        $total_price=DB::table('payments')->where('pay_paysta_status_id',7)->sum('pay_price');
+        
+        return view('admin.layouts.payment.payment',["trans"=>$trans,"total_price"=>$total_price]);
     }
 
     public function support( Request $request ) {
@@ -52,8 +181,39 @@ class AdminController extends Controller {
         return response()->json( $token );
 
     }
+    public function verifyvendor( $id ) {
+
+        $user=DB::table('users')->where('id',$id)->update([
+            'users_isverified'=>1
+        ]);
+
+        return redirect('admin/getvendordetailstoadminbyid'.'/'.$id);
+
+    }
+    public function makeuseriactive( $id ) {
+
+        $user=DB::table('users')->where('id',$id)->update([
+            'users_isdeleted'=>1
+        ]);
+
+        return redirect('/admin/users');
+
+    }
+    public function makeuseractive( $id ) {
+
+        $user=DB::table('users')->where('id',$id)->update([
+            'users_isdeleted'=>0
+        ]);
+
+        return redirect('/admin/users');
+
+    }
 
     public function getalltrancationforadmin() {
+        $data= Session::get('islogin');
+        if(!$data){
+            return redirect('admin/login');
+        }
         $trans = DB::table( 'payments' )->orderBy( 'id', 'asc' )->paginate( 80 );
         $total_price = DB::table( 'payments' )->sum( 'pay_price' );
 
@@ -61,6 +221,10 @@ class AdminController extends Controller {
     }
 
     public function getvendordetailstoadmin() {
+        $data= Session::get('islogin');
+        if(!$data){
+            return redirect('admin/login');
+        }
         $vendor = DB::table( 'users' )->where( 'is_admin', 2 )->orderBy( 'id', 'asc' )->paginate( 80 );
 
         return view( 'admin.password', [ 'vendor'=>$vendor ] );
@@ -69,11 +233,12 @@ class AdminController extends Controller {
     public function getvendordetailstoadminbyid($id) {
         $vendor = DB::table( 'users' )->where( 'id', $id)->get();
         $vendor_account = DB::table( 'vendor_account' )->where( 'vendor_id', $id)->get();
-        $vendor_kyc = DB::table( 'vendor_kyc' )->where( 'venkyc_vendor_id', $id)->get();
+        $vendor_kyc = DB::table( 'vendor_new_kyc' )->where( 'user_id', $id)->get();
+        $vendor_id=$id;
 
 
 
-        return view( 'admin.layouts.vendor.vendorview', [ 'vendor'=>$vendor,"account_details"=>$vendor_account,"kyc"=>$vendor_kyc ] );
+        return view( 'admin.layouts.vendor.vendorview', [ 'vendor'=>$vendor,"account_details"=>$vendor_account,"kyc"=>$vendor_kyc,"id"=>$vendor_id ] );
     }
 
     public function returnamout( $id, $booking_id, $price ) {
@@ -101,7 +266,7 @@ class AdminController extends Controller {
                 'credited_amt'=>$price
             ] );
 
-            return redirect( '/cancel/orders' );
+            return redirect( 'admin/cancel/orders' );
         } catch( e ) {
             return dd( e );
         }
@@ -111,7 +276,7 @@ class AdminController extends Controller {
 
         $booking = DB::table( 'book_parking' )->where( 'id', $booking_id )->update( [ 'is_cacnceled'=>1 ] );
 
-        return redirect( '/cancel/orders' );
+        return redirect( 'admin/cancel/orders' );
     }
 
     public function getvendoraccountdetailstoadmin( Request $req ) {
@@ -130,14 +295,14 @@ class AdminController extends Controller {
 
         ] );
 
-        return redirect( '/bcbranch' );
+        return redirect( 'admin/bcbranch' );
     }
 
     public function deletebcbranch( $id ) {
 
         $acct_vendor = DB::table( 'bc_branch' )->where( 'id', $id )->delete();
 
-        return redirect( '/bcbranch' );
+        return redirect( 'admin/bcbranch' );
     }
 
 }

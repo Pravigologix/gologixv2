@@ -12,7 +12,19 @@ class BookParking extends Controller
     public function bookpakingbyuser(Request $request) {
         
         $userdetails=Auth::user();
-        
+      if(  $userdetails->users_isdeleted!=0){
+        return response()->json(["message"=>"Privous payment pending"],412);
+
+      }
+      
+     else {
+
+     $checkvehicle1= DB::table('book_parking')->where('user_id','=',$request->input('user_id'))->where("vehicle_id",'=',$request->input('vehicle_id'))->where( 'parking_status',1)->where('payment_status',7)->count();
+     $checkvehicle2=  DB::table('book_parking')->where('user_id','=',$request->input('user_id'))->where("vehicle_id",'=',$request->input('vehicle_id'))->where( 'parking_status',2)->where('payment_status',7)->count();
+
+
+
+        if(($checkvehicle1==0)&&$checkvehicle2==0){
          $trans_id=(string)$request->input( 'pay_price' ).(string)$userdetails->id.'2022'.$request->input( 'date' );
        
         $payment = DB::table( 'payments' )->insert( [
@@ -106,7 +118,9 @@ class BookParking extends Controller
         'slot_no'=>$slot_no,
 
 
-        'status'=>1,'user_id'=>$request->input('user_id')],200);
+        'status'=>1,'user_id'=>$request->input('user_id')],200);}else{
+          return response()->json(['message'=>'multiple booking cant be accepted']);
+        }}
        
      
 

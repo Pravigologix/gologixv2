@@ -98,8 +98,10 @@
             @if($kyc->count() > 0)
             @foreach($kyc as $key => $value)
             <div class="row mb-2">
-                <div class="col-2 me-5">{{ $value->venkyc_docname }} </div>
-                <div class="col fw-bold"><span class="me-3">:</span>{{ $value->venkyc_docnumber }}</div>
+                <div class="col-2 me-5">{{ $value->doc1 }} </div>
+                <div class="col-2 me-5">{{ $value->addhar_number }} </div>
+
+                <div class="col fw-bold"><span class="me-3">:</span>{{ $value->doc2 }}</div>
             </div>
             {{-- <div class="row mb-2">
                 <div class="col-2 me-5">Email </div>
@@ -145,8 +147,16 @@
         </div>
         {{-- Verify button --}}
         <div class="mt-4">
+          
+
+               
+
+                   
             @if($kyc->count() > 0 && $account_details->count() > 0)
+            <form method="GET" action="{{ route('verify-vendor',['id'=>$id]) }}">
+                @csrf
                 <button class="btn btn-primary w-25">Verify</button>
+            </form>
             @endif
         </div>
     </div>

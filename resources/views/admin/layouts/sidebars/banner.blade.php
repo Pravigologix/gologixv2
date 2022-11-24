@@ -15,31 +15,31 @@
       <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
     </a> --}}
   
-    <a href="{{ url('/vendor') }}" class="list-group-item list-group-item-action py-2 ripple">
+    <a href="{{ url('/admin/vendor') }}" class="list-group-item list-group-item-action py-2 ripple">
       <span>Vendor</span>
     </a>
 
-    <a href="{{ url('/users') }}" class="list-group-item list-group-item-action py-2 ripple"
+    <a href="{{ url('/admin/users') }}" class="list-group-item list-group-item-action py-2 ripple"
       ><span>Users</span></a
     >
-    <a href="{{ url('/banner') }}" class="list-group-item list-group-item-action py-2 ripple active"
+    <a href="{{ url('/admin/banner') }}" class="list-group-item list-group-item-action py-2 ripple active"
       ><span>Banners</span></a
     >
-    <a href="{{ url('/transaction') }}" class="list-group-item list-group-item-action py-2 ripple"
+    <a href="{{ url('/admin/transaction') }}" class="list-group-item list-group-item-action py-2 ripple"
       ><span>Transactions</span></a
     >
-    <a href="{{ url('/help&suppot') }}" class="list-group-item list-group-item-action py-2 ripple">
+    <a href="{{ url('/admin/help&suppot') }}" class="list-group-item list-group-item-action py-2 ripple">
       <span>Help & Support</span>
     </a>
-    <a href="{{ url('/bcbranch') }}" class="list-group-item list-group-item-action py-2 ripple "
+    <a href="{{ url('/admin/bcbranch') }}" class="list-group-item list-group-item-action py-2 ripple "
       ><span>BC Branch</span></a
     >
-    <a href="{{ url('/cancel/orders') }}" class="list-group-item list-group-item-action py-2 ripple">
+    <a href="{{ url('/admin/cancel/orders') }}" class="list-group-item list-group-item-action py-2 ripple">
       <span>Cancel orders</span>
     </a>
   
 
-    <a href="{{ url('/') }}" class="list-group-item list-group-item-action py-2 ripple"
+    <a href="{{ url('/admin/login') }}" class="list-group-item list-group-item-action py-2 ripple"
       ><span>LogOut</span></a
     >
   </div>

@@ -15,7 +15,16 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('login');
+            //dd($request->is('api*'));
+           
+            // return route('admin-login');
+
+            if($request->is('api*')) {
+                throw new \App\Exceptions\AuthException('Invalid token');
+            }
+            else {
+                return route('admin-login');
+            }
         }
     }
 }

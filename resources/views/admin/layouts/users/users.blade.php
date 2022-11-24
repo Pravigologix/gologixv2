@@ -95,6 +95,8 @@
                 <th>Phone Number</th>
                 <th>Email</th>
                 <th>Created at</th>
+                <th>Action</th>
+
 
                 <!-- <th></th>
                 <th>Payment Status</th>
@@ -114,6 +116,8 @@
                         <td>{{ $value->id }}</td>
                         <td>{{ $value->name }}</td>
                         <td>{{ $value->email }}</td>
+                        <td>{{ $value->users_isdeleted }}</td>
+
                         <td>{{ $value->phonenumber }}</td>
 
                        
@@ -121,9 +125,21 @@
                         <td>{{ $value->created_at }}</td>
                       
 
-                        <!-- <td>
-                            <button class="btn btn-danger">Delete</button>
-                        </td> -->
+                       <td>
+                        @if($value->users_isdeleted==1)
+                        <form method="GET" action="{{ route('verify-user-active',['id'=>$value->id]) }}">
+                          @csrf
+                            <button class="btn btn-primary">Active</button>
+
+            </form>
+                        @else
+                        <form method="GET" action="{{ route('verify-user',['id'=>$value->id]) }}">
+                          @csrf
+                            <button class="btn btn-danger">InActive</button>
+            </form>
+            @endif
+
+                        </td>
                     </tr>
                 @endforeach
             @else

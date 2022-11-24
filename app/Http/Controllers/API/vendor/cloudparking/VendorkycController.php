@@ -15,88 +15,53 @@ class VendorkycController extends Controller
    
       $user= Auth::user();  
 
-   
-      $document=DB::table('documents')->insert([
-        'doc_name'=>$request->input('doc_name'),
-        'doc_description'=>$request->input('doc_description'),
-        'doc_isactive'=>$request->input('doc_isactive'),
-        'doc_isdeleted'=>$request->input('doc_isdeleted'),
-        'user_id'=>$user->id,
-    ]);
-    if($document){
-      $document_id=DB::table('documents')
-     
-      ->where('documents.user_id','=',$user->id)->latest('created_at')->latest('id')->first();
-
-     // dd($document_id);
-
-      $user= Auth::user();  
-
-      $doctype=DB::table('documents_type')->insert([
-        'doctyp_name'=>$request->input('doctyp_name'),
-        'doctyp_description'=>$request->input('doctyp_description'),
-        'doctyp_isactive'=>$request->input('doctyp_isactive'),
-        'doctyp_isdeleted'=>$request->input('doctyp_isdeleted'),
-        'user_id'=>$user->id,
-      ]);
-      if($doctype){
-        $doctype_id=DB::table('documents_type')
-        ->where('documents_type.user_id','=',$user->id)->latest('id')->first();
-  
-        $files=$request['venkyc_path'];
-        $hostname=$_SERVER['HTTP_HOST'];
-        
-                $filejustname =pathinfo($files, PATHINFO_FILENAME);
-                // Get just extension of user upload file
-                $extention =$files->getClientOriginalExtension();
-                $fileName = $filejustname .time() ."." .$extention ;
-                $destinationPath = public_path().'/images'.'/kyc_docs';
-                $fileupload=$files->move($destinationPath,$fileName);
-                $kyc_docs=env('APP_URL').'/images'.'/kyc_docs'.'/'.$fileName; 
-
-                $user= Auth::user();  
-
-                $vendor=DB::table('vendor')->insert([
-                  'ven_name'=>$request->input('ven_name'),
-                  'ven_description'=>$request->input('ven_description'),
-                  'ven_address_id'=>$request->input('ven_address_id'),
-                  'ven_phone'=>$request->input('ven_phone'),
-                  'ven_email'=>$request->input('ven_email'),
-                  'user_id'=>$user->id,
-              ]);
-              if($vendor){
-                $vendor_id=DB::table('vendor')
+      
+ 
+      
+ 
+       $files=$request['doc1'];
+       $hostname=$_SERVER['HTTP_HOST'];
+       
+               $filejustname =pathinfo($files, PATHINFO_FILENAME);
+               // Get just extension of user upload file
+               $extention =$files->getClientOriginalExtension();
+               $fileName = $filejustname .time() ."." .$extention ;
+               $destinationPath = public_path().'/images'.'/profile';
+               $fileupload=$files->move($destinationPath,$fileName);
+               $profile_image1=env('APP_URL').'/images'.'/profile'.'/'.$fileName; 
+               $files1=$request['doc2'];
+               $hostname1=$_SERVER['HTTP_HOST'];
                
-                ->where('vendor.user_id','=',$user->id)->latest('id')->first();
-
-            $vendordetails=new VendorKYC;
-            $vendordetails->venkyc_docname=$request->input('venkyc_docname');
-            $vendordetails->venkyc_docnumber=$request->input('venkyc_docnumber');
-            $vendordetails->venkyc_vendor_id=$request->input('venkyc_vendor_id');
-            $vendordetails->venkyc_verifier_userid =$request->input('venkyc_verifier_userid');
-           //$vendordetails->venkyc_document_id=$document_id;
-           //$vendordetails->venkyc_doctye_id=$doctype_id;
-            $vendordetails->venkyc_path=json_encode($kyc_docs);
-            $vendordetails->venkyc_isapproved=$request->input('venkyc_isapproved');
-            $vendordetails->venkyc_isactive=$request->input('venkyc_isactive');
-            $vendordetails->venkyc_isdeleted=$request->input('venkyc_isdeleted');
-            $vendordetails-> save();
-            return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
-      }
-     }
-    }
+                       $filejustname1 =pathinfo($files1, PATHINFO_FILENAME);
+                       // Get just extension of user upload file
+                       $extention1 =$files1->getClientOriginalExtension();
+                       $fileName1 = $filejustname1 .time() ."." .$extention1 ;
+                       $destinationPath1 = public_path().'/images'.'/profile';
+                       $fileupload1=$files1->move($destinationPath1,$fileName1);
+                       $profile_image2=env('APP_URL').'/images'.'/profile'.'/'.$fileName1; 
+ 
+       $details_update=DB::table('vendor_new_kyc')->insert([
+        'user_id'=>$request->input('user_id'),
+        'doc2'=>$profile_image2,
+       'addhar_number'=>$request->input('addhar_number'),
+     
+         'doc1'=>$profile_image1,
+         'status'=>1
+         
+         ]
+       );
+ 
+         return response()->json( [ 'message'=>'Details image uploaded sucessfully' ], 200 );
+ 
+ 
+     
     }
       public function getVendorkyc(Request $request){
           
       $vendordetails=Auth::user();
 
-      $res= DB::table('vendor_kyc')
-      ->join('vendor','vendor_kyc.venkyc_vendor_id','=','vendor.id')
-      ->where('vendor.user_id','=',$vendordetails->id)
-      ->whereNotNull('vendor_kyc.venkyc_path')
-      ->select('vendor.ven_name','vendor.ven_description','vendor.ven_address_id',
-      'vendor.ven_phone','vendor.ven_email','vendor_kyc.venkyc_docname',
-      'venkyc_docnumber','venkyc_path','venkyc_isapproved')
+      $res= DB::table('vendor_new_kyc')->where('user_id',$vendordetails->id)
+      
       ->get();
 
   return response()->json(['vendor details kyc details'=>$res],200);

@@ -8,6 +8,10 @@ use App\Models\Banner;
 use DB;
 
 class BannerController extends Controller {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     //Display a listing of the resource.
 
@@ -53,7 +57,7 @@ class BannerController extends Controller {
         //$d = DB::table( 'banners' )->get();
         // return $d;
 
-        return redirect('/banner');
+        return redirect('admin/banner');
     }
     public function destroyclip( $id ) {
         $data = DB::table('videoclip')->where('id',$id)->delete();
@@ -61,7 +65,7 @@ class BannerController extends Controller {
         //$d = DB::table( 'banners' )->get();
         // return $d;
 
-        return redirect('/banner');
+        return redirect('admin/banner');
     }
 
     public function addBannerbyadmin(Request $request){
@@ -86,7 +90,7 @@ class BannerController extends Controller {
        
 
 
-        return redirect('/banner');
+        return redirect('admin/banner');
 
 
     }
@@ -109,7 +113,7 @@ class BannerController extends Controller {
 
 
         ]);
-         return redirect('/banner');
+         return redirect('admin/banner');
 
 
     }
