@@ -119,7 +119,7 @@ class BookParking extends Controller
 
 
         'status'=>1,'user_id'=>$request->input('user_id')],200);}else{
-          return response()->json(['message'=>'multiple booking cant be accepted']);
+          return response()->json(['message'=>'multiple booking cant be accepted'],412);
         }}
        
      
