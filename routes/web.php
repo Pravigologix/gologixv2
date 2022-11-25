@@ -35,10 +35,17 @@ Route::get('routes', function () {
     }
     echo "</table>";
 });
+Route::get('/',function(){
+    return view('welcome');
+
+});
+Route::get('/privacypolicy',function(){
+    return view('privacy');
+
+});
 
 
-
-
+Route::group(['prefix' => 'admin'],function(){
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -123,6 +130,6 @@ Route::post('/delete/bcbranch/{id}',[AdminController::class,'deletebcbranch'])->
         Route::get('/bcbranch',[AdminController::class,'bcbranch']);
       
 
-
+    });
 
 

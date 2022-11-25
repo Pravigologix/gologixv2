@@ -94,6 +94,8 @@
                 <th>Name</th>
                 <th>Phone Number</th>
                 <th>Email</th>
+                <th>Active/Inactive</th>
+
                 <th>Created at</th>
                 <th>Action</th>
 
@@ -115,10 +117,16 @@
                     <tr>
                         <td>{{ $value->id }}</td>
                         <td>{{ $value->name }}</td>
-                        <td>{{ $value->email }}</td>
-                        <td>{{ $value->users_isdeleted }}</td>
 
                         <td>{{ $value->phonenumber }}</td>
+                        <td>{{ $value->email }}</td>
+                        @if($value->users_isdeleted!=1)
+                        <td>Active</td>
+                        @else
+                        <td>InActive</td>
+                        @endif
+
+
 
                        
                        
