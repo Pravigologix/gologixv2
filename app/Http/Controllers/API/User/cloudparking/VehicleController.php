@@ -13,6 +13,7 @@ class VehicleController extends Controller
     public function addVehicle(Request $request){
         $user= Auth::user();  
        if($user){
+   
         $userdetails=new vehicle;
         $userdetails->useveh_vehicle_name=$request->input('useveh_vehicle_name');
         $userdetails->useveh_vehicle_number=$request->input('useveh_vehicle_number');
@@ -21,6 +22,7 @@ class VehicleController extends Controller
         $userdetails->useveh_isdelete=$request->input('useveh_isdelete');
         $userdetails-> save();
        return response()->json(['status'=>'Sucess','message'=>'Deatils uploaded sucessfully'],200);
+     
        }else{
            return response()->json(['status'=>'failed','message'=>'Something went worng '],303);
        }

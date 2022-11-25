@@ -110,7 +110,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                             <form name="add-blog-post-form" id="add-blog-post-form" method="post" action="{{url('/add/bcbranch')}}">
+                             <form name="add-blog-post-form" id="add-blog-post-form" method="post" action="{{url('admin/add/bcbranch')}}">
        @csrf
         <div class="form-group">
           <label for="exampleInputEmail1">Name</label>

@@ -80,14 +80,14 @@ Route::post('/canceled/return/{id}/{booking_id}/{price}',[AdminController::class
 Route::post('/canceled/clear/{booking_id}',[AdminController::class, 'clearamout'])->name('clearamt');
 
 
-Route::post('/add/banner',[BannerController::class, 'addBannerbyadmin'])->name('addbanner');
+Route::post('/add/banner',[AdminController::class, 'addBannerbyadmin'])->name('addbanner');
 
-Route::get('/delete/banner/{id}',[BannerController::class, 'destroy'])->name('deletebanner');
+Route::get('/delete/banner/{id}',[AdminController::class, 'destroy'])->name('deletebanner');
 
-Route::post('/add/video',[BannerController::class, 'addvideobyadmin'])->name('addvideo');
+Route::post('/add/video',[AdminController::class, 'addvideobyadmin'])->name('addvideo');
 
 // Route::post('/delete/banner',[BannerController::class, 'destroy'])->name('deletebanner');
-Route::post('/delete/video/{id}',[BannerController::class, 'destroyclip'])->name('deletevideo');
+Route::post('/delete/video/{id}',[AdminController::class, 'destroyclip'])->name('deletevideo');
 
 
 Route::post('/add/bcbranch',[AdminController::class, 'addbcbranch'])->name('addbcbranch');

@@ -93,7 +93,7 @@
             <h5 class="modal-title" id="exampleModalLabel">Add Banner</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form action="{{route('addbanner')}}" method="POST" enctype="multipart/form-data">
+          <form action="{{url('admin/add/banner')}}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="modal-body">
                 <input type="file" name="banner_image_url" id="banner_image_url" class="form-control mb-3" >

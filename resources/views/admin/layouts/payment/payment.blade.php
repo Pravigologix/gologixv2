@@ -128,6 +128,8 @@
                             
                         @elseif ($value->pay_paysta_status_id ==7)
                             Payment Done
+                            @elseif ($value->pay_paysta_status_id ==6)
+                           Refunded
 
                         @elseif ($value->pay_paysta_status_id ==4)
                             Failed

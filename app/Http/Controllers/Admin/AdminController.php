@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Session;
+use App\Models\Banner;
+
 
 
 use App\Models\User;
@@ -156,8 +158,10 @@ class AdminController extends Controller {
         $trans=DB::table('payments')->join('users','payments.pay_user_id','=','users.id')
         ->orderBy('id','desc')->select("payments.*",'users.name')
         ->paginate(80);
-        $total_price=DB::table('payments')->where('pay_paysta_status_id',7)->sum('pay_price');
-        
+        $total_price1=DB::table('payments')->where('pay_paysta_status_id',7)->sum('pay_price');
+        $total_price2=DB::table('payments')->where('pay_paysta_status_id',6)->sum('pay_price');
+
+        $total_price=$total_price1-$total_price2;
         return view('admin.layouts.payment.payment',["trans"=>$trans,"total_price"=>$total_price]);
     }
 
@@ -219,6 +223,74 @@ class AdminController extends Controller {
 
         return view( 'admin.password', [ 'trans'=>$trans, 'total_price'=>$total_price ] );
     }
+    public function destroy( Request $request,$id ) {
+    
+        $data = Banner::find($id )->delete();
+      
+        //$d = DB::table( 'banners' )->get();
+        // return $d;
+
+        return redirect('admin/banner');
+    }
+    public function destroyclip( $id ) {
+        $data = DB::table('videoclip')->where('id',$id)->delete();
+
+        //$d = DB::table( 'banners' )->get();
+        // return $d;
+
+        return redirect('admin/banner');
+    }
+
+    public function addBannerbyadmin(Request $request){
+        $files=$request->file('banner_image_url');
+        $hostname=$_SERVER['HTTP_HOST'];
+        
+                $filejustname =pathinfo($files, PATHINFO_FILENAME);
+                // Get just extension of user upload file
+                $extention =$files->getClientOriginalExtension();
+                $fileName = $filejustname .time()."." .$extention ;
+                $destinationPath = public_path().'/images'.'/banners';
+                $fileupload=$files->move($destinationPath,$fileName);
+                $banner_url=env('APP_URL').'/images'.'/banners'.'/'.$fileName; 
+
+        $users=DB::table('banners')->insert([
+            "banner_image_url"=>$banner_url,
+   "banner_descprition"=>$request->input('banner_descprition')
+
+
+        ]);
+       
+
+
+
+        return redirect('admin/banner');
+
+
+    }
+
+    public function addvideobyadmin(Request $request){
+        $files=$request->file('clip_url');
+        $hostname=$_SERVER['HTTP_HOST'];
+        
+                $filejustname =pathinfo($files, PATHINFO_FILENAME);
+                // Get just extension of user upload file
+                $extention =$files->getClientOriginalExtension();
+                $fileName = $filejustname .time()."." .$extention ;
+                $destinationPath = public_path().'/images'.'/banners';
+                $fileupload=$files->move($destinationPath,$fileName);
+                $banner_url=env('APP_URL').'/images'.'/banners'.'/'.$fileName; 
+
+        $users=DB::table('videoclip')->insert([
+            "clip_url"=>$banner_url,
+ 
+
+
+        ]);
+         return redirect('admin/banner');
+
+
+    }
+
 
     public function getvendordetailstoadmin() {
         $data= Session::get('islogin');
@@ -252,7 +324,7 @@ class AdminController extends Controller {
                 'pay_user_id'=>$id,
                 'pay_description'=>'refund amount',
                 'pay_transaction_id'=>$trans,
-                'pay_paysta_status_id'=>'7',
+                'pay_paysta_status_id'=>'6',
                 'pay_method'=>'2',
 
             ] );
