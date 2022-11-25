@@ -90,7 +90,11 @@
               <th>id</th>
               <th>ven_name</th>
               <th>ven_phone</th>
-              <th>email</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Action</th>
+
+
        
        
            
@@ -104,6 +108,18 @@
                       <td>{{ $value->name }}</td>
                       <td>{{ $value->phonenumber }}</td>
                       <td>{{ $value->email }}</td>
+                      @if ($value->users_isverified==1)
+                      <td>Verified</td>
+
+                        
+                      @else
+                      <td>Not Verified</td>
+
+                        
+                      @endif
+                   
+
+
                       <td>
                         <form action="{{route('vendorbyid', ['id'=> $value->id ])}}" method="post">
                           @csrf
