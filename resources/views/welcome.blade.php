@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Zagoo</title>
-    <link rel="icon" href="{{  asset('assets/img/bike_cafe_logo.png')}}">
+    <link rel="icon" href="{{asset('assets/img/bike_cafe_logo.png')}}">
   
     <!-- ===============================================-->
     <!--    Stylesheets-->

@@ -33,7 +33,7 @@ class Profile extends Controller {
         $user = Auth::user();
 
         $get_user_details =  DB::table( 'users' )->where( 'id', '=', $user->id )
-        ->select( 'name', 'email', 'phonenumber', 'profile_photo_path' ,'users_isverified')
+        ->select( 'name', 'email', 'phonenumber', 'profile_photo_path' ,'users_isverified','users_isdeleted')
         ->get();
 
         return response()->json( [ 'userdetails'=>$get_user_details ], 200 );
