@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Zagoo</title>
-    <link rel="icon" href="assets/img/bike_cafe_logo.png">
+    <link rel="icon" href="{{  asset('assets/img/bike_cafe_logo.png')}}">
   
     <!-- ===============================================-->
     <!--    Stylesheets-->
     <!-- ===============================================-->
-    <link href="assets/css/theme.css" rel="stylesheet" />
+    <link href="{{  asset('assets/css/theme.css') }}" rel="stylesheet" />
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"> -->
 
   </head>
@@ -231,11 +231,11 @@
       </section>
 
     </main>
-    <script src="assets/@popperjs/popper.min.js"></script>
-    <script src="assets/bootstrap/bootstrap.min.js"></script>
-    <script src="assets/is/is.min.js"></script>
+    <script src="{{ asset('assets/@popperjs/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/is/is.min.js') }}"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="assets/js/theme.js"></script>
+    <script src="{{ asset('assets/js/theme.js') }}"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500&amp;display=swap" rel="stylesheet">
   </body>
