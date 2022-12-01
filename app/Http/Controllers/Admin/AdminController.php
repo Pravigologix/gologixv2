@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Session;
 use App\Models\Banner;
+use App\Models\BookParkingModel;
 
 
 
@@ -192,6 +193,48 @@ class AdminController extends Controller {
         ]);
 
         return redirect('admin/getvendordetailstoadminbyid'.'/'.$id);
+
+    }
+    public function deactivatevendor( $id ) {
+
+        $user=DB::table('users')->where('id',$id)->update([
+            'users_isactive'=>1
+        ]);
+        $useraddress=DB::table('addresses')->where('add_user_id',$id)->update([
+            'is_cloud_parking'=>0
+        ]);
+
+        return redirect('/admin/vendor');
+
+    }
+    public function activatevendor( $id ) {
+
+        $user=DB::table('users')->where('id',$id)->update([
+            'users_isactive'=>0
+        ]);
+        $useraddress=DB::table('addresses')->where('add_user_id',$id)->update([
+            'is_cloud_parking'=>1
+        ]);
+
+        return redirect('/admin/vendor');
+
+    }
+    public function allbookings(  ) {
+
+        $details=BookParkingModel::
+        with('user_details')->
+        with('address_details')
+        ->with('booking_payment_details')
+        ->with('parking_charge_details')
+        ->with('all_parking_charge_details')
+        ->with('parking_slot_address_details')
+        ->orderBy('id','desc')
+        
+      
+        ->paginate(15);
+        // dd($details);
+
+        return view('admin.layouts.booking.allbooking',compact('details'));
 
     }
     public function makeuseriactive( $id ) {

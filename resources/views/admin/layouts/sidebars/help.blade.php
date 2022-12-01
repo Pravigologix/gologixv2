@@ -31,6 +31,9 @@
     <a href="{{ url('/admin/help&suppot') }}" class="list-group-item list-group-item-action py-2 ripple active">
       <i class="fas fa-chart-pie fa-fw me-3"></i><span>Help & Support</span>
     </a>
+    <a href="{{ url('/admin/allbookingdetails') }}" class="list-group-item list-group-item-action py-2 ripple "
+    ><span>All Bookings</span></a
+  >
     <a href="{{ url('/admin/bcbranch') }}" class="list-group-item list-group-item-action py-2 ripple "
       ><i class="fas fa-chart-bar fa-fw me-3"></i><span>BC Branch</span></a
     >

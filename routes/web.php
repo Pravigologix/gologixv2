@@ -50,6 +50,11 @@ Route::group(['prefix' => 'admin'],function(){
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [AdminController::class, 'login'])->name('admin-login');
+
+Route::post('/deactivate/vendor/{id}', [AdminController::class, 'deactivatevendor'])->name('vendor-deactivate');
+Route::post('/activate/vendor/{id}', [AdminController::class, 'activatevendor'])->name('vendor-activate');
+
+
 Route::get('/verify-vendor/{id}', [AdminController::class, 'verifyvendor'])->name('verify-vendor');
 Route::get('/verify-user/{id}', [AdminController::class, 'makeuseriactive'])->name('verify-user');
 Route::get('/verify-user-active/{id}', [AdminController::class, 'makeuseractive'])->name('verify-user-active');
@@ -57,6 +62,7 @@ Route::get('/verify-user-active/{id}', [AdminController::class, 'makeuseractive'
 
 
 Route::post('/admin-login-post', [AdminController::class, 'adminlogin'])->name('adminlogin');
+
 Route::get('/admin-login-posts',function(){
     return view('admin.vendor.vendor');
 
@@ -116,6 +122,8 @@ Route::post('/delete/bcbranch/{id}',[AdminController::class,'deletebcbranch'])->
    
     Route::get('/home-test', [AdminController::class, 'home123']);
     Route::get('/vendor',[AdminController::class,'getvendor'])->name('Vendor');
+Route::get('/allbookingdetails', [AdminController::class, 'allbookings']);
+
 // });
     Route::get('/transaction',[AdminController::class,'transcation']);
     // Route::get('/vendor',[AdminController::class,'getvendor'])->name('Vendor');

@@ -34,6 +34,9 @@
     <a href="{{ url('/admin/bcbranch') }}" class="list-group-item list-group-item-action py-2 ripple "
       ><span>BC Branch</span></a
     >
+    <a href="{{ url('/admin/allbookingdetails') }}" class="list-group-item list-group-item-action py-2 ripple "
+      ><span>All Bookings</span></a
+    >
     <a href="{{ url('/admin/cancel/orders') }}" class="list-group-item list-group-item-action py-2 ripple">
       <span>Cancel orders</span>
     </a>

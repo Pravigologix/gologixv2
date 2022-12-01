@@ -117,6 +117,15 @@
 
                         
                       @endif
+                      @if ($value->users_isactive==0)
+                      <td>Active</td>
+
+                        
+                      @else
+                      <td>InActive</td>
+
+                        
+                      @endif
                    
 
 
@@ -124,7 +133,23 @@
                         <form action="{{route('vendorbyid', ['id'=> $value->id ])}}" method="post">
                           @csrf
                           <button type="submit" class="btn btn-primary">View</button>
+                        </form>/
+                        @if ($value->users_isactive==0)
+                        <form action="{{route('vendor-deactivate', ['id'=> $value->id ])}}" method="post">
+                          @csrf
+                          <button type="submit" class="btn btn-danger">De-Activate</button>
                         </form>
+  
+                          
+                        @else
+                        <form action="{{route('vendor-activate', ['id'=> $value->id ])}}" method="post">
+                          @csrf
+                          <button type="submit" class="btn btn-success">Activate</button>
+                        </form>
+  
+                          
+                        @endif
+                       
                       </td>
                   </tr>
               @endforeach
