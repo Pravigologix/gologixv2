@@ -14,7 +14,8 @@ use App\Models\BookParkingModel;
 
 
 use App\Models\User;
-use Carbon;
+// use Carbon;
+use Illuminate\Support\Carbon;
 use DB;
 use DateTime;
 
@@ -244,6 +245,46 @@ class AdminController extends Controller {
         ]);
 
         return redirect('/admin/users');
+
+    }
+    public function vendortransaction( $id ) {
+
+        $thismonth_amt=DB::table('addresses')
+       
+        ->join('book_parking','addresses.id','=','book_parking.address_id')
+        ->where('addresses.add_user_id',$id)
+        ->where('addresses.is_cloud_parking',1)
+        ->where('book_parking.parking_status','=',3)
+        ->whereMonth('book_parking.created_at', Carbon::now()->month)
+        ->whereYear('book_parking.created_at', Carbon::now()->year)
+   
+        
+
+        ->sum('book_parking.parking_amt');
+      $getvendorpayments=DB::table('vendor_payment_track')->where('vendor_id',$id)->get();
+
+    //    dd($getvendorpayments);
+        // vendor_payment_track
+        return view('admin.layouts.vendor.vendortrans',['amt'=>$thismonth_amt,'details'=>$getvendorpayments,'id'=>$id]);
+
+    }
+
+
+    public function updatevendorpaymetdetails($id,$amt,$status){
+
+       $vendorupdate= DB::table('vendor_payment_track')->insert([
+        'vendor_id'=>$id,
+        'amount'=>$amt,
+        'status'=>$status,
+
+
+        ]);
+
+
+      return redirect('admin/trans-vendor/'.$id);
+
+
+
 
     }
     public function makeuseractive( $id ) {

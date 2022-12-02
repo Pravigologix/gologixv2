@@ -149,6 +149,13 @@
   
                           
                         @endif
+
+                        /
+                        <form action="{{route('trans-vendor', ['id'=> $value->id ])}}" method="get">
+                          @csrf
+                          <button type="submit" class="btn btn-success">Transaction</button>
+                        </form>
+  
                        
                       </td>
                   </tr>

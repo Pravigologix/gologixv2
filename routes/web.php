@@ -56,6 +56,10 @@ Route::post('/activate/vendor/{id}', [AdminController::class, 'activatevendor'])
 
 
 Route::get('/verify-vendor/{id}', [AdminController::class, 'verifyvendor'])->name('verify-vendor');
+Route::get('/trans-vendor/{id}', [AdminController::class, 'vendortransaction'])->name('trans-vendor');
+Route::post('/trans-vendor/{id}/{amt}/{status}', [AdminController::class, 'updatevendorpaymetdetails'])->name('trans-vendor-update');
+
+
 Route::get('/verify-user/{id}', [AdminController::class, 'makeuseriactive'])->name('verify-user');
 Route::get('/verify-user-active/{id}', [AdminController::class, 'makeuseractive'])->name('verify-user-active');
 
